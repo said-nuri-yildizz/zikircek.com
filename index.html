@@ -152,6 +152,21 @@
                                                                 <li class="nav-item">
                                                                         <a class="nav-link text-dark fs-5"
                                                                                 href="javascript:void(0);"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#favoriZikirTablosu">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                        width="20" height="20"
+                                                                                        fill="currentColor"
+                                                                                        class="bi bi-balloon-heart-fill"
+                                                                                        viewBox="0 0 16 16">
+                                                                                        <path fill-rule="evenodd"
+                                                                                                d="M8.49 10.92C19.412 3.382 11.28-2.387 8 .986 4.719-2.387-3.413 3.382 7.51 10.92l-.234.468a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2.376 2.376 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224l-.235-.468ZM6.726 1.269c-1.167-.61-2.8-.142-3.454 1.135-.237.463-.36 1.08-.202 1.85.055.27.467.197.527-.071.285-1.256 1.177-2.462 2.989-2.528.234-.008.348-.278.14-.386Z" />
+                                                                                </svg>
+                                                                                Favori Zikirlerimi Göstert</a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                        <a class="nav-link text-dark fs-5"
+                                                                                href="javascript:void(0);"
                                                                                 data-bs-toggle="offcanvas"
                                                                                 data-bs-target="#offcanvasAyarlar"
                                                                                 aria-controls="offcanvasAyarlar">
@@ -414,7 +429,8 @@
                                 </div>
                                 <p id="bilgilendirme-isim" class="fs-3 mt-3"></p>
                                 <audio id="esmaul-husna-audio" controls>
-                                        <source id="esmaul-husna-source" src="/esmaul-husna-seslendirme/1.m4a" type="audio/mpeg">
+                                        <source id="esmaul-husna-source" src="/esmaul-husna-seslendirme/1.m4a"
+                                                type="audio/mpeg">
                                         Tarayıcınız ses oynatmayı desteklemiyor.
                                 </audio>
                                 <p id="bilgilendirme-isim-aciklamasi" class="fs-4"></p>
@@ -789,6 +805,8 @@
                                                 title="DMCA.com Protection Status" class="dmca-badge"> <img
                                                         src="https://images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=848d2931-343e-419e-95ba-72e24766b781"
                                                         alt="DMCA.com Protection Status" /></a>
+                                        <a class="text-dark" href="https://www.dmca.com/r/0m0lrkl"
+                                                target="_blank ">https://www.dmca.com/r/0m0lrkl</a>
                                         <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
                                 </footer>
                         </div>
@@ -995,6 +1013,53 @@
                         </div>
                 </div>
         </div>
+        <!-- Favori Zikirler Tablosu Modeli -->
+        <div class="modal fade" id="favoriZikirTablosu" tabindex="-1" aria-labelledby="favoriZikirTablosuLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                        <div class="modal-content bg-light text-dark">
+                                <div class="modal-header">
+                                        <h5 class="modal-title" id="favoriZikirTablosuLabel">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                        fill="currentColor" class="bi bi-balloon-heart-fill"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                                d="M8.49 10.92C19.412 3.382 11.28-2.387 8 .986 4.719-2.387-3.413 3.382 7.51 10.92l-.234.468a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2.376 2.376 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224l-.235-.468ZM6.726 1.269c-1.167-.61-2.8-.142-3.454 1.135-.237.463-.36 1.08-.202 1.85.055.27.467.197.527-.071.285-1.256 1.177-2.462 2.989-2.528.234-.008.348-.278.14-.386Z" />
+                                                </svg>
+                                                Favori Zikirlerim
+                                        </h5>
+                                        <button type="button" class="btn-close bg-secondary" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body fs-4">
+                                        <div class="table-responsive-md">
+                                                <table
+                                                        class="table table-bordered table-light table-striped table-hover shadow-sm lead">
+                                                        <thead>
+                                                                <tr>
+                                                                        <th scope="col">#</th>
+                                                                        <th scope="col">
+                                                                                <h2 class="lead fw-bold">Allah'ın 99
+                                                                                        ismi</h2>
+                                                                        </th>
+                                                                        <th scope="col">Açıklama</th>
+                                                                        <th scope="col">Çekilmesi gereken sayı</th>
+                                                                        <th scope="col">Favoriler</th>
+                                                                </tr>
+                                                        </thead>
+                                                        <tbody id="favorilerim-tablosu">
+
+                                                        </tbody>
+                                                </table>
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Kapat</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
         <!-- Zikir Tablosu Modeli -->
         <div class="modal fade" id="zikirTablosu" tabindex="-1" aria-labelledby="zikirTablosuLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
@@ -1034,8 +1099,8 @@
                                                                 </tr>
                                                         </thead>
                                                         <tbody>
-                                                                <tr id="tablo-isim-no-1">
-                                                                        <th scope="row">1</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-1" scope="row">1</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-1-isim">ALLAH</span><br><span
                                                                                         id="tablo-isim-no-1-arapca-yazilisi">(
@@ -1055,7 +1120,7 @@
                                                                                 bazılarının, Allah'tan başkasına isim
                                                                                 olarak verilmesi caizdir.</td>
                                                                         <td><span
-                                                                                        id="tablo-isim-no-1-cekilen-zikir-sayisi">36</span>/66
+                                                                                        id="tablo-isim-no-1-cekilen-zikir-sayisi">66</span>/66
                                                                         </td>
                                                                         <td><img id="tablo-isim-no-1-favori-svg"
                                                                                         onclick="favorileriGuncelle(1)"
@@ -1069,8 +1134,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-2">
-                                                                        <th scope="row">2</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-2" scope="row">2</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-2-isim">ER-RAHMÂN</span><br><span
                                                                                         id="tablo-isim-no-2-arapca-yazilisi">(
@@ -1079,7 +1144,7 @@
                                                                                 mahlûkata merhamet eden, şefkat
                                                                                 gösteren, ihsan eden.</td>
                                                                         <td><span
-                                                                                        id="tablo-isim-no-2-cekilen-zikir-sayisi">7</span>/298
+                                                                                        id="tablo-isim-no-2-cekilen-zikir-sayisi">0</span>/298
                                                                         </td>
                                                                         <td><img id="tablo-isim-no-2-favori-svg"
                                                                                         onclick="favorileriGuncelle(2)"
@@ -1093,8 +1158,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-3">
-                                                                        <th scope="row">3</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-3" scope="row">3</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-3-isim">ER-RAHÎM</span><br><span
                                                                                         id="tablo-isim-no-3-arapca-yazilisi">(
@@ -1117,8 +1182,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-4">
-                                                                        <th scope="row">4</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-4" scope="row">4</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-4-isim">EL-MELİK</span><br><span
                                                                                         id="tablo-isim-no-4-arapca-yazilisi">(
@@ -1141,8 +1206,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-5">
-                                                                        <th scope="row">5</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-5" scope="row">5</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-5-isim">EL-KUDDÛS</span><br><span
                                                                                         id="tablo-isim-no-5-arapca-yazilisi">(
@@ -1165,8 +1230,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-6">
-                                                                        <th scope="row">6</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-6" scope="row">6</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-6-isim">ES-SELÂM</span><br><span
                                                                                         id="tablo-isim-no-6-arapca-yazilisi">(
@@ -1190,8 +1255,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-7">
-                                                                        <th scope="row">7</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-7" scope="row">7</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-7-isim">EL-MÜ’MİN</span><br><span
                                                                                         id="tablo-isim-no-7-arapca-yazilisi">(
@@ -1214,8 +1279,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-8">
-                                                                        <th scope="row">8</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-8" scope="row">8</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-8-isim">EL-MÜHEYMİN</span><br><span
                                                                                         id="tablo-isim-no-8-arapca-yazilisi">(
@@ -1238,8 +1303,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-9">
-                                                                        <th scope="row">9</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-9" scope="row">9</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-9-isim">EL-AZÎZ</span><br><span
                                                                                         id="tablo-isim-no-9-arapca-yazilisi">(
@@ -1248,7 +1313,7 @@
                                                                                 her şeye galip olan, karşı gelinemeyen.
                                                                         </td>
                                                                         <td><span
-                                                                                        id="tablo-isim-no-9-cekilen-zikir-sayisi">4</span>/94
+                                                                                        id="tablo-isim-no-9-cekilen-zikir-sayisi">0</span>/94
                                                                         </td>
                                                                         <td><img id="tablo-isim-no-9-favori-svg"
                                                                                         onclick="favorileriGuncelle(9)"
@@ -1262,8 +1327,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-10">
-                                                                        <th scope="row">10</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-10" scope="row">10</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-10-isim">EL-CEBBÂR</span><br><span
                                                                                         id="tablo-isim-no-10-arapca-yazilisi">(
@@ -1287,8 +1352,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-11">
-                                                                        <th scope="row">11</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-11" scope="row">11</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-11-isim">EL-MÜTEKEBBİR</span><br><span
                                                                                         id="tablo-isim-no-11-arapca-yazilisi">(
@@ -1310,8 +1375,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-12">
-                                                                        <th scope="row">12</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-12" scope="row">12</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-12-isim">EL-HÂLİK</span><br><span
                                                                                         id="tablo-isim-no-12-arapca-yazilisi">(
@@ -1334,8 +1399,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-13">
-                                                                        <th scope="row">13</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-13" scope="row">13</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-13-isim">EL-BÂRİ</span><br><span
                                                                                         id="tablo-isim-no-13-arapca-yazilisi">(
@@ -1357,8 +1422,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-14">
-                                                                        <th scope="row">14</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-14" scope="row">14</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-14-isim">EL-MUSAVVİR</span><br><span
                                                                                         id="tablo-isim-no-14-arapca-yazilisi">(
@@ -1381,8 +1446,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-15">
-                                                                        <th scope="row">15</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-15" scope="row">15</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-15-isim">EL-GAFFÂR</span><br><span
                                                                                         id="tablo-isim-no-15-arapca-yazilisi">(
@@ -1405,8 +1470,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-16">
-                                                                        <th scope="row">16</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-16" scope="row">16</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-16-isim">EL-KAHHÂR</span><br><span
                                                                                         id="tablo-isim-no-16-arapca-yazilisi">(
@@ -1429,8 +1494,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-17">
-                                                                        <th scope="row">17</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-17" scope="row">17</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-17-isim">EL-VEHHÂB</span><br><span
                                                                                         id="tablo-isim-no-17-arapca-yazilisi">(
@@ -1453,8 +1518,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-18">
-                                                                        <th scope="row">18</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-18" scope="row">18</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-18-isim">ER-REZZÂK</span><br><span
                                                                                         id="tablo-isim-no-18-arapca-yazilisi">(
@@ -1477,8 +1542,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-19">
-                                                                        <th scope="row">19</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-19" scope="row">19</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-19-isim">EL-FETTÂH</span><br><span
                                                                                         id="tablo-isim-no-19-arapca-yazilisi">(
@@ -1500,8 +1565,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-20">
-                                                                        <th scope="row">20</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-20" scope="row">20</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-20-isim">EL-ALÎM</span><br><span
                                                                                         id="tablo-isim-no-20-arapca-yazilisi">(
@@ -1524,8 +1589,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-21">
-                                                                        <th scope="row">21</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-21" scope="row">21</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-21-isim">EL-KÂBİZ</span><br><span
                                                                                         id="tablo-isim-no-21-arapca-yazilisi">(
@@ -1547,8 +1612,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-22">
-                                                                        <th scope="row">22</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-22" scope="row">22</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-22-isim">EL-BÂSİT</span><br><span
                                                                                         id="tablo-isim-no-22-arapca-yazilisi">(
@@ -1570,8 +1635,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-23">
-                                                                        <th scope="row">23</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-23" scope="row">23</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-23-isim">EL-HÂFİD</span><br><span
                                                                                         id="tablo-isim-no-23-arapca-yazilisi">(
@@ -1593,8 +1658,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-24">
-                                                                        <th scope="row">24</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-24" scope="row">24</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-24-isim">ER-RÂFİ</span><br><span
                                                                                         id="tablo-isim-no-24-arapca-yazilisi">(
@@ -1616,8 +1681,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-25">
-                                                                        <th scope="row">25</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-25" scope="row">25</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-25-isim">EL-MUİZZ</span><br><span
                                                                                         id="tablo-isim-no-25-arapca-yazilisi">(
@@ -1639,8 +1704,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-26">
-                                                                        <th scope="row">26</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-26" scope="row">26</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-26-isim">EL-MÜZİLL</span><br><span
                                                                                         id="tablo-isim-no-26-arapca-yazilisi">(
@@ -1662,8 +1727,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-27">
-                                                                        <th scope="row">27</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-27" scope="row">27</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-27-isim">ES-SEMÎ</span><br><span
                                                                                         id="tablo-isim-no-27-arapca-yazilisi">(
@@ -1685,8 +1750,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-28">
-                                                                        <th scope="row">28</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-28" scope="row">28</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-28-isim">EL-BASÎR</span><br><span
                                                                                         id="tablo-isim-no-28-arapca-yazilisi">(
@@ -1708,8 +1773,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-29">
-                                                                        <th scope="row">29</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-29" scope="row">29</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-29-isim">EL-HAKEM</span><br><span
                                                                                         id="tablo-isim-no-29-arapca-yazilisi">(
@@ -1732,8 +1797,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-30">
-                                                                        <th scope="row">30</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-30" scope="row">30</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-30-isim">EL-ADL</span><br><span
                                                                                         id="tablo-isim-no-30-arapca-yazilisi">(
@@ -1755,8 +1820,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-31">
-                                                                        <th scope="row">31</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-31" scope="row">31</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-31-isim">EL-LATÎF</span><br><span
                                                                                         id="tablo-isim-no-31-arapca-yazilisi">(
@@ -1778,8 +1843,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-32">
-                                                                        <th scope="row">32</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-32" scope="row">32</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-32-isim">EL-HABÎR</span><br><span
                                                                                         id="tablo-isim-no-32-arapca-yazilisi">(
@@ -1802,8 +1867,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-33">
-                                                                        <th scope="row">33</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-33" scope="row">33</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-33-isim">EL-HALÎM</span><br><span
                                                                                         id="tablo-isim-no-33-arapca-yazilisi">(
@@ -1826,8 +1891,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-34">
-                                                                        <th scope="row">34</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-34" scope="row">34</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-34-isim">EL-AZÎM</span><br><span
                                                                                         id="tablo-isim-no-34-arapca-yazilisi">(
@@ -1849,8 +1914,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-35">
-                                                                        <th scope="row">35</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-35" scope="row">35</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-35-isim">EL-GAFÛR</span><br><span
                                                                                         id="tablo-isim-no-35-arapca-yazilisi">(
@@ -1872,8 +1937,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-36">
-                                                                        <th scope="row">36</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-36" scope="row">36</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-36-isim">EŞ-ŞEKÛR</span><br><span
                                                                                         id="tablo-isim-no-36-arapca-yazilisi">(
@@ -1895,8 +1960,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-37">
-                                                                        <th scope="row">37</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-37" scope="row">37</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-37-isim">EL-ALİYY</span><br><span
                                                                                         id="tablo-isim-no-37-arapca-yazilisi">(
@@ -1918,8 +1983,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-38">
-                                                                        <th scope="row">38</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-38" scope="row">38</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-38-isim">EL-KEBÎR</span><br><span
                                                                                         id="tablo-isim-no-38-arapca-yazilisi">(
@@ -1941,8 +2006,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-39">
-                                                                        <th scope="row">39</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-39" scope="row">39</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-39-isim">EL-HAFÎZ</span><br><span
                                                                                         id="tablo-isim-no-39-arapca-yazilisi">(
@@ -1964,8 +2029,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-40">
-                                                                        <th scope="row">40</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-40" scope="row">40</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-40-isim">EL-MUKÎT</span><br><span
                                                                                         id="tablo-isim-no-40-arapca-yazilisi">(
@@ -1987,8 +2052,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-41">
-                                                                        <th scope="row">41</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-41" scope="row">41</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-41-isim">EL-HASÎB</span><br><span
                                                                                         id="tablo-isim-no-41-arapca-yazilisi">(
@@ -2010,8 +2075,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-42">
-                                                                        <th scope="row">42</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-42" scope="row">42</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-42-isim">EL-CELÎL</span><br><span
                                                                                         id="tablo-isim-no-42-arapca-yazilisi">(
@@ -2033,8 +2098,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-43">
-                                                                        <th scope="row">43</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-43" scope="row">43</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-43-isim">EL-KERÎM</span><br><span
                                                                                         id="tablo-isim-no-43-arapca-yazilisi">(
@@ -2057,8 +2122,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-44">
-                                                                        <th scope="row">44</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-44" scope="row">44</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-44-isim">ER-RAKÎB</span><br><span
                                                                                         id="tablo-isim-no-44-arapca-yazilisi">(
@@ -2081,8 +2146,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-45">
-                                                                        <th scope="row">45</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-45" scope="row">45</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-45-isim">EL-MUCÎB</span><br><span
                                                                                         id="tablo-isim-no-45-arapca-yazilisi">(
@@ -2104,8 +2169,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-46">
-                                                                        <th scope="row">46</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-46" scope="row">46</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-46-isim">EL-VÂSİ</span><br><span
                                                                                         id="tablo-isim-no-46-arapca-yazilisi">(
@@ -2128,8 +2193,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-47">
-                                                                        <th scope="row">47</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-47" scope="row">47</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-47-isim">EL-HAKÎM</span><br><span
                                                                                         id="tablo-isim-no-47-arapca-yazilisi">(
@@ -2152,8 +2217,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-48">
-                                                                        <th scope="row">48</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-48" scope="row">48</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-48-isim">EL-VEDUD</span><br><span
                                                                                         id="tablo-isim-no-48-arapca-yazilisi">(
@@ -2176,8 +2241,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-49">
-                                                                        <th scope="row">49</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-49" scope="row">49</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-49-isim">EL-MECÎD</span><br><span
                                                                                         id="tablo-isim-no-49-arapca-yazilisi">(
@@ -2200,8 +2265,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-50">
-                                                                        <th scope="row">50</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-50" scope="row">50</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-50-isim">EL-BÂİS</span><br><span
                                                                                         id="tablo-isim-no-50-arapca-yazilisi">(
@@ -2224,8 +2289,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-51">
-                                                                        <th scope="row">51</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-51" scope="row">51</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-51-isim">EŞ-ŞEHÎD</span><br><span
                                                                                         id="tablo-isim-no-51-arapca-yazilisi">(
@@ -2249,8 +2314,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-52">
-                                                                        <th scope="row">52</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-52" scope="row">52</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-52-isim">EL-HAKK</span><br><span
                                                                                         id="tablo-isim-no-52-arapca-yazilisi">(
@@ -2273,8 +2338,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-53">
-                                                                        <th scope="row">53</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-53" scope="row">53</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-53-isim">EL-VEKÎL</span><br><span
                                                                                         id="tablo-isim-no-53-arapca-yazilisi">(
@@ -2298,8 +2363,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-54">
-                                                                        <th scope="row">54</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-54" scope="row">54</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-54-isim">EL-KAVİYY</span><br><span
                                                                                         id="tablo-isim-no-54-arapca-yazilisi">(
@@ -2321,8 +2386,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-55">
-                                                                        <th scope="row">55</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-55" scope="row">55</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-55-isim">EL-METÎN</span><br><span
                                                                                         id="tablo-isim-no-55-arapca-yazilisi">(
@@ -2344,8 +2409,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-56">
-                                                                        <th scope="row">56</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-56" scope="row">56</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-56-isim">EL-VELİYY</span><br><span
                                                                                         id="tablo-isim-no-56-arapca-yazilisi">(
@@ -2367,8 +2432,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-57">
-                                                                        <th scope="row">57</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-57" scope="row">57</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-57-isim">EL-HAMÎD</span><br><span
                                                                                         id="tablo-isim-no-57-arapca-yazilisi">(
@@ -2390,8 +2455,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-58">
-                                                                        <th scope="row">58</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-58" scope="row">58</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-58-isim">EL-MUHSÎ</span><br><span
                                                                                         id="tablo-isim-no-58-arapca-yazilisi">(
@@ -2414,8 +2479,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-59">
-                                                                        <th scope="row">59</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-59" scope="row">59</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-59-isim">EL-MÜBDİ</span><br><span
                                                                                         id="tablo-isim-no-59-arapca-yazilisi">(
@@ -2437,8 +2502,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-60">
-                                                                        <th scope="row">60</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-60" scope="row">60</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-60-isim">EL-MUÎD</span><br><span
                                                                                         id="tablo-isim-no-60-arapca-yazilisi">(
@@ -2461,8 +2526,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-61">
-                                                                        <th scope="row">61</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-61" scope="row">61</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-61-isim">EL-MUHYÎ</span><br><span
                                                                                         id="tablo-isim-no-61-arapca-yazilisi">(
@@ -2484,8 +2549,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-62">
-                                                                        <th scope="row">62</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-62" scope="row">62</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-62-isim">EL-MÜMÎT</span><br><span
                                                                                         id="tablo-isim-no-62-arapca-yazilisi">(
@@ -2507,8 +2572,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-63">
-                                                                        <th scope="row">63</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-63" scope="row">63</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-63-isim">EL-HAYY</span><br><span
                                                                                         id="tablo-isim-no-63-arapca-yazilisi">(
@@ -2530,8 +2595,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-64">
-                                                                        <th scope="row">64</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-64" scope="row">64</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-64-isim">EL-KAYYÛM</span><br><span
                                                                                         id="tablo-isim-no-64-arapca-yazilisi">(
@@ -2554,8 +2619,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-65">
-                                                                        <th scope="row">65</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-65" scope="row">65</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-65-isim">EL-VÂCİD</span><br><span
                                                                                         id="tablo-isim-no-65-arapca-yazilisi">(
@@ -2578,8 +2643,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-66">
-                                                                        <th scope="row">66</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-66" scope="row">66</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-66-isim">EL-MÂCİD</span><br><span
                                                                                         id="tablo-isim-no-66-arapca-yazilisi">(
@@ -2601,8 +2666,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-67">
-                                                                        <th scope="row">67</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-67" scope="row">67</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-67-isim">EL-VÂHİD</span><br><span
                                                                                         id="tablo-isim-no-67-arapca-yazilisi">(
@@ -2625,8 +2690,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-68">
-                                                                        <th scope="row">68</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-68" scope="row">68</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-68-isim">ES-SAMED</span><br><span
                                                                                         id="tablo-isim-no-68-arapca-yazilisi">(
@@ -2649,8 +2714,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-69">
-                                                                        <th scope="row">69</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-69" scope="row">69</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-69-isim">EL-KÂDİR</span><br><span
                                                                                         id="tablo-isim-no-69-arapca-yazilisi">(
@@ -2673,8 +2738,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-70">
-                                                                        <th scope="row">70</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-70" scope="row">70</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-70-isim">EL-MUKTEDİR</span><br><span
                                                                                         id="tablo-isim-no-70-arapca-yazilisi">(
@@ -2697,8 +2762,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-71">
-                                                                        <th scope="row">71</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-71" scope="row">71</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-71-isim">EL-MUKADDİM</span><br><span
                                                                                         id="tablo-isim-no-71-arapca-yazilisi">(
@@ -2720,8 +2785,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-72">
-                                                                        <th scope="row">72</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-72" scope="row">72</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-72-isim">EL-MUAHHİR</span><br><span
                                                                                         id="tablo-isim-no-72-arapca-yazilisi">(
@@ -2743,8 +2808,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-73">
-                                                                        <th scope="row">73</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-73" scope="row">73</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-73-isim">EL-EVVEL</span><br><span
                                                                                         id="tablo-isim-no-73-arapca-yazilisi">(
@@ -2766,8 +2831,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-74">
-                                                                        <th scope="row">74</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-74" scope="row">74</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-74-isim">EL-ÂHİR</span><br><span
                                                                                         id="tablo-isim-no-74-arapca-yazilisi">(
@@ -2789,8 +2854,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-75">
-                                                                        <th scope="row">75</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-75" scope="row">75</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-75-isim">EL-ZÂHİR</span><br><span
                                                                                         id="tablo-isim-no-75-arapca-yazilisi">(
@@ -2813,8 +2878,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-76">
-                                                                        <th scope="row">76</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-76" scope="row">76</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-76-isim">EL-BÂTIN</span><br><span
                                                                                         id="tablo-isim-no-76-arapca-yazilisi">(
@@ -2836,8 +2901,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-77">
-                                                                        <th scope="row">77</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-77" scope="row">77</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-77-isim">EL-VÂLÎ</span><br><span
                                                                                         id="tablo-isim-no-77-arapca-yazilisi">(
@@ -2860,8 +2925,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-78">
-                                                                        <th scope="row">78</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-78" scope="row">78</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-78-isim">EL-MÜTEÂLÎ</span><br><span
                                                                                         id="tablo-isim-no-78-arapca-yazilisi">(
@@ -2883,8 +2948,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-79">
-                                                                        <th scope="row">79</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-79" scope="row">79</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-79-isim">EL-BERR</span><br><span
                                                                                         id="tablo-isim-no-79-arapca-yazilisi">(
@@ -2906,8 +2971,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-80">
-                                                                        <th scope="row">80</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-80" scope="row">80</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-80-isim">EL-TEVVÂB</span><br><span
                                                                                         id="tablo-isim-no-80-arapca-yazilisi">(
@@ -2929,8 +2994,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-81">
-                                                                        <th scope="row">81</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-81" scope="row">81</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-81-isim">EL-MÜNTEKİM</span><br><span
                                                                                         id="tablo-isim-no-81-arapca-yazilisi">(
@@ -2938,7 +3003,7 @@
                                                                         <td id="tablo-isim-no-81-aciklama">Asilerin,
                                                                                 zalimlerin cezasını veren.</td>
                                                                         <td><span
-                                                                                        id="tablo-isim-no-81-cekilen-zikir-sayisi">0</span>/630
+                                                                                        id="tablo-isim-no-81-cekilen-zikir-sayisi">5</span>/630
                                                                         </td>
                                                                         <td><img id="tablo-isim-no-81-favori-svg"
                                                                                         onclick="favorileriGuncelle(81)"
@@ -2952,8 +3017,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-82">
-                                                                        <th scope="row">82</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-82" scope="row">82</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-82-isim">EL-AFÜVV</span><br><span
                                                                                         id="tablo-isim-no-82-arapca-yazilisi">(
@@ -2975,8 +3040,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-83">
-                                                                        <th scope="row">83</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-83" scope="row">83</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-83-isim">ER-RAÛF</span><br><span
                                                                                         id="tablo-isim-no-83-arapca-yazilisi">(
@@ -2998,8 +3063,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-84">
-                                                                        <th scope="row">84</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-84" scope="row">84</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-84-isim">EL-MÂLİKÜ’L-MÜLK</span><br><span
                                                                                         id="tablo-isim-no-84-arapca-yazilisi">(
@@ -3021,8 +3086,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-85">
-                                                                        <th scope="row">85</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-85" scope="row">85</th>
                                                                         <td><span id="tablo-isim-no-85-isim">ZÜ’L-CELÂLİ
                                                                                         VE’L-İKRÂM</span><br><span
                                                                                         id="tablo-isim-no-85-arapca-yazilisi">(
@@ -3046,8 +3111,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-86">
-                                                                        <th scope="row">86</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-86" scope="row">86</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-86-isim">EL-MUKSİT</span><br><span
                                                                                         id="tablo-isim-no-86-arapca-yazilisi">(
@@ -3070,8 +3135,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-87">
-                                                                        <th scope="row">87</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-87" scope="row">87</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-87-isim">EL-CÂMİ</span><br><span
                                                                                         id="tablo-isim-no-87-arapca-yazilisi">(
@@ -3094,8 +3159,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-88">
-                                                                        <th scope="row">88</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-88" scope="row">88</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-88-isim">EL-ĞANİYY</span><br><span
                                                                                         id="tablo-isim-no-88-arapca-yazilisi">(
@@ -3118,8 +3183,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-89">
-                                                                        <th scope="row">89</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-89" scope="row">89</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-89-isim">EL-MUĞNÎ</span><br><span
                                                                                         id="tablo-isim-no-89-arapca-yazilisi">(
@@ -3142,8 +3207,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-90">
-                                                                        <th scope="row">90</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-90" scope="row">90</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-90-isim">EL-MÂNİ</span><br><span
                                                                                         id="tablo-isim-no-90-arapca-yazilisi">(
@@ -3165,8 +3230,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-91">
-                                                                        <th scope="row">91</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-91" scope="row">91</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-91-isim">EL-DÂRR</span><br><span
                                                                                         id="tablo-isim-no-91-arapca-yazilisi">(
@@ -3188,8 +3253,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-92">
-                                                                        <th scope="row">92</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-92" scope="row">92</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-92-isim">EL-NÂFİ</span><br><span
                                                                                         id="tablo-isim-no-92-arapca-yazilisi">(
@@ -3211,8 +3276,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-93">
-                                                                        <th scope="row">93</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-93" scope="row">93</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-93-isim">EL-NÛR</span><br><span
                                                                                         id="tablo-isim-no-93-arapca-yazilisi">(
@@ -3234,8 +3299,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-94">
-                                                                        <th scope="row">94</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-94" scope="row">94</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-94-isim">EL-HÂDÎ</span><br><span
                                                                                         id="tablo-isim-no-94-arapca-yazilisi">(
@@ -3257,8 +3322,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-95">
-                                                                        <th scope="row">95</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-95" scope="row">95</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-95-isim">EL-BEDÎ</span><br><span
                                                                                         id="tablo-isim-no-95-arapca-yazilisi">(
@@ -3281,8 +3346,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-96">
-                                                                        <th scope="row">96</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-96" scope="row">96</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-96-isim">EL-BÂKÎ</span><br><span
                                                                                         id="tablo-isim-no-96-arapca-yazilisi">(
@@ -3304,8 +3369,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-97">
-                                                                        <th scope="row">97</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-97" scope="row">97</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-97-isim">EL-VÂRİS</span><br><span
                                                                                         id="tablo-isim-no-97-arapca-yazilisi">(
@@ -3327,8 +3392,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-98">
-                                                                        <th scope="row">98</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-98" scope="row">98</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-98-isim">ER-REŞÎD</span><br><span
                                                                                         id="tablo-isim-no-98-arapca-yazilisi">(
@@ -3350,8 +3415,8 @@
                                                                                         Gitmek İçin Tıklayınız</button>
                                                                         </td>
                                                                 </tr>
-                                                                <tr id="tablo-isim-no-99">
-                                                                        <th scope="row">99</th>
+                                                                <tr>
+                                                                        <th id="tablo-isim-no-99" scope="row">99</th>
                                                                         <td><span
                                                                                         id="tablo-isim-no-99-isim">ES-SABÛR</span><br><span
                                                                                         id="tablo-isim-no-99-arapca-yazilisi">(
