@@ -95,7 +95,7 @@ xhr.onreadystatechange = function () {
             // uretilenVeriler += '<p hidden id="isimNo-' + (i + 1) + '-aciklama' + '" class="fs-4">' + json[i]["aciklama"] + '</p>'
             // tablo verileri
             cekilenZikirSayisi = veriler[i]["cekilenZikirSayisi"];
-            uretilenVeriler += '<tr id="tablo-isim-no-' + (i + 1) + '"><th scope="row">' + (i + 1) + '</th><td><span id="tablo-isim-no-' + (i + 1) + '-isim">' + json[i]["isim"] + '</span><br><span id="tablo-isim-no-' + (i + 1) + '-arapca-yazilisi">( ' + json[i]["arapcaYazilisi"] + ' )</span>' + '</td><td id="tablo-isim-no-' + (i + 1) + '-aciklama">' + json[i]["aciklama"] + '</td><td><span id="tablo-isim-no-' + (i + 1) + '-cekilen-zikir-sayisi">' + cekilenZikirSayisi + '</span>/' + json[i]["cekilmesiGerekenZikirSayisi"] + '</td><td><img id="tablo-isim-no-' + (i + 1) + '-favori-svg' + '" onclick="favorileriGuncelle(' + (i + 1) + ')" style="cursor: pointer;" class="img-fluid" src="/gorseller/svg/gunduzModu/bosKalp.svg"></td><td><button onclick="zikreGit(' + (i + 1) + ')" type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Zikre Gitmek İçin Tıklayınız</button></td></tr>'
+            uretilenVeriler += '<tr><th id="tablo-isim-no-' + (i + 1) + '" scope="row">' + (i + 1) + '</th><td><span id="tablo-isim-no-' + (i + 1) + '-isim">' + json[i]["isim"] + '</span><br><span id="tablo-isim-no-' + (i + 1) + '-arapca-yazilisi">( ' + json[i]["arapcaYazilisi"] + ' )</span>' + '</td><td id="tablo-isim-no-' + (i + 1) + '-aciklama">' + json[i]["aciklama"] + '</td><td><span id="tablo-isim-no-' + (i + 1) + '-cekilen-zikir-sayisi">' + cekilenZikirSayisi + '</span>/' + json[i]["cekilmesiGerekenZikirSayisi"] + '</td><td><img id="tablo-isim-no-' + (i + 1) + '-favori-svg' + '" onclick="favorileriGuncelle(' + (i + 1) + ')" style="cursor: pointer;" class="img-fluid" src="/gorseller/svg/gunduzModu/bosKalp.svg"></td><td><button onclick="zikreGit(' + (i + 1) + ')" type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Zikre Gitmek İçin Tıklayınız</button></td></tr>'
             // arama cubugu listesi
             // uretilenVeriler += '<option value="' + (i + 1) + '. ' + json[i]["sapkasizIsim"] + ' ( ' + json[i]["arapcaYazilisi"] + ' )' + '">';
         }
@@ -170,6 +170,7 @@ function favorileriGuncelle(isimNo) {
     }
     localStorage.setItem("veriler", JSON.stringify(veriler));
     tabloyuGuncelle();
+    favorilerimiGostert();
 }
 function zikreGit(isimNo) {
     document.getElementById("esmaulHusna").focus();
@@ -323,7 +324,7 @@ function degistir() {
     document.getElementById("bilgilendirme-isim").innerHTML = document.getElementById("bilgilendirme-isim").innerHTML.replace(/(?:&nbsp;|<br>)/g, '');
     document.getElementById("bilgilendirme-isim-aciklamasi").innerText = document.getElementById('tablo-isim-no-' + id + '-aciklama').innerText;
     document.getElementById("bilgilendirme-isim-aciklamasi").innerHTML = document.getElementById("bilgilendirme-isim-aciklamasi").innerHTML.replace(/(?:&nbsp;&nbsp;|<br>)/g, '');
-    document.getElementById("esmaul-husna-source").src = "/esmaul-husna-seslendirme/"+id+".m4a";
+    document.getElementById("esmaul-husna-source").src = "/esmaul-husna-seslendirme/" + id + ".m4a";
     document.getElementById("esmaul-husna-audio").load();
 }
 degistir();
@@ -381,3 +382,37 @@ function eminMisinizModeliniAyarla() {
     document.getElementsByName("seciliZikir")[0].innerText = isim;
     document.getElementsByName("seciliZikir")[1].innerText = isim;
 }
+function favorilerimiGostert() {
+    document.getElementById("favorilerim-tablosu").innerHTML = "";
+    for (var i = 0; i < 99; i++) {
+        if (veriler[i]["favori"] == true) {
+            var isim = document.getElementById("tablo-isim-no-" + (i + 1) + "-isim").innerText;
+            var arapcaYazilisi = document.getElementById("tablo-isim-no-" + (i + 1) + "-arapca-yazilisi").innerText;
+            var tabloRengi = "";
+            var cekilenZikirSayisi = veriler[i]["cekilenZikirSayisi"];
+            var cekilmesiGerekenZikirSayisi = veriler[i]["cekilmesiGerekenZikirSayisi"];
+            var aciklama = document.getElementById("tablo-isim-no-" + (i + 1) + "-aciklama").innerText;
+            if (cekilenZikirSayisi >= cekilmesiGerekenZikirSayisi) {
+                tabloRengi = "table-success";
+            } else if (cekilenZikirSayisi > 0) {
+                tabloRengi = "table-warning";
+            }
+            var resim = "";
+            if (veriler[i]["favori"] == true) {
+                if (localStorage.getItem("geceModu") == 0) {
+                    resim = '/gorseller/svg/gunduzModu/doluKalp.svg';
+                } else {
+                    resim = '/gorseller/svg/geceModu/doluKalp.svg';
+                }
+            } else {
+                if (localStorage.getItem("geceModu") == 0) {
+                    resim = '/gorseller/svg/gunduzModu/bosKalp.svg';
+                } else {
+                    resim = '/gorseller/svg/geceModu/bosKalp.svg';
+                }
+            }
+            document.getElementById("favorilerim-tablosu").innerHTML += '<tr><td class="' + tabloRengi + '" scope="row">' + (i + 1) + '</td><td>' + isim + ' ' + arapcaYazilisi + '</td><td>'+aciklama+'</td><td>' + cekilenZikirSayisi + '/' + cekilmesiGerekenZikirSayisi + '</td><td><img onclick="favorileriGuncelle(' + (i + 1) + ')" style="cursor: pointer;" class="img-fluid" src="' + resim + '"></td></tr>';
+        }
+    }
+}
+favorilerimiGostert();
