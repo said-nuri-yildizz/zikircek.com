@@ -28,7 +28,7 @@
     </script>
     <script>
         function versiyonKontroluYap() {
-            var versiyonKodu = "58a484b284c3ec03c4abfaac6fe460dab32beb110d6892502af47b6ca6815ca907eb7c11082f1676e1ec5a2fc3a78a470435";
+            var versiyonKodu = "59d2d447e52142c45d8857715bc5393728596be9e445d20fe2dcadac7bea6e3f924137a5615899e7ca7dee5f2b15f33004fd";
             if (localStorage.getItem("versiyonKodu") == null || localStorage.getItem("versiyonKodu") != versiyonKodu) {
                 localStorage.clear();
                 localStorage.setItem("versiyonKodu", versiyonKodu);
@@ -46,6 +46,9 @@
         versiyonKontroluYap();
         if (localStorage.getItem("tiklamaSesi") == null) {
             localStorage.setItem("tiklamaSesi", 1);
+        }
+        if (localStorage.getItem("cerezBilgilendirmesiGosterilsinmi") == null) {
+            localStorage.setItem("cerezBilgilendirmesiGosterilsinmi", 1);
         }
     </script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -286,6 +289,23 @@
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div id="bildirim-govdesi" class="toast-body">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ( Toast ) Çerez kullanımı hakkında bilgilendirme -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div class="bg-light">
+            <div id="cerez-kullanimi-hakkinda-bilgilendirme-kutucugu"
+                class="toast bg-success bg-opacity-25 border border-1 border-secondary fs-4" role="alert"
+                aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-success bg-opacity-25 text-light border border-1 border-secondary">
+                    <strong class="me-auto">Çerez Kullanımı Hakkında Bilgilendirme</strong>
+                </div>
+                <div class="toast-body">
+                    Sizlere daha iyi hizmet verebilmek için çerez teknolojisini kullanıyoruz.
+                    <button onclick="cerezBilgilendirmesiniKapat();" class="btn bg-light bg-opacity-75 fs-4 mt-3 col-12"
+                        data-bs-dismiss="toast" aria-label="Close">Tamam</button>
                 </div>
             </div>
         </div>
@@ -807,6 +827,30 @@
             </div>
         </div>
     </div>
+    <!-- ( Model ) Uygulamadan çıkmak istediğinize emin misiniz ? -->
+    <button id="modelAcUygulamadanCikmakIstediginizeEminMisiniz" hidden data-bs-toggle="modal"
+        data-bs-target="#modelUygulamadanCikmakIstediginizeEminMisiniz"></button>
+    <div class="modal fade bg-success bg-opacity-25" id="modelUygulamadanCikmakIstediginizeEminMisiniz" tabindex="-1"
+        aria-labelledby="modelUygulamadanCikmakIstediginizeEminMisinizLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-light text-dark fs-4 shadow">
+                <div class="modal-header">
+                    <p class="modal-title fs-4">
+                        <img src="/ikon.png" class="img-fluid" alt="...">
+                        Uygulamadan çıkmak istediğinize emin misiniz ?
+                    </p>
+                    <button type="button" class="btn-close bg-light" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button id="uygulamadan-cikma-modeli-iptal-butonu" type="button" class="btn bg-success bg-opacity-25 fs-4 ps-5 pe-5"
+                        data-bs-dismiss="modal">İptal</button>
+                        <button onclick="uygulamadanCik();" type="button" class="btn bg-success bg-opacity-25 fs-4 ps-5 pe-5"
+                        data-bs-dismiss="modal" >Evet, uygulamadan çık</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- ( Model ) Uygulamamızı indirin -->
     <div class="modal fade bg-success bg-opacity-25" id="modelUygulamamiziIndirin" tabindex="-1"
         aria-labelledby="modelUygulamamiziIndirinLabel" aria-hidden="true">
@@ -995,7 +1039,7 @@
                     </svg>
                     Yarım Kalan Zikirlerim
                 </li>
-                <li onclick="zikirlerVeOkunuslariTablosunuOlustur();" class="list-group-item" style="cursor: pointer;"
+                <li class="list-group-item" style="cursor: pointer;"
                     data-bs-toggle="modal" data-bs-target="#modelZikirlerVeOkunuslari">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                         class="bi bi-music-note-list" viewBox="0 0 16 16">
@@ -1007,7 +1051,7 @@
                     </svg>
                     Zikirler ve Okunuşları
                 </li>
-                <li onclick="modelZikirlerVeAciklamalariTablosunuOlustur();" class="list-group-item"
+                <li class="list-group-item"
                     style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modelZikirlerVeAciklamalari">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                         class="bi bi-list-columns-reverse" viewBox="0 0 16 16">
@@ -1030,7 +1074,7 @@
                         id="checkboxTiklamaSesi">
                     <label class="form-check-label" for="checkboxTiklamaSesi">Tıklama sesi</label>
                 </li>
-                <li onclick="modelZikirlerVeAciklamalariTablosunuOlustur();" class="list-group-item text-danger"
+                <li class="list-group-item text-danger"
                     style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modelFabrikaAyarlarinaGeriDon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                         class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
@@ -1043,10 +1087,10 @@
             </ul>
         </div>
     </div>
-    <script src="/zikircek.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
+    <script src="/zikircek.js?versiyonKodu=59d2d447e52142c45d8857715bc5393728596be9e445d20fe2dcadac7bea6e3f924137a5615899e7ca7dee5f2b15f33004fd"></script>
 </body>
 
 </html>
