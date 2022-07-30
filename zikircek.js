@@ -238,8 +238,8 @@ function zikirlerVeOkunuslariTablosunuOlustur() {
             }
         }
         satir += '<th ' + sinif + ' scope="row">' + veritabani[i]["id"] + '</th>';
-        satir += '<td>' + veritabani[i]["turkce"] + '</td>';
-        satir += '<td>' + veritabani[i]["arapca"] + '</td>';
+        satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
+        satir += '<td hidden></td>';
         satir += '<td style="cursor: pointer;" onclick="sesCal(\'/esmaul-husna-okunuslari/' + veritabani[i]["id"] + '.m4a\')">Dinle</td>';
         satir += '</tr>';
         document.getElementById("zikirler-ve-okunuslari-tablosu-tbody").innerHTML += satir;
@@ -336,8 +336,8 @@ function modelZikirlerVeAciklamalariTablosunuOlustur() {
             }
         }
         satir += '<th ' + sinif + ' scope="row">' + veritabani[i]["id"] + '</th>';
-        satir += '<td>' + veritabani[i]["turkce"] + '</td>';
-        satir += '<td>' + veritabani[i]["arapca"] + '</td>';
+        satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
+        satir += '<td hidden></td>';
         satir += '<td>' + veritabani[i]["aciklama"] + '</td>';
         satir += '</tr>';
         document.getElementById("zikirler-ve-aciklamalari-tablosu-tbody").innerHTML += satir;
@@ -360,8 +360,8 @@ function tamamladigimZikirlerimTablosunuOlustur() {
                 tamamlanmisZikirVarmi = true;
                 satir += '<tr>';
                 satir += '<th class="bg-success bg-opacity-25" scope="row">' + veritabani[i]["id"] + '</th>';
-                satir += '<td>' + veritabani[i]["turkce"] + '</td>';
-                satir += '<td>' + veritabani[i]["arapca"] + '</td>';
+                satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
+                satir += '<td hidden></td>';
                 satir += '<td>' + veritabani[i]["aciklama"] + '</td>';
                 satir += '<td>' + veritabani[i]["cekilenZikirSayisi"] + '</td>';
                 if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
@@ -415,8 +415,8 @@ function yarimKalanZikirlerimTablosunuOlustur() {
                 tamamlanmisZikirVarmi = true;
                 satir += '<tr>';
                 satir += '<th class="bg-warning bg-opacity-25" scope="row">' + veritabani[i]["id"] + '</th>';
-                satir += '<td>' + veritabani[i]["turkce"] + '</td>';
-                satir += '<td>' + veritabani[i]["arapca"] + '</td>';
+                satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
+                satir += '<td hidden></td>';
                 satir += '<td>' + veritabani[i]["aciklama"] + '</td>';
                 satir += '<td>' + veritabani[i]["cekilenZikirSayisi"] + '</td>';
                 if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
@@ -512,8 +512,8 @@ function favoriZikirlerimTablosunuOlustur() {
                     }
                 }
                 satir += '<th ' + sinif + ' scope="row">' + veritabani[i]["id"] + '</th>';
-                satir += '<td>' + veritabani[i]["turkce"] + '</td>';
-                satir += '<td>' + veritabani[i]["arapca"] + '</td>';
+                satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
+                satir += '<td hidden></td>';
                 satir += '<td>' + veritabani[i]["aciklama"] + '</td>';
                 satir += '<td>' + veritabani[i]["cekilenZikirSayisi"] + '</td>';
                 if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
@@ -571,8 +571,8 @@ function favoriOlmayanZikirlerimTablosunuOlustur() {
                     }
                 }
                 satir += '<th ' + sinif + ' scope="row">' + veritabani[i]["id"] + '</th>';
-                satir += '<td>' + veritabani[i]["turkce"] + '</td>';
-                satir += '<td>' + veritabani[i]["arapca"] + '</td>';
+                satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
+                satir += '<td hidden></td>';
                 satir += '<td>' + veritabani[i]["aciklama"] + '</td>';
                 satir += '<td>' + veritabani[i]["cekilenZikirSayisi"] + '</td>';
                 if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
