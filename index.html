@@ -4,7 +4,8 @@
 <head>
     <script>/*بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيم‎ (Bismillâhirrahmânirrahîm)*/</script>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10">
     <title>Zikir Çek</title>
     <meta name="theme-color" content="#f8f9fa" />
     <meta http-equiv="cache-control" content="max-age=0" />
@@ -28,7 +29,7 @@
     </script>
     <script>
         function versiyonKontroluYap() {
-            var versiyonKodu = "59d2d447e52142c45d8857715bc5393728596be9e445d20fe2dcadac7bea6e3f924137a5615899e7ca7dee5f2b15f33004fd";
+            var versiyonKodu = "bdd8b0399eaeb44eb76e02ff18d8e36ed9e27272cb1ca67ee3ffc6a62dacbb77ac4a4b6114b64fa7639c1b9ac1fef6cb031a";
             if (localStorage.getItem("versiyonKodu") == null || localStorage.getItem("versiyonKodu") != versiyonKodu) {
                 localStorage.clear();
                 localStorage.setItem("versiyonKodu", versiyonKodu);
@@ -50,12 +51,17 @@
         if (localStorage.getItem("cerezBilgilendirmesiGosterilsinmi") == null) {
             localStorage.setItem("cerezBilgilendirmesiGosterilsinmi", 1);
         }
+        var veritabani = JSON.parse(localStorage.getItem("veritabani"));
     </script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.2/dist/chart.min.js"></script>
 </head>
 
-<body class="bg-success bg-opacity-25 text-dark fs-4" onload="document.getElementById('sayfa-yukeniyor').remove();">
+<body class="bg-success bg-opacity-25 text-dark fs-5" onload="document.getElementById('sayfa-yukeniyor').remove();">
+    <script>
+        // document.getElementsByTagName("meta")[1].attributes[1].nodeValue = 'width=device-width, initial-scale=0.1, maximum-scale=10';
+    </script>
     <div id="sayfa-yukeniyor">
         <style>
             #sayfa-yukeniyor {
@@ -84,7 +90,7 @@
                                     <img src="ikon.png" alt="" width="100" height="100"
                                         class="d-inline-block align-text-top">
                                 </td>
-                                <td class="fs-4">zikircek.com</td>
+                                <td class="fs-5">zikircek.com</td>
                             </tr>
                         </table>
                     </a>
@@ -118,13 +124,13 @@
             <div class="col-md-1"></div>
             <div class="col-md-10 bg-light p-3 rounded-3 shadow mb-3">
                 <select onchange='zikirSec(this.selectedIndex+1);' id="zikir-secme-kutusu"
-                    class="form-select form-select-lg mb-3 fs-4 shadow-sm">
+                    class="form-select form-select-lg mb-3 fs-5 shadow-sm">
                 </select>
                 <div class="accordion shadow-sm" id="akordeonZikirAciklamaKutusu">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
                             <button onclick="zikirAciklamaKutusunuAyarla();" id="zikir-aciklama-kutusu-basligi"
-                                class="accordion-button fs-4 bg-white text-dark" type="button" data-bs-toggle="collapse"
+                                class="accordion-button fs-5 bg-white text-dark" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#zikirAciklamaKutusu" aria-expanded="true"
                                 aria-controls="zikirAciklamaKutusu">
                                 Zikir Açıklamasını Gizle
@@ -145,9 +151,9 @@
                     </table>
                 </div>
                 <div class="row">
-                    <div class="col-md-3 mt-3">
-                        <button onclick="zikirSayisiniArttir();"
-                            class="btn bg-success bg-opacity-25 fs-4 col-12 p-5 shadow" type="button">
+                    <div class="col-md-12 mt-3">
+                        <button id="zikir-sayisi-arttirma-butonu" onclick="zikirSayisiniArttir();"
+                            class="btn bg-success bg-opacity-25 fs-5 col-12 p-5 shadow" type="button">
                             Arttır
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="bi bi-arrow-up" viewBox="0 0 16 16">
@@ -156,9 +162,14 @@
                             </svg>
                         </button>
                     </div>
+                    <script>
+                        if (window.innerWidth < 801) {
+                            document.getElementById("zikir-sayisi-arttirma-butonu").style="height:400px";
+                        }
+                    </script>
                     <div class="col-md-3 mt-3">
                         <button onclick="zikirSayisiniAzalt();"
-                            class="btn bg-success bg-opacity-25 fs-4 col-12 p-5 shadow" type="button">
+                            class="btn bg-success bg-opacity-25 fs-5 col-12 p-5 shadow" type="button">
                             Azalat
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="bi bi-arrow-down" viewBox="0 0 16 16">
@@ -169,7 +180,7 @@
                     </div>
                     <div class="col-md-3 mt-3">
                         <button onclick="zikirSifirlamaModeliniAyarla();"
-                            class="btn bg-success bg-opacity-25 fs-4 col-12 p-5 shadow" type="button"
+                            class="btn bg-success bg-opacity-25 fs-5 col-12 p-5 shadow" type="button"
                             data-bs-toggle="modal" data-bs-target="#zikriSifirlamakIsteginizeEminMisiniz">
                             Sıfırla
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -183,7 +194,7 @@
                     </div>
                     <div class="col-md-3 mt-3">
                         <button onclick="hedefBelirlemeModeliniAyarla();"
-                            class="btn bg-success bg-opacity-25 fs-4 col-12 p-5 shadow" type="button"
+                            class="btn bg-success bg-opacity-25 fs-5 col-12 p-5 shadow" type="button"
                             data-bs-toggle="modal" data-bs-target="#zikirSayisiHedefiBelirle">
                             Hedef Belirle
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -197,7 +208,7 @@
                     </div>
                     <div class="col-md-3 mt-3">
                         <button onclick="zikriTamamlamaModeliniAyarla();"
-                            class="btn bg-success bg-opacity-25 fs-4 col-12 p-5 shadow" type="button"
+                            class="btn bg-success bg-opacity-25 fs-5 col-12 p-5 shadow" type="button"
                             data-bs-toggle="modal" data-bs-target="#zikriTamamlamakIsteginizeEminMisiniz">
                             Zikri Tamamla
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -209,7 +220,7 @@
                     </div>
                     <div class="col-md-6 mt-3">
                         <button onclick="cekilenZikirSayisiniDegistirmeModeliniAyarla();"
-                            class="btn bg-success bg-opacity-25 fs-4 col-12 p-5 shadow" type="button"
+                            class="btn bg-success bg-opacity-25 fs-5 col-12 p-5 shadow" type="button"
                             data-bs-toggle="modal" data-bs-target="#cekilenZikirSayisiniDegistir">
                             Çekilen Zikir Sayısını Değiştir
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -219,23 +230,22 @@
                             </svg>
                         </button>
                     </div>
-                    <div class="col-md-3 mt-3">
+                    <div class="col-md-6 mt-3">
                         <button id="kisayol-butonu-favorilerimi-guncelle" onclick="favorilerimiGuncelle();"
-                            class="btn bg-success bg-opacity-25 fs-4 col-12 p-5 shadow" type="button">
+                            class="btn bg-success bg-opacity-25 fs-5 col-12 p-5 shadow" type="button">
                             Yükleniyor...
                         </button>
                     </div>
                 </div>
+                <p>
+                    Telefon veya tabletten kullanan kardeşlerimiz tabloyu sağa kaydırarak devamını görebilirler.
+                </p>
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered
-                    
-                    
-                    shadow-sm">
+                    <table class="table table-sm table-striped table-bordered shadow-sm">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">ALLAH'ın 99 İsmi</th>
-                                <th scope="col">Arapça Yazılışı</th>
                                 <th scope="col">Açıklama</th>
                                 <th scope="col">Çekilen Zikir Sayısı</th>
                                 <th scope="col">Zikir Sayısı Hedefi</th>
@@ -282,7 +292,7 @@
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div class="bg-light">
             <div id="bildirim-kutucugu" data-bs-delay="2000"
-                class="toast bg-success bg-opacity-25 border border-1 border-secondary fs-4" role="alert"
+                class="toast bg-success bg-opacity-25 border border-1 border-secondary fs-5" role="alert"
                 aria-live="assertive" aria-atomic="true">
                 <div class="toast-header bg-success bg-opacity-25 text-light border border-1 border-secondary">
                     <strong id="bildirim-basligi" class="me-auto"></strong>
@@ -297,14 +307,14 @@
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div class="bg-light">
             <div id="cerez-kullanimi-hakkinda-bilgilendirme-kutucugu"
-                class="toast bg-success bg-opacity-25 border border-1 border-secondary fs-4" role="alert"
+                class="toast bg-success bg-opacity-25 border border-1 border-secondary fs-5" role="alert"
                 aria-live="assertive" aria-atomic="true">
                 <div class="toast-header bg-success bg-opacity-25 text-light border border-1 border-secondary">
                     <strong class="me-auto">Çerez Kullanımı Hakkında Bilgilendirme</strong>
                 </div>
                 <div class="toast-body">
                     Sizlere daha iyi hizmet verebilmek için çerez teknolojisini kullanıyoruz.
-                    <button onclick="cerezBilgilendirmesiniKapat();" class="btn bg-light bg-opacity-75 fs-4 mt-3 col-12"
+                    <button onclick="cerezBilgilendirmesiniKapat();" class="btn bg-light bg-opacity-75 fs-5 mt-3 col-12"
                         data-bs-dismiss="toast" aria-label="Close">Tamam</button>
                 </div>
             </div>
@@ -314,9 +324,9 @@
     <div class="modal fade bg-success bg-opacity-25" id="zikriSifirlamakIsteginizeEminMisiniz" tabindex="-1"
         aria-labelledby="zikriSifirlamakIsteginizeEminMisinizLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content bg-light text-dark fs-4 shadow">
+            <div class="modal-content bg-light text-dark fs-5 shadow">
                 <div class="modal-header">
-                    <p class="modal-title fs-4" id="zikriSifirlamakIsteginizeEminMisinizLabel">
+                    <p class="modal-title fs-5" id="zikriSifirlamakIsteginizeEminMisinizLabel">
                         Sıfırla
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             class="bi bi-arrow-repeat" viewBox="0 0 16 16">
@@ -334,8 +344,8 @@
                         id="sifiranacak-zikrin-adi"></span> zikrini sıfırlamak istediğinize emin misiniz ?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary fs-4" data-bs-dismiss="modal">Hayır</button>
-                    <button onclick="zikirSayisiniSifirla();" type="button" class="btn bg-success bg-opacity-25 fs-4"
+                    <button type="button" class="btn btn-secondary fs-5" data-bs-dismiss="modal">Hayır</button>
+                    <button onclick="zikirSayisiniSifirla();" type="button" class="btn bg-success bg-opacity-25 fs-5"
                         data-bs-dismiss="modal">Evet, sıfırla</button>
                 </div>
             </div>
@@ -345,9 +355,9 @@
     <div class="modal fade bg-success bg-opacity-25" id="zikriTamamlamakIsteginizeEminMisiniz" tabindex="-1"
         aria-labelledby="zikriTamamlamakIsteginizeEminMisinizLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content bg-light text-dark fs-4 shadow">
+            <div class="modal-content bg-light text-dark fs-5 shadow">
                 <div class="modal-header">
-                    <p class="modal-title fs-4" id="zikriTamamlamakIsteginizeEminMisinizLabel">
+                    <p class="modal-title fs-5" id="zikriTamamlamakIsteginizeEminMisinizLabel">
                         Zikri Tamamla
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             class="bi bi-check-lg" viewBox="0 0 16 16">
@@ -363,8 +373,8 @@
                         id="tamamlanacak-zikrin-adi"></span> zikrini tamamlamak istediğinize emin misiniz ?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary fs-4" data-bs-dismiss="modal">Hayır</button>
-                    <button onclick="zikriTamamla();" type="button" class="btn bg-success bg-opacity-25 fs-4"
+                    <button type="button" class="btn btn-secondary fs-5" data-bs-dismiss="modal">Hayır</button>
+                    <button onclick="zikriTamamla();" type="button" class="btn bg-success bg-opacity-25 fs-5"
                         data-bs-dismiss="modal">Evet, tamamla</button>
                 </div>
             </div>
@@ -374,9 +384,9 @@
     <div class="modal fade bg-success bg-opacity-25" id="zikirSayisiHedefiBelirle" tabindex="-1"
         aria-labelledby="zikirSayisiHedefiBelirleLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content bg-light text-dark fs-4 shadow">
+            <div class="modal-content bg-light text-dark fs-5 shadow">
                 <div class="modal-header">
-                    <p class="modal-title fs-4" id="zikirSayisiHedefiBelirleLabel">
+                    <p class="modal-title fs-5" id="zikirSayisiHedefiBelirleLabel">
                         Zikir Sayısı Hedefi Belirle
                     </p>
                     <button type="button" class="btn-close bg-light" data-bs-dismiss="modal"
@@ -396,9 +406,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary fs-4" data-bs-dismiss="modal">İptal</button>
+                    <button type="button" class="btn btn-secondary fs-5" data-bs-dismiss="modal">İptal</button>
                     <button onclick="zikirSayisiHedefiBelirle();" type="button"
-                        class="btn bg-success bg-opacity-25 fs-4" data-bs-dismiss="modal">İşlemi Tamamla</button>
+                        class="btn bg-success bg-opacity-25 fs-5" data-bs-dismiss="modal">İşlemi Tamamla</button>
                 </div>
             </div>
         </div>
@@ -407,9 +417,9 @@
     <div class="modal fade bg-success bg-opacity-25" id="cekilenZikirSayisiniDegistir" tabindex="-1"
         aria-labelledby="cekilenZikirSayisiniDegistirLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content bg-light text-dark fs-4 shadow">
+            <div class="modal-content bg-light text-dark fs-5 shadow">
                 <div class="modal-header">
-                    <p class="modal-title fs-4">
+                    <p class="modal-title fs-5">
                         Çekilen Zikir Sayısını Değiştir
                     </p>
                     <button type="button" class="btn-close bg-light" data-bs-dismiss="modal"
@@ -428,9 +438,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary fs-4" data-bs-dismiss="modal">İptal</button>
+                    <button type="button" class="btn btn-secondary fs-5" data-bs-dismiss="modal">İptal</button>
                     <button onclick="cekilenZikirSayisiniDegistir();" type="button"
-                        class="btn bg-success bg-opacity-25 fs-4" data-bs-dismiss="modal">İşlemi Tamamla</button>
+                        class="btn bg-success bg-opacity-25 fs-5" data-bs-dismiss="modal">İşlemi Tamamla</button>
                 </div>
             </div>
         </div>
@@ -439,9 +449,9 @@
     <div class="modal fade bg-success bg-opacity-25" id="modelFavoriZikirlerim" tabindex="-1"
         aria-labelledby="modelFavoriZikirlerimLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content bg-light text-dark fs-4 shadow">
+            <div class="modal-content bg-light text-dark fs-5 shadow">
                 <div class="modal-header">
-                    <p class="modal-title fs-4">
+                    <p class="modal-title fs-5">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             class="bi bi-balloon-heart-fill" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
@@ -474,7 +484,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn bg-success bg-opacity-25 fs-4"
+                    <button type="button" class="btn bg-success bg-opacity-25 fs-5"
                         data-bs-dismiss="modal">Kapat</button>
                 </div>
             </div>
@@ -484,9 +494,9 @@
     <div class="modal fade bg-success bg-opacity-25" id="modelFavoriOlmayanZikirlerim" tabindex="-1"
         aria-labelledby="modelFavoriOlmayanZikirlerimLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content bg-light text-dark fs-4 shadow">
+            <div class="modal-content bg-light text-dark fs-5 shadow">
                 <div class="modal-header">
-                    <p class="modal-title fs-4">
+                    <p class="modal-title fs-5">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             class="bi bi-balloon-heart" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
@@ -519,7 +529,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn bg-success bg-opacity-25 fs-4"
+                    <button type="button" class="btn bg-success bg-opacity-25 fs-5"
                         data-bs-dismiss="modal">Kapat</button>
                 </div>
             </div>
@@ -529,9 +539,9 @@
     <div class="modal fade bg-success bg-opacity-25" id="modelTamamladigimZikirlerim" tabindex="-1"
         aria-labelledby="modelTamamladigimZikirlerimLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content bg-light text-dark fs-4 shadow">
+            <div class="modal-content bg-light text-dark fs-5 shadow">
                 <div class="modal-header">
-                    <p class="modal-title fs-4">
+                    <p class="modal-title fs-5">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             class="bi bi-star-fill" viewBox="0 0 16 16">
                             <path
@@ -564,7 +574,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn bg-success bg-opacity-25 fs-4"
+                    <button type="button" class="btn bg-success bg-opacity-25 fs-5"
                         data-bs-dismiss="modal">Kapat</button>
                 </div>
             </div>
@@ -574,9 +584,9 @@
     <div class="modal fade bg-success bg-opacity-25" id="modelYarimKalanZikirlerim" tabindex="-1"
         aria-labelledby="modelYarimKalanZikirlerimLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content bg-light text-dark fs-4 shadow">
+            <div class="modal-content bg-light text-dark fs-5 shadow">
                 <div class="modal-header">
-                    <p class="modal-title fs-4">
+                    <p class="modal-title fs-5">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             class="bi bi-star-half" viewBox="0 0 16 16">
                             <path
@@ -609,7 +619,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn bg-success bg-opacity-25 fs-4"
+                    <button type="button" class="btn bg-success bg-opacity-25 fs-5"
                         data-bs-dismiss="modal">Kapat</button>
                 </div>
             </div>
@@ -619,9 +629,9 @@
     <div class="modal fade bg-success bg-opacity-25" id="modelZikirlerVeOkunuslari" tabindex="-1"
         aria-labelledby="modelZikirlerVeOkunuslariLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content bg-light text-dark fs-4 shadow">
+            <div class="modal-content bg-light text-dark fs-5 shadow">
                 <div class="modal-header">
-                    <p class="modal-title fs-4">
+                    <p class="modal-title fs-5">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             class="bi bi-music-note-list" viewBox="0 0 16 16">
                             <path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z" />
@@ -652,7 +662,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn bg-success bg-opacity-25 fs-4"
+                    <button type="button" class="btn bg-success bg-opacity-25 fs-5"
                         data-bs-dismiss="modal">Kapat</button>
                 </div>
             </div>
@@ -662,9 +672,9 @@
     <div class="modal fade bg-success bg-opacity-25" id="modelZikirlerVeAciklamalari" tabindex="-1"
         aria-labelledby="modelZikirlerVeAciklamalariLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content bg-light text-dark fs-4 shadow">
+            <div class="modal-content bg-light text-dark fs-5 shadow">
                 <div class="modal-header">
-                    <p class="modal-title fs-4">
+                    <p class="modal-title fs-5">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             class="bi bi-list-columns-reverse" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
@@ -692,7 +702,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn bg-success bg-opacity-25 fs-4"
+                    <button type="button" class="btn bg-success bg-opacity-25 fs-5"
                         data-bs-dismiss="modal">Kapat</button>
                 </div>
             </div>
@@ -702,9 +712,9 @@
     <div class="modal fade bg-success bg-opacity-25" id="modelEnCokCektigimZikirler" tabindex="-1"
         aria-labelledby="modelEnCokCektigimZikirlerLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content bg-light text-dark fs-4 shadow">
+            <div class="modal-content bg-light text-dark fs-5 shadow">
                 <div class="modal-header">
-                    <p class="modal-title fs-4">
+                    <p class="modal-title fs-5">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
                             <path
@@ -737,7 +747,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn bg-success bg-opacity-25 fs-4"
+                    <button type="button" class="btn bg-success bg-opacity-25 fs-5"
                         data-bs-dismiss="modal">Kapat</button>
                 </div>
             </div>
@@ -747,9 +757,9 @@
     <div class="modal fade bg-light bg-opacity-75" id="modelFabrikaAyarlarinaGeriDon" tabindex="-1"
         aria-labelledby="modelFabrikaAyarlarinaGeriDonLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg bg-light rounded-3">
-            <div class="modal-content bg-danger bg-opacity-75 text-dark fs-4 shadow">
+            <div class="modal-content bg-danger bg-opacity-75 text-dark fs-5 shadow">
                 <div class="modal-header">
-                    <p class="modal-title fs-4 fw-bold">
+                    <p class="modal-title fs-5 fw-bold">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
@@ -763,7 +773,7 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <span class="fw-bold fs-3">Dikkat !</span>
+                    <span class="fw-bold fs-4">Dikkat !</span>
                     <br>
                     <p>
                         Fabrika ayarlarına geri döndüğünüzde tüm verileriniz kalıcı olarak silinir.
@@ -772,9 +782,9 @@
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn bg-light bg-opacity-75 fs-4 ps-5 pe-5"
+                    <button type="button" class="btn bg-light bg-opacity-75 fs-5 ps-5 pe-5"
                         data-bs-dismiss="modal">İptal</button>
-                    <button type="button" class="btn bg-light bg-opacity-75 fs-4 ps-5 pe-5" data-bs-dismiss="modal"
+                    <button type="button" class="btn bg-light bg-opacity-75 fs-5 ps-5 pe-5" data-bs-dismiss="modal"
                         data-bs-toggle="modal" data-bs-target="#modelFabrikaAyarlarinaGeriDonSonOnay">İleri</button>
                 </div>
             </div>
@@ -784,9 +794,9 @@
     <div class="modal fade bg-light bg-opacity-75" id="modelFabrikaAyarlarinaGeriDonSonOnay" tabindex="-1"
         aria-labelledby="modelFabrikaAyarlarinaGeriDonSonOnayLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg bg-light rounded-3">
-            <div class="modal-content bg-danger bg-opacity-75 text-dark fs-4 shadow">
+            <div class="modal-content bg-danger bg-opacity-75 text-dark fs-5 shadow">
                 <div class="modal-header">
-                    <p class="modal-title fs-4 fw-bold">
+                    <p class="modal-title fs-5 fw-bold">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
@@ -800,7 +810,7 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <span class="fw-bold fs-3">Dikkat !</span>
+                    <span class="fw-bold fs-4">Dikkat !</span>
                     <br>
                     <p>
                         Tüm verileriniz sıfırlanacak ( Favorileriniz, zikir çekme sayılarınız, zikir hedefleriniz vb. )
@@ -818,10 +828,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn bg-light bg-opacity-75 fs-4 ps-5 pe-5"
+                    <button type="button" class="btn bg-light bg-opacity-75 fs-5 ps-5 pe-5"
                         data-bs-dismiss="modal">İptal</button>
                     <button onclick="fabrikaAyarlarinaGeriDon();" type="button"
-                        class="btn bg-light bg-opacity-75 fs-4 ps-5 pe-5" data-bs-dismiss="modal">Tüm verilerimi
+                        class="btn bg-light bg-opacity-75 fs-5 ps-5 pe-5" data-bs-dismiss="modal">Tüm verilerimi
                         sil</button>
                 </div>
             </div>
@@ -833,9 +843,9 @@
     <div class="modal fade bg-success bg-opacity-25" id="modelUygulamadanCikmakIstediginizeEminMisiniz" tabindex="-1"
         aria-labelledby="modelUygulamadanCikmakIstediginizeEminMisinizLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content bg-light text-dark fs-4 shadow">
+            <div class="modal-content bg-light text-dark fs-5 shadow">
                 <div class="modal-header">
-                    <p class="modal-title fs-4">
+                    <p class="modal-title fs-5">
                         <img src="/ikon.png" class="img-fluid" alt="...">
                         Uygulamadan çıkmak istediğinize emin misiniz ?
                     </p>
@@ -843,10 +853,11 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-footer">
-                    <button id="uygulamadan-cikma-modeli-iptal-butonu" type="button" class="btn bg-success bg-opacity-25 fs-4 ps-5 pe-5"
-                        data-bs-dismiss="modal">İptal</button>
-                        <button onclick="uygulamadanCik();" type="button" class="btn bg-success bg-opacity-25 fs-4 ps-5 pe-5"
-                        data-bs-dismiss="modal" >Evet, uygulamadan çık</button>
+                    <button id="uygulamadan-cikma-modeli-iptal-butonu" type="button"
+                        class="btn bg-success bg-opacity-25 fs-5 ps-5 pe-5" data-bs-dismiss="modal">İptal</button>
+                    <button onclick="uygulamadanCik();" type="button"
+                        class="btn bg-success bg-opacity-25 fs-5 ps-5 pe-5" data-bs-dismiss="modal">Evet, uygulamadan
+                        çık</button>
                 </div>
             </div>
         </div>
@@ -855,9 +866,9 @@
     <div class="modal fade bg-success bg-opacity-25" id="modelUygulamamiziIndirin" tabindex="-1"
         aria-labelledby="modelUygulamamiziIndirinLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content bg-light text-dark fs-4 shadow">
+            <div class="modal-content bg-light text-dark fs-5 shadow">
                 <div class="modal-header">
-                    <p class="modal-title fs-4">
+                    <p class="modal-title fs-5">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                             class="bi bi-cloud-arrow-down-fill" viewBox="0 0 16 16">
                             <path
@@ -886,11 +897,11 @@
                                     <td>
                                         <button onclick="uygulamayiIndir('windows');"
                                             id="windows-zikir-cekme-uygulamasi-indir"
-                                            class="btn bg-success bg-opacity-25 fs-4 ps-5 pe-5" type="button">Ücretsiz
+                                            class="btn bg-success bg-opacity-25 fs-5 ps-5 pe-5" type="button">Ücretsiz
                                             İndir</button>
                                         <button hidden disabled
                                             id="windows-zikir-cekme-uygulamasi-indirme-islemi-baslatiliyor"
-                                            class="btn bg-success bg-opacity-25 fs-4 ps-5 pe-5" type="button">İndirme
+                                            class="btn bg-success bg-opacity-25 fs-5 ps-5 pe-5" type="button">İndirme
                                             İşlemi Başlatılıyor...</button>
                                     </td>
                                 </tr>
@@ -908,7 +919,7 @@
                                         </svg>
                                     </td>
                                     <td>Android ( Play Store )</td>
-                                    <td><button class="btn bg-success bg-opacity-25 fs-4 ps-5 pe-5"
+                                    <td><button class="btn bg-success bg-opacity-25 fs-5 ps-5 pe-5"
                                             type="button">Ücretsiz İndir</button></td>
                                 </tr>
                                 <tr>
@@ -924,11 +935,11 @@
                                     <td>
                                         <button onclick="uygulamayiIndir('debian');"
                                             id="debian-zikir-cekme-uygulamasi-indir"
-                                            class="btn bg-success bg-opacity-25 fs-4 ps-5 pe-5" type="button">Ücretsiz
+                                            class="btn bg-success bg-opacity-25 fs-5 ps-5 pe-5" type="button">Ücretsiz
                                             İndir</button>
                                         <button hidden disabled
                                             id="debian-zikir-cekme-uygulamasi-indirme-islemi-baslatiliyor"
-                                            class="btn bg-success bg-opacity-25 fs-4 ps-5 pe-5" type="button">İndirme
+                                            class="btn bg-success bg-opacity-25 fs-5 ps-5 pe-5" type="button">İndirme
                                             İşlemi Başlatılıyor...</button>
                                     </td>
                                 </tr>
@@ -965,11 +976,11 @@
                                     <td>
                                         <button onclick="uygulamayiIndir('kısayol');"
                                             id="zikir-cekme-uygulamasi-kisayol-indir"
-                                            class="btn bg-success bg-opacity-25 fs-4 ps-5 pe-5" type="button">Ücretsiz
+                                            class="btn bg-success bg-opacity-25 fs-5 ps-5 pe-5" type="button">Ücretsiz
                                             İndir</button>
                                         <button hidden disabled
                                             id="zikir-cekme-uygulamasi-kisayol-indirme-islemi-baslatiliyor"
-                                            class="btn bg-success bg-opacity-25 fs-4 ps-5 pe-5" type="button">İndirme
+                                            class="btn bg-success bg-opacity-25 fs-5 ps-5 pe-5" type="button">İndirme
                                             İşlemi Başlatılıyor...</button>
                                     </td>
                                 </tr>
@@ -978,7 +989,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn bg-success bg-opacity-25 fs-4"
+                    <button type="button" class="btn bg-success bg-opacity-25 fs-5"
                         data-bs-dismiss="modal">Kapat</button>
                 </div>
             </div>
@@ -988,7 +999,7 @@
     <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasMenu"
         aria-labelledby="offcanvasMenuLabel">
         <div class="offcanvas-header">
-            <p class="offcanvas-title fs-4" id="offcanvasMenuLabel">Menü</p>
+            <p class="offcanvas-title fs-5" id="offcanvasMenuLabel">Menü</p>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <hr>
@@ -1039,8 +1050,8 @@
                     </svg>
                     Yarım Kalan Zikirlerim
                 </li>
-                <li class="list-group-item" style="cursor: pointer;"
-                    data-bs-toggle="modal" data-bs-target="#modelZikirlerVeOkunuslari">
+                <li class="list-group-item" style="cursor: pointer;" data-bs-toggle="modal"
+                    data-bs-target="#modelZikirlerVeOkunuslari">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                         class="bi bi-music-note-list" viewBox="0 0 16 16">
                         <path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z" />
@@ -1051,8 +1062,8 @@
                     </svg>
                     Zikirler ve Okunuşları
                 </li>
-                <li class="list-group-item"
-                    style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modelZikirlerVeAciklamalari">
+                <li class="list-group-item" style="cursor: pointer;" data-bs-toggle="modal"
+                    data-bs-target="#modelZikirlerVeAciklamalari">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                         class="bi bi-list-columns-reverse" viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
@@ -1074,8 +1085,8 @@
                         id="checkboxTiklamaSesi">
                     <label class="form-check-label" for="checkboxTiklamaSesi">Tıklama sesi</label>
                 </li>
-                <li class="list-group-item text-danger"
-                    style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modelFabrikaAyarlarinaGeriDon">
+                <li class="list-group-item text-danger" style="cursor: pointer;" data-bs-toggle="modal"
+                    data-bs-target="#modelFabrikaAyarlarinaGeriDon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                         class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
@@ -1090,7 +1101,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
-    <script src="/zikircek.js?versiyonKodu=59d2d447e52142c45d8857715bc5393728596be9e445d20fe2dcadac7bea6e3f924137a5615899e7ca7dee5f2b15f33004fd"></script>
+    <script
+        src="/zikircek.js?versiyonKodu=bdd8b0399eaeb44eb76e02ff18d8e36ed9e27272cb1ca67ee3ffc6a62dacbb77ac4a4b6114b64fa7639c1b9ac1fef6cb031a"></script>
 </body>
 
 </html>
