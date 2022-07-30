@@ -29,7 +29,7 @@
     </script>
     <script>
         function versiyonKontroluYap() {
-            var versiyonKodu = "bdd8b0399eaeb44eb76e02ff18d8e36ed9e27272cb1ca67ee3ffc6a62dacbb77ac4a4b6114b64fa7639c1b9ac1fef6cb031a";
+            var versiyonKodu = "fa3bc6fb3aca7aab22973597f394b4fe788b6b38296c9b9e1f0e8654eb816419c70bc5b6e21b73d7800281b60a7c82868d7d";
             if (localStorage.getItem("versiyonKodu") == null || localStorage.getItem("versiyonKodu") != versiyonKodu) {
                 localStorage.clear();
                 localStorage.setItem("versiyonKodu", versiyonKodu);
@@ -40,7 +40,7 @@
                         window.location.reload();
                     }
                 }
-                xhrVeritabani.open('GET', '/veritabani.json', true);
+                xhrVeritabani.open('GET', '/veritabani.json?versiyonKodu='+versiyonKodu, true);
                 xhrVeritabani.send(null);
             }
         }
@@ -241,7 +241,7 @@
                     Telefon veya tabletten kullanan kardeşlerimiz tabloyu sağa kaydırarak devamını görebilirler.
                 </p>
                 <div class="table-responsive">
-                    <table class="table table-sm table-striped table-bordered shadow-sm">
+                    <table class="table table-sm table-striped table-bordered shadow-sm" style="font-size: 18px;">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -1102,7 +1102,7 @@
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
     <script
-        src="/zikircek.js?versiyonKodu=bdd8b0399eaeb44eb76e02ff18d8e36ed9e27272cb1ca67ee3ffc6a62dacbb77ac4a4b6114b64fa7639c1b9ac1fef6cb031a"></script>
+        src="/zikircek.js?versiyonKodu=fa3bc6fb3aca7aab22973597f394b4fe788b6b38296c9b9e1f0e8654eb816419c70bc5b6e21b73d7800281b60a7c82868d7d"></script>
 </body>
 
 </html>

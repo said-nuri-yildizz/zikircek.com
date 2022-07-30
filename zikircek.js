@@ -186,7 +186,7 @@ function anaTabloyuOlustur() {
         satir += '<th ' + sinif + ' scope="row">' + veritabani[i]["id"] + '</th>';
         satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
         satir += '<td hidden></td>';
-        satir += '<td class="text-break"><div style="width:300px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g,"&nbsp;") + '</td>';
+        satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g,"&nbsp;") + '</td>';
         satir += '<td>' + veritabani[i]["cekilenZikirSayisi"] + '</td>';
         if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
             satir += '<td>' + veritabani[i]["varsayilanZikirSayisiHedefi"] + '</td>';
