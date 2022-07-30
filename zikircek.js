@@ -281,8 +281,8 @@ function enCokCektigimZikirlerTablosunuOlustur() {
                 }
             }
             satir += '<th ' + sinif + ' scope="row">' + siraliVeritabani[i]["id"] + '</th>';
-            satir += '<td>' + siraliVeritabani[i]["turkce"] + '</td>';
-            satir += '<td>' + siraliVeritabani[i]["arapca"] + '</td>';
+            satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
+            satir += '<td hidden></td>';
         satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g,"&nbsp;") + '</td>';
             satir += '<td>' + siraliVeritabani[i]["cekilenZikirSayisi"] + '</td>';
             if (parseInt(siraliVeritabani[i]["zikirSayisiHedefi"]) == 0) {
