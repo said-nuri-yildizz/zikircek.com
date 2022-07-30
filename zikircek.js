@@ -283,7 +283,7 @@ function enCokCektigimZikirlerTablosunuOlustur() {
             satir += '<th ' + sinif + ' scope="row">' + siraliVeritabani[i]["id"] + '</th>';
             satir += '<td>' + siraliVeritabani[i]["turkce"] + '</td>';
             satir += '<td>' + siraliVeritabani[i]["arapca"] + '</td>';
-            satir += '<td>' + siraliVeritabani[i]["aciklama"] + '</td>';
+        satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g,"&nbsp;") + '</td>';
             satir += '<td>' + siraliVeritabani[i]["cekilenZikirSayisi"] + '</td>';
             if (parseInt(siraliVeritabani[i]["zikirSayisiHedefi"]) == 0) {
                 satir += '<td>' + siraliVeritabani[i]["varsayilanZikirSayisiHedefi"] + '</td>';
@@ -338,7 +338,7 @@ function modelZikirlerVeAciklamalariTablosunuOlustur() {
         satir += '<th ' + sinif + ' scope="row">' + veritabani[i]["id"] + '</th>';
         satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
         satir += '<td hidden></td>';
-        satir += '<td>' + veritabani[i]["aciklama"] + '</td>';
+        satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g,"&nbsp;") + '</td>';
         satir += '</tr>';
         document.getElementById("zikirler-ve-aciklamalari-tablosu-tbody").innerHTML += satir;
     }
@@ -362,7 +362,7 @@ function tamamladigimZikirlerimTablosunuOlustur() {
                 satir += '<th class="bg-success bg-opacity-25" scope="row">' + veritabani[i]["id"] + '</th>';
                 satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
                 satir += '<td hidden></td>';
-                satir += '<td>' + veritabani[i]["aciklama"] + '</td>';
+        satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g,"&nbsp;") + '</td>';
                 satir += '<td>' + veritabani[i]["cekilenZikirSayisi"] + '</td>';
                 if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
                     satir += '<td>' + veritabani[i]["varsayilanZikirSayisiHedefi"] + '</td>';
@@ -417,7 +417,7 @@ function yarimKalanZikirlerimTablosunuOlustur() {
                 satir += '<th class="bg-warning bg-opacity-25" scope="row">' + veritabani[i]["id"] + '</th>';
                 satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
                 satir += '<td hidden></td>';
-                satir += '<td>' + veritabani[i]["aciklama"] + '</td>';
+                satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g,"&nbsp;") + '</td>';
                 satir += '<td>' + veritabani[i]["cekilenZikirSayisi"] + '</td>';
                 if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
                     satir += '<td>' + veritabani[i]["varsayilanZikirSayisiHedefi"] + '</td>';
@@ -454,6 +454,7 @@ function yarimKalanZikirlerimTablosunuOlustur() {
     }, 100);
 }
 function sesCal(sesDosyasi) {
+    sesDosyasi = sesDosyasi + "?versiyonKodu=" + versiyonKodu;
     var audio = new Audio(sesDosyasi);
     audio.play();
 }
@@ -514,7 +515,7 @@ function favoriZikirlerimTablosunuOlustur() {
                 satir += '<th ' + sinif + ' scope="row">' + veritabani[i]["id"] + '</th>';
                 satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
                 satir += '<td hidden></td>';
-                satir += '<td>' + veritabani[i]["aciklama"] + '</td>';
+                satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g,"&nbsp;") + '</td>';
                 satir += '<td>' + veritabani[i]["cekilenZikirSayisi"] + '</td>';
                 if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
                     satir += '<td>' + veritabani[i]["varsayilanZikirSayisiHedefi"] + '</td>';
@@ -573,7 +574,7 @@ function favoriOlmayanZikirlerimTablosunuOlustur() {
                 satir += '<th ' + sinif + ' scope="row">' + veritabani[i]["id"] + '</th>';
                 satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
                 satir += '<td hidden></td>';
-                satir += '<td>' + veritabani[i]["aciklama"] + '</td>';
+                satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g,"&nbsp;") + '</td>';
                 satir += '<td>' + veritabani[i]["cekilenZikirSayisi"] + '</td>';
                 if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
                     satir += '<td>' + veritabani[i]["varsayilanZikirSayisiHedefi"] + '</td>';
