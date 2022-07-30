@@ -116,7 +116,7 @@ function zikirAciklamaKutusunuAyarla() {
 }
 function zikirAciklamaKutusunuOlustur(id) {
     document.getElementById("zikir-aciklama-kutusu-govdesi").innerText = veritabani[id - 1]["id"] + '. ' + veritabani[id - 1]["turkce"] + ' ( ' + veritabani[id - 1]["arapca"] + ' )' + '\n' + veritabani[id - 1]["aciklama"];
-    document.getElementById("zikir-aciklama-kutusu-govdesi").innerHTML += '<br><button onclick="zikirBilgileriniKopyala(' + veritabani[id - 1]["id"] + ');" type="button" class="btn bg-success bg-opacity-25 mt-3 fs-5 ps-5 pe-5"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-back" viewBox="0 0 16 16"><path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2z"/></svg> Kopyala</button>';
+    // document.getElementById("zikir-aciklama-kutusu-govdesi").innerHTML += '<br><button onclick="zikirBilgileriniKopyala(' + veritabani[id - 1]["id"] + ');" type="button" class="btn bg-success bg-opacity-25 mt-3 fs-5 ps-5 pe-5"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-back" viewBox="0 0 16 16"><path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2z"/></svg> Kopyala</button>';
 }
 function zikirSec(id) {
     zikirAciklamaKutusunuOlustur(id);
