@@ -172,7 +172,7 @@ function anaTabloyuOlustur() {
     var _satir = "";
     var satir = "";
     for (var i = 0; i < 99; i++) {
-        satir += '<tr>';
+        satir += '<tr onclick="zikreGit(' + (i + 1) + ')">';
         var sinif = "";
         if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
             if (parseInt(veritabani[i]['cekilenZikirSayisi']) >= parseInt(veritabani[i]['varsayilanZikirSayisiHedefi'])) {
@@ -228,14 +228,14 @@ function anaTabloyuOlustur() {
         satir += '</tr>';
     }
     document.getElementById("ana-tablo-tbody").innerHTML += satir;
-    console.log(_satir)
+    // console.log(_satir)
 }
 anaTabloyuOlustur();
 function zikirlerVeOkunuslariTablosunuOlustur() {
     document.getElementById("zikirler-ve-okunuslari-tablosu-tbody").innerHTML = "";
     for (var i = 0; i < 99; i++) {
         var satir = "";
-        satir += '<tr>';
+        satir += '<tr onclick="zikreGit(' + (i + 1) + ')">';
         var sinif = "";
         if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
             if (parseInt(veritabani[i]['cekilenZikirSayisi']) >= parseInt(veritabani[i]['varsayilanZikirSayisiHedefi'])) {
@@ -278,7 +278,7 @@ function enCokCektigimZikirlerTablosunuOlustur() {
         console.log(siraliVeritabani);
         document.getElementById("en-cok-cektigim-zikirler-tablosu-tbody").innerHTML = "";
         for (var i = 0; i < 99; i++) {
-            satir += '<tr>';
+            satir += '<tr onclick="zikreGit(' + siraliVeritabani[i]["id"] + ')">';
             var sinif = "";
             if (parseInt(siraliVeritabani[i]["zikirSayisiHedefi"]) == 0) {
                 if (parseInt(siraliVeritabani[i]['cekilenZikirSayisi']) >= parseInt(siraliVeritabani[i]['varsayilanZikirSayisiHedefi'])) {
@@ -294,9 +294,9 @@ function enCokCektigimZikirlerTablosunuOlustur() {
                 }
             }
             satir += '<th ' + sinif + ' scope="row">' + siraliVeritabani[i]["id"] + '</th>';
-            satir += '<td>' + veritabani[i]["turkce"] + '<br> ( ' + veritabani[i]["arapca"] + ' ) </td>';
+            satir += '<td>' + siraliVeritabani[i]["turkce"] + '<br> ( ' + siraliVeritabani[i]["arapca"] + ' ) </td>';
             satir += '<td hidden></td>';
-            satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g, "&nbsp;") + '</td>';
+            satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + siraliVeritabani[i]["aciklama"].replace(/ /g, "&nbsp;") + '</td>';
             satir += '<td>' + siraliVeritabani[i]["cekilenZikirSayisi"] + '</td>';
             if (parseInt(siraliVeritabani[i]["zikirSayisiHedefi"]) == 0) {
                 satir += '<td>' + siraliVeritabani[i]["varsayilanZikirSayisiHedefi"] + '</td>';
@@ -333,7 +333,7 @@ function modelZikirlerVeAciklamalariTablosunuOlustur() {
     document.getElementById("zikirler-ve-aciklamalari-tablosu-tbody").innerHTML = "";
     for (var i = 0; i < 99; i++) {
         var satir = "";
-        satir += '<tr>';
+        satir += '<tr onclick="zikreGit(' + (i + 1) + ')">';
         var sinif = "";
         if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
             if (parseInt(veritabani[i]['cekilenZikirSayisi']) >= parseInt(veritabani[i]['varsayilanZikirSayisiHedefi'])) {
@@ -371,7 +371,8 @@ function tamamladigimZikirlerimTablosunuOlustur() {
             }
             if (veritabani[i]['cekilenZikirSayisi'] >= mevcutZikirSayisiHedefi) {
                 tamamlanmisZikirVarmi = true;
-                satir += '<tr>';
+                satir += '<tr onclick="zikreGit(' + (i + 1) + ')">';
+
                 satir += '<th class="bg-success bg-opacity-25" scope="row">' + veritabani[i]["id"] + '</th>';
                 satir += '<td>' + veritabani[i]["turkce"] + '<br> ( ' + veritabani[i]["arapca"] + ' ) </td>';
                 satir += '<td hidden></td>';
@@ -426,7 +427,8 @@ function yarimKalanZikirlerimTablosunuOlustur() {
             }
             if (veritabani[i]['cekilenZikirSayisi'] > 0 && veritabani[i]['cekilenZikirSayisi'] < mevcutZikirSayisiHedefi) {
                 tamamlanmisZikirVarmi = true;
-                satir += '<tr>';
+                satir += '<tr onclick="zikreGit(' + (i + 1) + ')">';
+
                 satir += '<th class="bg-warning bg-opacity-25" scope="row">' + veritabani[i]["id"] + '</th>';
                 satir += '<td>' + veritabani[i]["turkce"] + '<br> ( ' + veritabani[i]["arapca"] + ' ) </td>';
                 satir += '<td hidden></td>';
@@ -510,7 +512,7 @@ function favoriZikirlerimTablosunuOlustur() {
         for (var i = 0; i < 99; i++) {
             if (veritabani[i]["favori"] == true) {
                 favoriZikirVarmi = true;
-                satir += '<tr>';
+                satir += '<tr onclick="zikreGit(' + (i + 1) + ')">';
                 var sinif = "";
                 if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
                     if (parseInt(veritabani[i]['cekilenZikirSayisi']) >= parseInt(veritabani[i]['varsayilanZikirSayisiHedefi'])) {
@@ -569,7 +571,7 @@ function favoriOlmayanZikirlerimTablosunuOlustur() {
         for (var i = 0; i < 99; i++) {
             if (veritabani[i]["favori"] == false) {
                 favoriOlmayanZikirVarmi = true;
-                satir += '<tr>';
+                satir += '<tr onclick="zikreGit(' + (i + 1) + ')">';
                 var sinif = "";
                 if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
                     if (parseInt(veritabani[i]['cekilenZikirSayisi']) >= parseInt(veritabani[i]['varsayilanZikirSayisiHedefi'])) {
@@ -732,7 +734,7 @@ function favorilerimiGuncelle(id) {
     if (veritabani[id - 1]["favori"] == true) {
         veritabani[id - 1]["favori"] = false;
         document.getElementById("kisayol-butonu-favorilerimi-guncelle").innerHTML = 'Favorilerime Ekle <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-balloon-heart" viewBox="0 0 16 16"><path fill-rule="evenodd" d="m8 2.42-.717-.737c-1.13-1.161-3.243-.777-4.01.72-.35.685-.451 1.707.236 3.062C4.16 6.753 5.52 8.32 8 10.042c2.479-1.723 3.839-3.29 4.491-4.577.687-1.355.587-2.377.236-3.061-.767-1.498-2.88-1.882-4.01-.721L8 2.42Zm-.49 8.5c-10.78-7.44-3-13.155.359-10.063.045.041.089.084.132.129.043-.045.087-.088.132-.129 3.36-3.092 11.137 2.624.357 10.063l.235.468a.25.25 0 1 1-.448.224l-.008-.017c.008.11.02.202.037.29.054.27.161.488.419 1.003.288.578.235 1.15.076 1.629-.157.469-.422.867-.588 1.115l-.004.007a.25.25 0 1 1-.416-.278c.168-.252.4-.6.533-1.003.133-.396.163-.824-.049-1.246l-.013-.028c-.24-.48-.38-.758-.448-1.102a3.177 3.177 0 0 1-.052-.45l-.04.08a.25.25 0 1 1-.447-.224l.235-.468ZM6.013 2.06c-.649-.18-1.483.083-1.85.798-.131.258-.245.689-.08 1.335.063.244.414.198.487-.043.21-.697.627-1.447 1.359-1.692.217-.073.304-.337.084-.398Z"/></svg>';
-        document.getElementById("ana-tablo-tbody").childNodes[id-1].childNodes[8].innerHTML = '<td style="cursor:pointer;" onclick="favorilerimiGuncelle(' + id + ')"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-balloon-heart" viewBox="0 0 16 16"><path fill-rule="evenodd" d="m8 2.42-.717-.737c-1.13-1.161-3.243-.777-4.01.72-.35.685-.451 1.707.236 3.062C4.16 6.753 5.52 8.32 8 10.042c2.479-1.723 3.839-3.29 4.491-4.577.687-1.355.587-2.377.236-3.061-.767-1.498-2.88-1.882-4.01-.721L8 2.42Zm-.49 8.5c-10.78-7.44-3-13.155.359-10.063.045.041.089.084.132.129.043-.045.087-.088.132-.129 3.36-3.092 11.137 2.624.357 10.063l.235.468a.25.25 0 1 1-.448.224l-.008-.017c.008.11.02.202.037.29.054.27.161.488.419 1.003.288.578.235 1.15.076 1.629-.157.469-.422.867-.588 1.115l-.004.007a.25.25 0 1 1-.416-.278c.168-.252.4-.6.533-1.003.133-.396.163-.824-.049-1.246l-.013-.028c-.24-.48-.38-.758-.448-1.102a3.177 3.177 0 0 1-.052-.45l-.04.08a.25.25 0 1 1-.447-.224l.235-.468ZM6.013 2.06c-.649-.18-1.483.083-1.85.798-.131.258-.245.689-.08 1.335.063.244.414.198.487-.043.21-.697.627-1.447 1.359-1.692.217-.073.304-.337.084-.398Z"/></svg></td>';
+        document.getElementById("ana-tablo-tbody").childNodes[id - 1].childNodes[8].innerHTML = '<td style="cursor:pointer;" onclick="favorilerimiGuncelle(' + id + ')"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-balloon-heart" viewBox="0 0 16 16"><path fill-rule="evenodd" d="m8 2.42-.717-.737c-1.13-1.161-3.243-.777-4.01.72-.35.685-.451 1.707.236 3.062C4.16 6.753 5.52 8.32 8 10.042c2.479-1.723 3.839-3.29 4.491-4.577.687-1.355.587-2.377.236-3.061-.767-1.498-2.88-1.882-4.01-.721L8 2.42Zm-.49 8.5c-10.78-7.44-3-13.155.359-10.063.045.041.089.084.132.129.043-.045.087-.088.132-.129 3.36-3.092 11.137 2.624.357 10.063l.235.468a.25.25 0 1 1-.448.224l-.008-.017c.008.11.02.202.037.29.054.27.161.488.419 1.003.288.578.235 1.15.076 1.629-.157.469-.422.867-.588 1.115l-.004.007a.25.25 0 1 1-.416-.278c.168-.252.4-.6.533-1.003.133-.396.163-.824-.049-1.246l-.013-.028c-.24-.48-.38-.758-.448-1.102a3.177 3.177 0 0 1-.052-.45l-.04.08a.25.25 0 1 1-.447-.224l.235-.468ZM6.013 2.06c-.649-.18-1.483.083-1.85.798-.131.258-.245.689-.08 1.335.063.244.414.198.487-.043.21-.697.627-1.447 1.359-1.692.217-.073.304-.337.084-.398Z"/></svg></td>';
         for (var i = 0; i < document.getElementById("favori-zikirlerim-tablosu-tbody").childNodes.length; i++) {
             if (document.getElementById("favori-zikirlerim-tablosu-tbody").childNodes[i].childNodes[0] && document.getElementById("favori-zikirlerim-tablosu-tbody").childNodes[i].childNodes[0].innerText == id) {
                 document.getElementById("favori-zikirlerim-tablosu-tbody").childNodes[i].remove();
@@ -756,7 +758,7 @@ function favorilerimiGuncelle(id) {
     } else {
         veritabani[id - 1]["favori"] = true;
         document.getElementById("kisayol-butonu-favorilerimi-guncelle").innerHTML = 'Favorilerimden Çıkar <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-balloon-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.49 10.92C19.412 3.382 11.28-2.387 8 .986 4.719-2.387-3.413 3.382 7.51 10.92l-.234.468a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2.376 2.376 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224l-.235-.468ZM6.726 1.269c-1.167-.61-2.8-.142-3.454 1.135-.237.463-.36 1.08-.202 1.85.055.27.467.197.527-.071.285-1.256 1.177-2.462 2.989-2.528.234-.008.348-.278.14-.386Z"/></svg>';
-        document.getElementById("ana-tablo-tbody").childNodes[id-1].childNodes[8].innerHTML = '<td style="cursor:pointer;" onclick="favorilerimiGuncelle(' + id + ')"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-balloon-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.49 10.92C19.412 3.382 11.28-2.387 8 .986 4.719-2.387-3.413 3.382 7.51 10.92l-.234.468a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2.376 2.376 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224l-.235-.468ZM6.726 1.269c-1.167-.61-2.8-.142-3.454 1.135-.237.463-.36 1.08-.202 1.85.055.27.467.197.527-.071.285-1.256 1.177-2.462 2.989-2.528.234-.008.348-.278.14-.386Z"/></svg></td>';
+        document.getElementById("ana-tablo-tbody").childNodes[id - 1].childNodes[8].innerHTML = '<td style="cursor:pointer;" onclick="favorilerimiGuncelle(' + id + ')"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-balloon-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.49 10.92C19.412 3.382 11.28-2.387 8 .986 4.719-2.387-3.413 3.382 7.51 10.92l-.234.468a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2.376 2.376 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224l-.235-.468ZM6.726 1.269c-1.167-.61-2.8-.142-3.454 1.135-.237.463-.36 1.08-.202 1.85.055.27.467.197.527-.071.285-1.256 1.177-2.462 2.989-2.528.234-.008.348-.278.14-.386Z"/></svg></td>';
         for (var i = 0; i < document.getElementById("favori-olmayan-zikirlerim-tablosu-tbody").childNodes.length; i++) {
             if (document.getElementById("favori-olmayan-zikirlerim-tablosu-tbody").childNodes[i].childNodes[0] && document.getElementById("favori-olmayan-zikirlerim-tablosu-tbody").childNodes[i].childNodes[0].innerText == id) {
                 document.getElementById("favori-olmayan-zikirlerim-tablosu-tbody").childNodes[i].remove();
@@ -910,6 +912,29 @@ setTimeout(() => {
     zikirlerVeOkunuslariTablosunuOlustur();
 }, 1000);
 
+var ilkTiklananSatirID = -1;
+var ikinciTiklananSatirID = -1;
+function zikreGit(id) {
+    if (ilkTiklananSatirID != id) {
+        ilkTiklananSatirID = id;
+    } else if (ilkTiklananSatirID != -1) {
+        ikinciTiklananSatirID = id;
+        document.getElementById("zikir-secme-kutusu").selectedIndex = id - 1;
+        zikirSec(id);
+        document.getElementById("zikir-secme-kutusu").focus();
+        ilkTiklananSatirID = -1;
+        ikinciTiklananSatirID = -1;
+        document.getElementById("menuyu-kapatan-buton").click();
+        document.getElementById("favori-zikirlerim-tablosunu-kapatan-buton").click();
+        document.getElementById("favori-olmayan-zikirlerim-tablosunu-kapatan-buton").click();
+        document.getElementById("tamamladigim-zikirlerim-tablosunu-kapatan-buton").click();
+        document.getElementById("yarim-kalan-zikirlerim-tablosunu-kapatan-buton").click();
+        document.getElementById("zikirler-ve-okunuslari-tablosunu-kapatan-buton").click();
+        document.getElementById("zikirler-ve-aciklamalari-tablosunu-kapatan-buton").click();
+        document.getElementById("en-cok-cektigim-zikirler-tablosunu-kapatan-buton").click();
+    }
+}
+
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function () {
     if (xhr.readyState == XMLHttpRequest.DONE) {
@@ -933,7 +958,8 @@ xhr.onreadystatechange = function () {
             //     yeniVeritabani += "},";
             // }
 
-            // urller += veritabani[i]["dosyaAdi"];
+            urller += "https://zikircek.com/esmaul-husna/" + veritabani[i]["dosyaAdi"] + ".html\n";
+            // urller += "<url><loc>https://zikircek.com/esmaul-husna/"+veritabani[i]["dosyaAdi"]+".html</loc></url>\n";
         }
         // console.log(urller)
         // yeniVeritabani += "]";
