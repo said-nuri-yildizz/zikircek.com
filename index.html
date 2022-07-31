@@ -28,7 +28,8 @@
         gtag('config', 'G-BKF30KK3DN');
     </script>
     <script>
-            var versiyonKodu = "cedb07cbc1de28b08288b7fc271107e6f8205a3f2eeecfbb2b8f9f6a2b533c5a27f3adce06d0348518b97d49450a5e2d201e";
+        var versiyonKontroluBasarilimi = false;
+        var versiyonKodu = "cedb07cbc1de28b08288b7fc271107e6f8205a3f2eeecfbb2b8f9f6a2b533c5a27f3adce06d0348518b97d49450a5e2d201e";
         function versiyonKontroluYap() {
             if (localStorage.getItem("versiyonKodu") == null || localStorage.getItem("versiyonKodu") != versiyonKodu) {
                 localStorage.clear();
@@ -37,11 +38,13 @@
                 xhrVeritabani.onreadystatechange = function () {
                     if (xhrVeritabani.readyState == XMLHttpRequest.DONE) {
                         localStorage.setItem("veritabani", xhrVeritabani.responseText);
-                        window.location.reload();
+                        versiyonKontroluBasarilimi = true;
                     }
                 }
-                xhrVeritabani.open('GET', '/veritabani.json?versiyonKodu='+versiyonKodu, true);
+                xhrVeritabani.open('GET', '/veritabani.json?versiyonKodu=' + versiyonKodu, true);
                 xhrVeritabani.send(null);
+            } else {
+                versiyonKontroluBasarilimi = true;
             }
         }
         versiyonKontroluYap();
@@ -51,33 +54,18 @@
         if (localStorage.getItem("cerezBilgilendirmesiGosterilsinmi") == null) {
             localStorage.setItem("cerezBilgilendirmesiGosterilsinmi", 1);
         }
-        var veritabani = JSON.parse(localStorage.getItem("veritabani"));
+        // var veritabani = JSON.parse(localStorage.getItem("veritabani"));
     </script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.2/dist/chart.min.js"></script>
 </head>
 
-<body class="bg-success bg-opacity-25 text-dark fs-5" onload="document.getElementById('sayfa-yukeniyor').remove();">
+<body class="bg-success bg-opacity-25 text-dark fs-5">
     <script>
-        // document.getElementsByTagName("meta")[1].attributes[1].nodeValue = 'width=device-width, initial-scale=0.1, maximum-scale=10';
+        document.write('<div id="sayfa-yukeniyor"><style>#sayfa-yukeniyor {position: fixed;top: 0;width: 100%;height: 200%;background-color: #fff;z-index: 99999;text-align: center;}</style><div style="margin-top: 20%;"><img src="data:;base64,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"> Sayfa Yükleniyor...</div></div>')
     </script>
-    <div id="sayfa-yukeniyor">
-        <style>
-            #sayfa-yukeniyor {
-                position: fixed;
-                top: 0;
-                width: 100%;
-                height: 200%;
-                background-color: #fff;
-                z-index: 99999;
-                text-align: center;
-            }
-        </style>
-        <div style="margin-top: 20%;">
-            <img src="/ikon.png"> Sayfa Yükleniyor...
-        </div>
-    </div>
+    
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-1"></div>
@@ -123,8 +111,107 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10 bg-light p-3 rounded-3 shadow mb-3">
-                <select onchange='zikirSec(this.selectedIndex+1);' id="zikir-secme-kutusu"
+                <select onchange="zikirSec(this.selectedIndex+1);" id="zikir-secme-kutusu"
                     class="form-select form-select-lg mb-3 fs-5 shadow-sm">
+                    <option value="1">1. ALLAH ( يَا الله )</option>
+                    <option value="2">2. ER-RAHMÂN ( اَلرَّحْمَنُ )</option>
+                    <option value="3">3. ER-RAHÎM ( اَلرَّحِيمُ )</option>
+                    <option value="4">4. EL-MELİK ( اَلمَلِكُ )</option>
+                    <option value="5">5. EL-KUDDÛS ( اَلقدُّوسُ )</option>
+                    <option value="6">6. ES-SELÂM ( اَلسَّلَامُ )</option>
+                    <option value="7">7. EL-MÜ’MİN ( اَلمُؤْمِنُ )</option>
+                    <option value="8">8. EL-MÜHEYMİN ( اَلمُهَيْمِنُ )</option>
+                    <option value="9">9. EL-AZÎZ ( ااَلعَزِيزُ )</option>
+                    <option value="10">10. EL-CEBBÂR ( اَلجبَّارُ )</option>
+                    <option value="11">11. EL-MÜTEKEBBİR ( اَلمُتَكَبِّر )</option>
+                    <option value="12">12. EL-HÂLİK ( اَلخَالِقُ )</option>
+                    <option value="13">13. EL-BÂRİ ( اَلبَارِئُ )</option>
+                    <option value="14">14. EL-MUSAVVİR ( اَلمُصَوِّرُ )</option>
+                    <option value="15">15. EL-GAFFÂR ( اَلغَفَّارُ )</option>
+                    <option value="16">16. EL-KAHHÂR ( اَلقَهَّارُ )</option>
+                    <option value="17">17. EL-VEHHÂB ( اَلوَهَّابُ )</option>
+                    <option value="18">18. ER-REZZÂK ( اَلرَّزَّاقُ )</option>
+                    <option value="19">19. EL-FETTÂH ( اَلفَتَّاحُ )</option>
+                    <option value="20">20. EL-ALÎM ( اَلعَلِيمُ )</option>
+                    <option value="21">21. EL-KÂBİZ ( اَلقَابِضُ )</option>
+                    <option value="22">22. EL-BÂSİT ( اَلبَاسِطُ )</option>
+                    <option value="23">23. EL-HÂFİD ( اَلخَافِضُ )</option>
+                    <option value="24">24. ER-RÂFİ ( اَلرَّافِعُ )</option>
+                    <option value="25">25. EL-MUİZZ ( اَلمُعِزُّ )</option>
+                    <option value="26">26. EL-MÜZİLL ( اَلمُذِلُّ )</option>
+                    <option value="27">27. ES-SEMÎ ( اَلسَّمِيعُ )</option>
+                    <option value="28">28. EL-BASÎR ( اَلبَصِيرُ )</option>
+                    <option value="29">29. EL-HAKEM ( اَلحَكَمُ )</option>
+                    <option value="30">30. EL-ADL ( اَلعَدْلُ )</option>
+                    <option value="31">31. EL-LATÎF ( اَلَّلطِيفُ )</option>
+                    <option value="32">32. EL-HABÎR ( اَلخَبِيرُ )</option>
+                    <option value="33">33. EL-HALÎM ( اَلحَلِيمُ )</option>
+                    <option value="34">34. EL-AZÎM ( اَلعَظِيمُ )</option>
+                    <option value="35">35. EL-GAFÛR ( اَلغَفُورُ )</option>
+                    <option value="36">36. EŞ-ŞEKÛR ( اَلشَّكُورُ )</option>
+                    <option value="37">37. EL-ALİYY ( اَلعَلِيُّ )</option>
+                    <option value="38">38. EL-KEBÎR ( اَلكَبِيرُ )</option>
+                    <option value="39">39. EL-HAFÎZ ( اَلحَفِيظُ )</option>
+                    <option value="40">40. EL-MUKÎT ( اَلمُقِيتُ )</option>
+                    <option value="41">41. EL-HASÎB ( اَلحَسِيبُ )</option>
+                    <option value="42">42. EL-CELÎL ( اَلجَلِيلُ )</option>
+                    <option value="43">43. EL-KERÎM ( اَلكَرِيمُ )</option>
+                    <option value="44">44. ER-RAKÎB ( اَلرّقِيبُ )</option>
+                    <option value="45">45. EL-MUCÎB ( اَلمُجِيبُ )</option>
+                    <option value="46">46. EL-VÂSİ ( اَلوَاسِعُ )</option>
+                    <option value="47">47. EL-HAKÎM ( اَلحَكِيمُ )</option>
+                    <option value="48">48. EL-VEDUD ( اَلوَدُودُ )</option>
+                    <option value="49">49. EL-MECÎD ( اَلمَجِيدُ )</option>
+                    <option value="50">50. EL-BÂİS ( اَلبَاعِثُ )</option>
+                    <option value="51">51. EŞ-ŞEHÎD ( اَلشَّهِيدُ )</option>
+                    <option value="52">52. EL-HAKK ( اَلحَقُّ )</option>
+                    <option value="53">53. EL-VEKÎL ( اَلوَكِيلُ )</option>
+                    <option value="54">54. EL-KAVİYY ( اَلقَوِيُّ )</option>
+                    <option value="55">55. EL-METÎN ( اَلمَتِينُ )</option>
+                    <option value="56">56. EL-VELİYY ( اَلوَلِيُّ )</option>
+                    <option value="57">57. EL-HAMÎD ( اَلحَمِيدُ )</option>
+                    <option value="58">58. EL-MUHSÎ ( المُحْصِي )</option>
+                    <option value="59">59. EL-MÜBDİ ( اَلمُبْدِئُ )</option>
+                    <option value="60">60. EL-MUÎD ( اَلمُعِيدُ )</option>
+                    <option value="61">61. EL-MUHYÎ ( اَلمُحْيِ )</option>
+                    <option value="62">62. EL-MÜMÎT ( اَلمُمِيتُ )</option>
+                    <option value="63">63. EL-HAYY ( اَلحَيُّ )</option>
+                    <option value="64">64. EL-KAYYÛM ( اَلقَيُّومُ )</option>
+                    <option value="65">65. EL-VÂCİD ( اَلوَاجِدُ )</option>
+                    <option value="66">66. EL-MÂCİD ( اَلمَاجِدُ )</option>
+                    <option value="67">67. EL-VÂHİD ( اَلواحِدُ )</option>
+                    <option value="68">68. ES-SAMED ( اَلصَّمَدُ )</option>
+                    <option value="69">69. EL-KÂDİR ( اَلقَادِرُ )</option>
+                    <option value="70">70. EL-MUKTEDİR ( اَلمُقْتَدِرُ )</option>
+                    <option value="71">71. EL-MUKADDİM ( اَلمُقَدِّمُ )</option>
+                    <option value="72">72. EL-MUAHHİR ( اَلمُؤَخِّرُ )</option>
+                    <option value="73">73. EL-EVVEL ( اَلأوَّلُ )</option>
+                    <option value="74">74. EL-ÂHİR ( الآخِرُ )</option>
+                    <option value="75">75. EL-ZÂHİR ( اَلظَّاهِرُ )</option>
+                    <option value="76">76. EL-BÂTIN ( اَلبَاطِنُ )</option>
+                    <option value="77">77. EL-VÂLÎ ( اَلوَالِي )</option>
+                    <option value="78">78. EL-MÜTEÂLÎ ( اَلمُتَعَالِي )</option>
+                    <option value="79">79. EL-BERR ( اَلبَرُّ )</option>
+                    <option value="80">80. EL-TEVVÂB ( اَلتَّوَّابُ )</option>
+                    <option value="81">81. EL-MÜNTEKİM ( اَلمُنْتَقِمُ )</option>
+                    <option value="82">82. EL-AFÜVV ( اَلعَفُوُّ )</option>
+                    <option value="83">83. ER-RAÛF ( اَلرَّؤُفُ )</option>
+                    <option value="84">84. EL-MÂLİKÜ’L-MÜLK ( مَالِكُ المُلْكِ )</option>
+                    <option value="85">85. ZÜ’L-CELÂLİ VE’L-İKRÂM ( ذُو الجَلَالِ وَالإكرَامِ )</option>
+                    <option value="86">86. EL-MUKSİT ( اَلمُقْسِطُ )</option>
+                    <option value="87">87. EL-CÂMİ ( اَلجَامِعُ )</option>
+                    <option value="88">88. EL-ĞANİYY ( اَلغَنِيُّ )</option>
+                    <option value="89">89. EL-MUĞNÎ ( اَلمُغْنِي )</option>
+                    <option value="90">90. EL-MÂNİ ( اَلمَانِعُ )</option>
+                    <option value="91">91. EL-DÂRR ( اَلضَّارُّ )</option>
+                    <option value="92">92. EL-NÂFİ ( اَلنَّافِعُ )</option>
+                    <option value="93">93. EL-NÛR ( اَلنُّورُ )</option>
+                    <option value="94">94. EL-HÂDÎ ( اَلهَادِي )</option>
+                    <option value="95">95. EL-BEDÎ ( اَلبَدِيعُ )</option>
+                    <option value="96">96. EL-BÂKÎ ( اَلبَاقِي )</option>
+                    <option value="97">97. EL-VÂRİS ( اَلوَارِثُ )</option>
+                    <option value="98">98. ER-REŞÎD ( اَلرَّشِيدُ )</option>
+                    <option value="99">99. ES-SABÛR ( اَلَّصَبُورُ )</option>
                 </select>
                 <div class="accordion shadow-sm" id="akordeonZikirAciklamaKutusu">
                     <div class="accordion-item">
@@ -139,7 +226,14 @@
                         <div id="zikirAciklamaKutusu" class="accordion-collapse collapse show"
                             aria-labelledby="headingOne" data-bs-parent="#akordeonZikirAciklamaKutusu">
                             <div class="accordion-body">
-                                <p id="zikir-aciklama-kutusu-govdesi"></p>
+                                <p id="zikir-aciklama-kutusu-govdesi">
+                                    1. ALLAH ( يَا الله )
+                                    <br>
+                                    Her ismin vasfını ihtiva eden öz adı. Kendinden başka ilah bulunmayan tek Allah.Bu
+                                    ism-i şerif, Cenâb-ı Hakk'ın has ismidir. Bu itibarla diğer isimlerin ifade ettiği
+                                    bütün güzel vasıfları ve İlâhî sıfatları içine alır. Diğer isimler ise, yalnız kendi
+                                    mânalarına delâlet ederler. Bu bakımdan Allah isminin yerini hiçbir isim tutamaz.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -164,7 +258,7 @@
                     </div>
                     <script>
                         if (window.innerWidth < 801) {
-                            document.getElementById("zikir-sayisi-arttirma-butonu").style="height:400px";
+                            document.getElementById("zikir-sayisi-arttirma-butonu").style = "height:400px";
                         }
                     </script>
                     <div class="col-md-3 mt-3">
@@ -237,6 +331,7 @@
                         </button>
                     </div>
                 </div>
+                <br>
                 <p>
                     Telefon veya tabletten kullanan kardeşlerimiz tabloyu sağa kaydırarak devamını görebilirler.
                 </p>
@@ -255,9 +350,1061 @@
                             </tr>
                         </thead>
                         <tbody id="ana-tablo-tbody">
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>ALLAH<br> ( يَا الله ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Her ismin vasfını ihtiva eden öz adı.
+                                    Kendinden başka ilah bulunmayan tek Allah.Bu ism-i şerif, Cenâb-ı Hakk'ın has
+                                    ismidir. Bu itibarla diğer isimlerin ifade ettiği bütün güzel vasıfları ve İlâhî
+                                    sıfatları içine alır. Diğer isimler ise, yalnız kendi mânalarına delâlet ederler. Bu
+                                    bakımdan Allah isminin yerini hiçbir isim tutamaz.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>ER-RAHMÂN<br> ( اَلرَّحْمَنُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Dünyada bütün mahlûkata merhamet eden,
+                                    şefkat gösteren, ihsan eden.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>ER-RAHÎM<br> ( اَلرَّحِيمُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Ahirette, sadece müminlere acıyan,
+                                    merhamet eden.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td>EL-MELİK<br> ( اَلمَلِكُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Mülkün, kâinatın sahibi, mülk ve
+                                    saltanatı devamlı olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5</th>
+                                <td>EL-KUDDÛS<br> ( اَلقدُّوسُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Her noksanlıktan uzak ve her türlü
+                                    takdîse lâyık olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">6</th>
+                                <td>ES-SELÂM<br> ( اَلسَّلَامُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Her türlü tehlikelerden selamete çıkaran.
+                                    Cennetteki bahtiyar kullarına selâm eden.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">7</th>
+                                <td>EL-MÜ’MİN<br> ( اَلمُؤْمِنُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Güven veren, emin kılan, koruyan, iman
+                                    nurunu veren.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">8</th>
+                                <td>EL-MÜHEYMİN<br> ( اَلمُهَيْمِنُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Her şeyi görüp gözeten, her varlığın
+                                    yaptıklarından haberdar olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">9</th>
+                                <td>EL-AZÎZ<br> ( ااَلعَزِيزُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>İzzet sahibi, her şeye galip olan, karşı
+                                    gelinemeyen.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">10</th>
+                                <td>EL-CEBBÂR<br> ( اَلجبَّارُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Azamet ve kudret sahibi. Dilediğini yapan
+                                    ve yaptıran. Hükmüne karşı gelinemeyen.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">11</th>
+                                <td>EL-MÜTEKEBBİR<br> ( اَلمُتَكَبِّر ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Büyüklükte eşi, benzeri yok.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">12</th>
+                                <td>EL-HÂLİK<br> ( اَلخَالِقُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Yaratan, yoktan var eden. Varlıkların
+                                    geçireceği halleri takdir eden.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">13</th>
+                                <td>EL-BÂRİ<br> ( اَلبَارِئُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Her şeyi kusursuz ve mütenasip yaratan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">14</th>
+                                <td>EL-MUSAVVİR<br> ( اَلمُصَوِّرُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Varlıklara şekil veren ve onları
+                                    birbirinden farklı özellikte yaratan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">15</th>
+                                <td>EL-GAFFÂR<br> ( اَلغَفَّارُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Günahları örten ve çok mağfiret eden.
+                                    Dilediğini günah işlemekten koruyan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">16</th>
+                                <td>EL-KAHHÂR<br> ( اَلقَهَّارُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Her istediğini yapacak güçte olan, galip
+                                    ve hâkim.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">17</th>
+                                <td>EL-VEHHÂB<br> ( اَلوَهَّابُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Karşılıksız nimetler veren, çok fazla
+                                    ihsan eden.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">18</th>
+                                <td>ER-REZZÂK<br> ( اَلرَّزَّاقُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Her varlığın rızkını veren ve ihtiyacını
+                                    karşılayan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">19</th>
+                                <td>EL-FETTÂH<br> ( اَلفَتَّاحُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Her türlü sıkıntıları gideren.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">20</th>
+                                <td>EL-ALÎM<br> ( اَلعَلِيمُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Gizli açık, geçmiş, gelecek, her şeyi,
+                                    ezeli ve ebedi ilmi ile en mükemmel bilen.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">21</th>
+                                <td>EL-KÂBİZ<br> ( اَلقَابِضُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Dilediğinin rızkını daraltan, ruhları
+                                    alan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">22</th>
+                                <td>EL-BÂSİT<br> ( اَلبَاسِطُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Dilediğinin rızkını genişleten, ruhları
+                                    veren.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">23</th>
+                                <td>EL-HÂFİD<br> ( اَلخَافِضُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Kâfir ve facirleri alçaltan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">24</th>
+                                <td>ER-RÂFİ<br> ( اَلرَّافِعُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Şeref verip yükselten.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">25</th>
+                                <td>EL-MUİZZ<br> ( اَلمُعِزُّ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Dilediğini aziz eden.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">26</th>
+                                <td>EL-MÜZİLL<br> ( اَلمُذِلُّ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Dilediğini zillete düşüren, hor ve hakir
+                                    eden.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">27</th>
+                                <td>ES-SEMÎ<br> ( اَلسَّمِيعُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Her şeyi en iyi işiten, duaları kabul
+                                    eden.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">28</th>
+                                <td>EL-BASÎR<br> ( اَلبَصِيرُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Gizli açık, her şeyi en iyi gören.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">29</th>
+                                <td>EL-HAKEM<br> ( اَلحَكَمُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Mutlak hakim, hakkı bâtıldan ayıran.
+                                    Hikmet sahibi.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">30</th>
+                                <td>EL-ADL<br> ( اَلعَدْلُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Mutlak adil, yerli yerinde yapan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">31</th>
+                                <td>EL-LATÎF<br> ( اَلَّلطِيفُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Her şeye vakıf, lütuf ve ihsan sahibi
+                                    olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">32</th>
+                                <td>EL-HABÎR<br> ( اَلخَبِيرُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Her şeyden haberdar. Her şeyin gizli
+                                    taraflarından haberi olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">33</th>
+                                <td>EL-HALÎM<br> ( اَلحَلِيمُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Cezada, acele etmeyen, yumuşak davranan,
+                                    hilm sahibi.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">34</th>
+                                <td>EL-AZÎM<br> ( اَلعَظِيمُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Büyüklükte benzeri yok. Pek yüce.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">35</th>
+                                <td>EL-GAFÛR<br> ( اَلغَفُورُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Affı, mağfireti bol.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">36</th>
+                                <td>EŞ-ŞEKÛR<br> ( اَلشَّكُورُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Az amele, çok sevap veren.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">37</th>
+                                <td>EL-ALİYY<br> ( اَلعَلِيُّ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Yüceler yücesi, çok yüce.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">38</th>
+                                <td>EL-KEBÎR<br> ( اَلكَبِيرُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Büyüklükte benzeri yok, pek büyük.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">39</th>
+                                <td>EL-HAFÎZ<br> ( اَلحَفِيظُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Her şeyi koruyucu olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">40</th>
+                                <td>EL-MUKÎT<br> ( اَلمُقِيتُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Rızıkları yaratan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">41</th>
+                                <td>EL-HASÎB<br> ( اَلحَسِيبُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Kulların hesabını en iyi gören.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">42</th>
+                                <td>EL-CELÎL<br> ( اَلجَلِيلُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Celal ve azamet sahibi olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">43</th>
+                                <td>EL-KERÎM<br> ( اَلكَرِيمُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Keremi, lütuf ve ihsânı bol, karşılıksız
+                                    veren, çok ikram eden.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">44</th>
+                                <td>ER-RAKÎB<br> ( اَلرّقِيبُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Her varlığı, her işi her an gözeten.
+                                    Bütün işleri murakabesi altında bulunduran.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">45</th>
+                                <td>EL-MUCÎB<br> ( اَلمُجِيبُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Duaları, istekleri kabul eden.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">46</th>
+                                <td>EL-VÂSİ<br> ( اَلوَاسِعُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Rahmet ve kudret sahibi, ilmi ile her
+                                    şeyi ihata eden.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">47</th>
+                                <td>EL-HAKÎM<br> ( اَلحَكِيمُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Her işi hikmetli, her şeyi hikmetle
+                                    yaratan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">48</th>
+                                <td>EL-VEDUD<br> ( اَلوَدُودُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>İyiliği seven, iyilik edene ihsan eden.
+                                    Sevgiye layık olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">49</th>
+                                <td>EL-MECÎD<br> ( اَلمَجِيدُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Nimeti, ihsanı sonsuz, şerefi çok üstün,
+                                    her türlü övgüye layık bulunan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">50</th>
+                                <td>EL-BÂİS<br> ( اَلبَاعِثُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Mahşerde ölüleri dirilten, Peygamber
+                                    gönderen.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">51</th>
+                                <td>EŞ-ŞEHÎD<br> ( اَلشَّهِيدُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Zamansız, mekansız hiçbir yerde olmayarak
+                                    her zaman her yerde hazır ve nazır olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">52</th>
+                                <td>EL-HAKK<br> ( اَلحَقُّ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Varlığı hiç değişmeden duran. Var olan,
+                                    hakkı ortaya çıkaran.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">53</th>
+                                <td>EL-VEKÎL<br> ( اَلوَكِيلُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Kulların işlerini bitiren. Kendisine
+                                    tevekkül edenlerin işlerini en iyi neticeye ulaştıran.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">54</th>
+                                <td>EL-KAVİYY<br> ( اَلقَوِيُّ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Kudreti en üstün ve hiç azalmaz.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">55</th>
+                                <td>EL-METÎN<br> ( اَلمَتِينُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Kuvvet ve kudret menbaı, pek güçlü.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">56</th>
+                                <td>EL-VELİYY<br> ( اَلوَلِيُّ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Müslümanların dostu, onları sevip yardım
+                                    eden.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">57</th>
+                                <td>EL-HAMÎD<br> ( اَلحَمِيدُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Her türlü hamd ve senaya layık olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">58</th>
+                                <td>EL-MUHSÎ<br> ( المُحْصِي ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Yarattığı ve yaratacağı bütün varlıkların
+                                    sayısını bilen.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">59</th>
+                                <td>EL-MÜBDİ<br> ( اَلمُبْدِئُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Maddesiz, örneksiz yaratan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">60</th>
+                                <td>EL-MUÎD<br> ( اَلمُعِيدُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Yarattıklarını yok edip, sonra tekrar
+                                    diriltecek olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">61</th>
+                                <td>EL-MUHYÎ<br> ( اَلمُحْيِ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>İhya eden, yarattıklarına can veren.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">62</th>
+                                <td>EL-MÜMÎT<br> ( اَلمُمِيتُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Her canlıya ölümü tattıran.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">63</th>
+                                <td>EL-HAYY<br> ( اَلحَيُّ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Ezeli ve ebedi bir hayat ile diri olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">64</th>
+                                <td>EL-KAYYÛM<br> ( اَلقَيُّومُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Mahlukları varlıkta durduran, zatı ile
+                                    kaim olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">65</th>
+                                <td>EL-VÂCİD<br> ( اَلوَاجِدُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Kendisinden hiçbir şey gizli kalmayan,
+                                    hiçbir şeye muhtaç olmayan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">66</th>
+                                <td>EL-MÂCİD<br> ( اَلمَاجِدُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Kadri ve şânı büyük, keremi, ihsanı bol
+                                    olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">67</th>
+                                <td>EL-VÂHİD<br> ( اَلواحِدُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Zat, sıfat ve fiillerinde benzeri ve
+                                    ortağı olmayan, tek olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">68</th>
+                                <td>ES-SAMED<br> ( اَلصَّمَدُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Hiçbir şeye ihtiyacı olmayan, herkesin
+                                    muhtaç olduğu merci.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">69</th>
+                                <td>EL-KÂDİR<br> ( اَلقَادِرُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Dilediğini dilediği gibi yaratmaya
+                                    muktedir olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">70</th>
+                                <td>EL-MUKTEDİR<br> ( اَلمُقْتَدِرُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Dilediği gibi tasarruf eden, her şeyi
+                                    kolayca yaratan kudret sahibi.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">71</th>
+                                <td>EL-MUKADDİM<br> ( اَلمُقَدِّمُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Dilediğini yükselten, öne geçiren, öne
+                                    alan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">72</th>
+                                <td>EL-MUAHHİR<br> ( اَلمُؤَخِّرُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Dilediğini alçaltan, sona, geriye
+                                    bırakan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">73</th>
+                                <td>EL-EVVEL<br> ( اَلأوَّلُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Ezeli olan, varlığının başlangıcı
+                                    olmayan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">74</th>
+                                <td>EL-ÂHİR<br> ( الآخِرُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Ebedi olan, varlığının sonu olmayan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">75</th>
+                                <td>EL-ZÂHİR<br> ( اَلظَّاهِرُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Yarattıkları ile varlığı açık, aşikâr
+                                    olan, kesin delillerle bilinen.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">76</th>
+                                <td>EL-BÂTIN<br> ( اَلبَاطِنُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Aklın tasavvurundan gizli olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">77</th>
+                                <td>EL-VÂLÎ<br> ( اَلوَالِي ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Bütün kâinatı idare eden, onların
+                                    işlerini yoluna koyan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">78</th>
+                                <td>EL-MÜTEÂLÎ<br> ( اَلمُتَعَالِي ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Son derece yüce olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">79</th>
+                                <td>EL-BERR<br> ( اَلبَرُّ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>İyilik ve ihsanı bol olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">80</th>
+                                <td>EL-TEVVÂB<br> ( اَلتَّوَّابُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Tevbeleri kabul edip, günahları
+                                    bağışlayan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">81</th>
+                                <td>EL-MÜNTEKİM<br> ( اَلمُنْتَقِمُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Asilerin, zalimlerin cezasını veren.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">82</th>
+                                <td>EL-AFÜVV<br> ( اَلعَفُوُّ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Affı çok olan, günahları mağfiret eden.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">83</th>
+                                <td>ER-RAÛF<br> ( اَلرَّؤُفُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Çok merhametli, pek şefkatli.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">84</th>
+                                <td>EL-MÂLİKÜ’L-MÜLK<br> ( مَالِكُ المُلْكِ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Mülkün, her varlığın sahibi.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">85</th>
+                                <td>ZÜ’L-CELÂLİ VE’L-İKRÂM<br> ( ذُو الجَلَالِ وَالإكرَامِ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Celal, azamet, şeref, kemal ve ikram
+                                    sahibi.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">86</th>
+                                <td>EL-MUKSİT<br> ( اَلمُقْسِطُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Mazlumların hakkını alan, adaletle
+                                    hükmeden, her işi birbirine uygun yapan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">87</th>
+                                <td>EL-CÂMİ<br> ( اَلجَامِعُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>İki zıttı bir arada bulunduran. Kıyamette
+                                    her mahlûkatı bir araya toplayan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">88</th>
+                                <td>EL-ĞANİYY<br> ( اَلغَنِيُّ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>İhtiyaçsız, muhtaç olmayan, her şey Ona
+                                    muhtaç olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">89</th>
+                                <td>EL-MUĞNÎ<br> ( اَلمُغْنِي ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Müstağni kılan. İhtiyaç gideren, zengin
+                                    eden.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">90</th>
+                                <td>EL-MÂNİ<br> ( اَلمَانِعُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Dilemediği şeye mani olan, engelleyen.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">91</th>
+                                <td>EL-DÂRR<br> ( اَلضَّارُّ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Elem, zarar verenleri yaratan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">92</th>
+                                <td>EL-NÂFİ<br> ( اَلنَّافِعُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Fayda veren şeyleri yaratan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">93</th>
+                                <td>EL-NÛR<br> ( اَلنُّورُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Âlemleri nurlandıran, dilediğine nur
+                                    veren.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">94</th>
+                                <td>EL-HÂDÎ<br> ( اَلهَادِي ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Hidayet veren.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">95</th>
+                                <td>EL-BEDÎ<br> ( اَلبَدِيعُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Misalsiz, örneksiz harikalar yaratan.
+                                    (Eşi ve benzeri olmayan).
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">96</th>
+                                <td>EL-BÂKÎ<br> ( اَلبَاقِي ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Varlığının sonu olmayan, ebedi olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">97</th>
+                                <td>EL-VÂRİS<br> ( اَلوَارِثُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Her şeyin asıl sahibi olan.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">98</th>
+                                <td>ER-REŞÎD<br> ( اَلرَّشِيدُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>İrşada muhtaç olmayan, doğru yolu
+                                    gösteren.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">99</th>
+                                <td>ES-SABÛR<br> ( اَلَّصَبُورُ ) </td>
+                                <td hidden></td>
+                                <td class="text-break">
+                                    <div style="width:230px;height:1px;"></div>Ceza vermede, acele etmeyen.
+                                </td>
+                            </tr>
 
                         </tbody>
                     </table>
+                    <p class="fs-3">Sade Sayfalar</p>
+                    <div class="list-group"><a href="/esmaul-husna/allah.html"
+                            class="list-group-item list-group-item-action">ALLAH</a><a
+                            href="/esmaul-husna/er-rahman.html"
+                            class="list-group-item list-group-item-action">ER-RAHMÂN</a><a
+                            href="/esmaul-husna/er-rahim.html"
+                            class="list-group-item list-group-item-action">ER-RAHÎM</a><a
+                            href="/esmaul-husna/el-melik.html"
+                            class="list-group-item list-group-item-action">EL-MELİK</a><a
+                            href="/esmaul-husna/el-kuddus.html"
+                            class="list-group-item list-group-item-action">EL-KUDDÛS</a><a
+                            href="/esmaul-husna/es-selam.html"
+                            class="list-group-item list-group-item-action">ES-SELÂM</a><a
+                            href="/esmaul-husna/el-mumin.html"
+                            class="list-group-item list-group-item-action">EL-MÜ’MİN</a><a
+                            href="/esmaul-husna/el-muheymin.html"
+                            class="list-group-item list-group-item-action">EL-MÜHEYMİN</a><a
+                            href="/esmaul-husna/el-aziz.html"
+                            class="list-group-item list-group-item-action">EL-AZÎZ</a><a
+                            href="/esmaul-husna/el-cabbar.html"
+                            class="list-group-item list-group-item-action">EL-CEBBÂR</a><a
+                            href="/esmaul-husna/el-mutekebbir.html"
+                            class="list-group-item list-group-item-action">EL-MÜTEKEBBİR</a><a
+                            href="/esmaul-husna/el-halik.html"
+                            class="list-group-item list-group-item-action">EL-HÂLİK</a><a
+                            href="/esmaul-husna/el-bari.html"
+                            class="list-group-item list-group-item-action">EL-BÂRİ</a><a
+                            href="/esmaul-husna/el-musavvir.html"
+                            class="list-group-item list-group-item-action">EL-MUSAVVİR</a><a
+                            href="/esmaul-husna/el-gaffar.html"
+                            class="list-group-item list-group-item-action">EL-GAFFÂR</a><a
+                            href="/esmaul-husna/el-kahhar.html"
+                            class="list-group-item list-group-item-action">EL-KAHHÂR</a><a
+                            href="/esmaul-husna/el-vehhab.html"
+                            class="list-group-item list-group-item-action">EL-VEHHÂB</a><a
+                            href="/esmaul-husna/er-rezzak.html"
+                            class="list-group-item list-group-item-action">ER-REZZÂK</a><a
+                            href="/esmaul-husna/el-fettah.html"
+                            class="list-group-item list-group-item-action">EL-FETTÂH</a><a
+                            href="/esmaul-husna/el-alim.html"
+                            class="list-group-item list-group-item-action">EL-ALÎM</a><a
+                            href="/esmaul-husna/el-kabiz.html"
+                            class="list-group-item list-group-item-action">EL-KÂBİZ</a><a
+                            href="/esmaul-husna/el-basit.html"
+                            class="list-group-item list-group-item-action">EL-BÂSİT</a><a
+                            href="/esmaul-husna/el-hafid.html"
+                            class="list-group-item list-group-item-action">EL-HÂFİD</a><a
+                            href="/esmaul-husna/er-rafi.html"
+                            class="list-group-item list-group-item-action">ER-RÂFİ</a><a
+                            href="/esmaul-husna/el-muizz.html"
+                            class="list-group-item list-group-item-action">EL-MUİZZ</a><a
+                            href="/esmaul-husna/el-müzill.html"
+                            class="list-group-item list-group-item-action">EL-MÜZİLL</a><a
+                            href="/esmaul-husna/es-semi.html"
+                            class="list-group-item list-group-item-action">ES-SEMÎ</a><a
+                            href="/esmaul-husna/el-basir.html"
+                            class="list-group-item list-group-item-action">EL-BASÎR</a><a
+                            href="/esmaul-husna/el-hakem.html"
+                            class="list-group-item list-group-item-action">EL-HAKEM</a><a
+                            href="/esmaul-husna/el-adl.html" class="list-group-item list-group-item-action">EL-ADL</a><a
+                            href="/esmaul-husna/el-latif.html"
+                            class="list-group-item list-group-item-action">EL-LATÎF</a><a
+                            href="/esmaul-husna/el-habir.html"
+                            class="list-group-item list-group-item-action">EL-HABÎR</a><a
+                            href="/esmaul-husna/el-halim.html"
+                            class="list-group-item list-group-item-action">EL-HALÎM</a><a
+                            href="/esmaul-husna/el-azim.html"
+                            class="list-group-item list-group-item-action">EL-AZÎM</a><a
+                            href="/esmaul-husna/el-gafur.html"
+                            class="list-group-item list-group-item-action">EL-GAFÛR</a><a
+                            href="/esmaul-husna/es-sekur.html"
+                            class="list-group-item list-group-item-action">EŞ-ŞEKÛR</a><a
+                            href="/esmaul-husna/el-aliyy.html"
+                            class="list-group-item list-group-item-action">EL-ALİYY</a><a
+                            href="/esmaul-husna/el-kebir.html"
+                            class="list-group-item list-group-item-action">EL-KEBÎR</a><a
+                            href="/esmaul-husna/el-hafiz.html"
+                            class="list-group-item list-group-item-action">EL-HAFÎZ</a><a
+                            href="/esmaul-husna/el-mukit.html"
+                            class="list-group-item list-group-item-action">EL-MUKÎT</a><a
+                            href="/esmaul-husna/el-hasib.html"
+                            class="list-group-item list-group-item-action">EL-HASÎB</a><a
+                            href="/esmaul-husna/el-celil.html"
+                            class="list-group-item list-group-item-action">EL-CELÎL</a><a
+                            href="/esmaul-husna/el-kerim.html"
+                            class="list-group-item list-group-item-action">EL-KERÎM</a><a
+                            href="/esmaul-husna/er-rakib.html"
+                            class="list-group-item list-group-item-action">ER-RAKÎB</a><a
+                            href="/esmaul-husna/el-mucib.html"
+                            class="list-group-item list-group-item-action">EL-MUCÎB</a><a
+                            href="/esmaul-husna/el-vasi.html"
+                            class="list-group-item list-group-item-action">EL-VÂSİ</a><a
+                            href="/esmaul-husna/el-hakim.html"
+                            class="list-group-item list-group-item-action">EL-HAKÎM</a><a
+                            href="/esmaul-husna/el-vedud.html"
+                            class="list-group-item list-group-item-action">EL-VEDUD</a><a
+                            href="/esmaul-husna/el-mecid.html"
+                            class="list-group-item list-group-item-action">EL-MECÎD</a><a
+                            href="/esmaul-husna/el-bais.html"
+                            class="list-group-item list-group-item-action">EL-BÂİS</a><a
+                            href="/esmaul-husna/es-sehid.html"
+                            class="list-group-item list-group-item-action">EŞ-ŞEHÎD</a><a
+                            href="/esmaul-husna/el-hakk.html"
+                            class="list-group-item list-group-item-action">EL-HAKK</a><a
+                            href="/esmaul-husna/el-vekil.html"
+                            class="list-group-item list-group-item-action">EL-VEKÎL</a><a
+                            href="/esmaul-husna/el-kaviyy.html"
+                            class="list-group-item list-group-item-action">EL-KAVİYY</a><a
+                            href="/esmaul-husna/el-metin.html"
+                            class="list-group-item list-group-item-action">EL-METÎN</a><a
+                            href="/esmaul-husna/el-veliyy.html"
+                            class="list-group-item list-group-item-action">EL-VELİYY</a><a
+                            href="/esmaul-husna/el-hamid.html"
+                            class="list-group-item list-group-item-action">EL-HAMÎD</a><a
+                            href="/esmaul-husna/el-muhsi.html"
+                            class="list-group-item list-group-item-action">EL-MUHSÎ</a><a
+                            href="/esmaul-husna/el-mubdi.html"
+                            class="list-group-item list-group-item-action">EL-MÜBDİ</a><a
+                            href="/esmaul-husna/el-muid.html"
+                            class="list-group-item list-group-item-action">EL-MUÎD</a><a
+                            href="/esmaul-husna/el-muhyi.html"
+                            class="list-group-item list-group-item-action">EL-MUHYÎ</a><a
+                            href="/esmaul-husna/el-mumit.html"
+                            class="list-group-item list-group-item-action">EL-MÜMÎT</a><a
+                            href="/esmaul-husna/el-hayy.html"
+                            class="list-group-item list-group-item-action">EL-HAYY</a><a
+                            href="/esmaul-husna/el-kayyum.html"
+                            class="list-group-item list-group-item-action">EL-KAYYÛM</a><a
+                            href="/esmaul-husna/el-vacid.html"
+                            class="list-group-item list-group-item-action">EL-VÂCİD</a><a
+                            href="/esmaul-husna/el-macid.html"
+                            class="list-group-item list-group-item-action">EL-MÂCİD</a><a
+                            href="/esmaul-husna/el-vahid.html"
+                            class="list-group-item list-group-item-action">EL-VÂHİD</a><a
+                            href="/esmaul-husna/es-samed.html"
+                            class="list-group-item list-group-item-action">ES-SAMED</a><a
+                            href="/esmaul-husna/el-kadir.html"
+                            class="list-group-item list-group-item-action">EL-KÂDİR</a><a
+                            href="/esmaul-husna/el-muktedir.html"
+                            class="list-group-item list-group-item-action">EL-MUKTEDİR</a><a
+                            href="/esmaul-husna/el-mukaddim.html"
+                            class="list-group-item list-group-item-action">EL-MUKADDİM</a><a
+                            href="/esmaul-husna/el-muahhir.html"
+                            class="list-group-item list-group-item-action">EL-MUAHHİR</a><a
+                            href="/esmaul-husna/el-evvel.html"
+                            class="list-group-item list-group-item-action">EL-EVVEL</a><a
+                            href="/esmaul-husna/el-ahir.html"
+                            class="list-group-item list-group-item-action">EL-ÂHİR</a><a
+                            href="/esmaul-husna/el-zahir.html"
+                            class="list-group-item list-group-item-action">EL-ZÂHİR</a><a
+                            href="/esmaul-husna/el-batin.html"
+                            class="list-group-item list-group-item-action">EL-BÂTIN</a><a
+                            href="/esmaul-husna/el-vali.html"
+                            class="list-group-item list-group-item-action">EL-VÂLÎ</a><a
+                            href="/esmaul-husna/el-muteali.html"
+                            class="list-group-item list-group-item-action">EL-MÜTEÂLÎ</a><a
+                            href="/esmaul-husna/el-berr.html"
+                            class="list-group-item list-group-item-action">EL-BERR</a><a
+                            href="/esmaul-husna/el-tevvab.html"
+                            class="list-group-item list-group-item-action">EL-TEVVÂB</a><a
+                            href="/esmaul-husna/el-muntekim.html"
+                            class="list-group-item list-group-item-action">EL-MÜNTEKİM</a><a
+                            href="/esmaul-husna/el-afuvv.html"
+                            class="list-group-item list-group-item-action">EL-AFÜVV</a><a
+                            href="/esmaul-husna/er-rauf.html"
+                            class="list-group-item list-group-item-action">ER-RAÛF</a><a
+                            href="/esmaul-husna/el-malikul-mulk.html"
+                            class="list-group-item list-group-item-action">EL-MÂLİKÜ’L-MÜLK</a><a
+                            href="/esmaul-husna/zul-celali-vel-ikram.html"
+                            class="list-group-item list-group-item-action">ZÜ’L-CELÂLİ VE’L-İKRÂM</a><a
+                            href="/esmaul-husna/el-muksit.html"
+                            class="list-group-item list-group-item-action">EL-MUKSİT</a><a
+                            href="/esmaul-husna/el-cami.html"
+                            class="list-group-item list-group-item-action">EL-CÂMİ</a><a
+                            href="/esmaul-husna/el-ganiyy.html"
+                            class="list-group-item list-group-item-action">EL-ĞANİYY</a><a
+                            href="/esmaul-husna/el-mugni.html"
+                            class="list-group-item list-group-item-action">EL-MUĞNÎ</a><a
+                            href="/esmaul-husna/el-mani.html"
+                            class="list-group-item list-group-item-action">EL-MÂNİ</a><a
+                            href="/esmaul-husna/el-darr.html"
+                            class="list-group-item list-group-item-action">EL-DÂRR</a><a
+                            href="/esmaul-husna/el-nafi.html"
+                            class="list-group-item list-group-item-action">EL-NÂFİ</a><a
+                            href="/esmaul-husna/el-nur.html" class="list-group-item list-group-item-action">EL-NÛR</a><a
+                            href="/esmaul-husna/el-hadi.html"
+                            class="list-group-item list-group-item-action">EL-HÂDÎ</a><a
+                            href="/esmaul-husna/el-bedi.html"
+                            class="list-group-item list-group-item-action">EL-BEDÎ</a><a
+                            href="/esmaul-husna/el-baki.html"
+                            class="list-group-item list-group-item-action">EL-BÂKÎ</a><a
+                            href="/esmaul-husna/el-varis.html"
+                            class="list-group-item list-group-item-action">EL-VÂRİS</a><a
+                            href="/esmaul-husna/er-resid.html"
+                            class="list-group-item list-group-item-action">ER-REŞÎD</a><a
+                            href="/esmaul-husna/es-sabur.html"
+                            class="list-group-item list-group-item-action">ES-SABÛR</a>
+                    </div>
                 </div>
                 <footer>
                     <p>
@@ -279,7 +1426,8 @@
                     </p>
                     <hr>
                     <p>
-                        &copy; Tüm Hakları Saklıdır - Uygulamamızda kullandığımız bize ait görsellerin, seslerin, metinlerin ve kodların tüm telif hakları alınmıştır.
+                        &copy; Tüm Hakları Saklıdır - Uygulamamızda kullandığımız bize ait görsellerin, seslerin,
+                        metinlerin ve kodların tüm telif hakları alınmıştır.
                         Kaynak gösterilse ve link verilse dahi kısmen veya tamamen kullanılması kesinlikle yasaktır.
                         Aksi takdirde avukatlarımız gerekli cezai işlemleri başlatacaktır.
                     </p>
@@ -512,7 +1660,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">ALLAH'ın 99 İsmi</th>
-                                    
+
                                     <th scope="col">Açıklama</th>
                                     <th scope="col">Çekilen Zikir Sayısı</th>
                                     <th scope="col">Zikir Sayısı Hedefi</th>
@@ -557,7 +1705,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">ALLAH'ın 99 İsmi</th>
-                                    
+
                                     <th scope="col">Açıklama</th>
                                     <th scope="col">Çekilen Zikir Sayısı</th>
                                     <th scope="col">Zikir Sayısı Hedefi</th>
@@ -602,7 +1750,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">ALLAH'ın 99 İsmi</th>
-                                    
+
                                     <th scope="col">Açıklama</th>
                                     <th scope="col">Çekilen Zikir Sayısı</th>
                                     <th scope="col">Zikir Sayısı Hedefi</th>
@@ -650,7 +1798,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">ALLAH'ın 99 İsmi</th>
-                                    
+
                                     <th scope="col">Okunuşu</th>
                                 </tr>
                             </thead>
@@ -690,7 +1838,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">ALLAH'ın 99 İsmi</th>
-                                    
+
                                     <th scope="col">Açıklama</th>
                                 </tr>
                             </thead>
@@ -730,7 +1878,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">ALLAH'ın 99 İsmi</th>
-                                    
+
                                     <th scope="col">Açıklama</th>
                                     <th scope="col">Çekilen Zikir Sayısı</th>
                                     <th scope="col">Zikir Sayısı Hedefi</th>
@@ -1099,8 +2247,42 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
-    <script
-        src="/zikircek.js?versiyonKodu=cedb07cbc1de28b08288b7fc271107e6f8205a3f2eeecfbb2b8f9f6a2b533c5a27f3adce06d0348518b97d49450a5e2d201e"></script>
+    <script>
+        function bekle(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // versiyonKontroluBasarilimi
+        function scriptDosyasiYukle(url, callback) {
+            var head = document.getElementsByTagName('head')[0];
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = url;
+            script.onreadystatechange = callback;
+            script.onload = callback;
+            head.appendChild(script);
+        }
+
+        async function anaScriptiYukle() {
+            if (versiyonKontroluBasarilimi == true) {
+                scriptDosyasiYukle("zikircek.js", null);
+                return;
+            }
+            await bekle(1000);
+            if (versiyonKontroluBasarilimi == true) {
+                scriptDosyasiYukle("zikircek.js", null);
+                return;
+            }
+            await bekle(2000);
+            if (versiyonKontroluBasarilimi == true) {
+                scriptDosyasiYukle("zikircek.js", null);
+                return;
+            } else {
+                window.location.reload();
+            }
+        }
+        anaScriptiYukle();
+    </script>
 </body>
 
 </html>
