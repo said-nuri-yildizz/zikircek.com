@@ -933,12 +933,12 @@ xhr.onreadystatechange = function () {
             //     yeniVeritabani += "},";
             // }
 
-            // urller += veritabani[i]
+            // urller += veritabani[i]["dosyaAdi"];
         }
+        // console.log(urller)
         // yeniVeritabani += "]";
         // console.log(yeniVeritabani)
     }
 }
 xhr.open('GET', '/veritabani.json', true);
 xhr.send(null);
-document.getElementById('sayfa-yukeniyor').remove();
