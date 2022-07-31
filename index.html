@@ -28,7 +28,6 @@
         gtag('config', 'G-BKF30KK3DN');
     </script>
     <script>
-        var versiyonKontroluBasarilimi = false;
         var versiyonKodu = "cedb07cbc1de28b08288b7fc271107e6f8205a3f2eeecfbb2b8f9f6a2b533c5a27f3adce06d0348518b97d49450a5e2d201e";
         function versiyonKontroluYap() {
             if (localStorage.getItem("versiyonKodu") == null || localStorage.getItem("versiyonKodu") != versiyonKodu) {
@@ -38,13 +37,11 @@
                 xhrVeritabani.onreadystatechange = function () {
                     if (xhrVeritabani.readyState == XMLHttpRequest.DONE) {
                         localStorage.setItem("veritabani", xhrVeritabani.responseText);
-                        versiyonKontroluBasarilimi = true;
+                        window.location.reload();
                     }
                 }
                 xhrVeritabani.open('GET', '/veritabani.json?versiyonKodu=' + versiyonKodu, true);
                 xhrVeritabani.send(null);
-            } else {
-                versiyonKontroluBasarilimi = true;
             }
         }
         versiyonKontroluYap();
@@ -2252,7 +2249,7 @@
             return new Promise(resolve => setTimeout(resolve, ms));
         }
     </script>
-    <script src="/zikircek.js?versiyonKodu=ab6ce812929fe01852ef858bca0f534ef6fe0d3a37f11280f191bfbb03111fdda1376a6a569a8883e02849f7d8e7b96fefa7"></script>
+    <script src="/zikircek.js?versiyonKodu=eab1d14532f93fda43d5b0f1150414598727e9214524a374db44c4d21a06eeec1b06800a42f4b208468da352bd244e5a00a8"></script>
 </body>
 
 </html>
