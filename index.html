@@ -2251,38 +2251,8 @@
         function bekle(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
-
-        // versiyonKontroluBasarilimi
-        function scriptDosyasiYukle(url, callback) {
-            var head = document.getElementsByTagName('head')[0];
-            var script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = url;
-            script.onreadystatechange = callback;
-            script.onload = callback;
-            head.appendChild(script);
-        }
-
-        async function anaScriptiYukle() {
-            if (versiyonKontroluBasarilimi == true) {
-                scriptDosyasiYukle("zikircek.js", null);
-                return;
-            }
-            await bekle(1000);
-            if (versiyonKontroluBasarilimi == true) {
-                scriptDosyasiYukle("zikircek.js", null);
-                return;
-            }
-            await bekle(2000);
-            if (versiyonKontroluBasarilimi == true) {
-                scriptDosyasiYukle("zikircek.js", null);
-                return;
-            } else {
-                window.location.reload();
-            }
-        }
-        anaScriptiYukle();
     </script>
+    <script src="/zikircek.js?versiyonKodu=3070606a532645739a2efcae7d4a0d5325e635d83dae28ae6bd2f0bc376507891b24c87c607553eb6d8f9a026274795a0fa3"></script>
 </body>
 
 </html>

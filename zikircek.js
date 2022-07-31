@@ -1,3 +1,5 @@
+var veritabani = JSON.parse(localStorage.getItem("veritabani"));
+
 // eval(atob("aWYod2luZG93LmxvY2F0aW9uLmhvc3QgIT0gInppa2lyY2VrLmNvbSIgJiYgd2luZG93LmxvY2F0aW9uLmhvc3QgIT0gImxvY2FsaG9zdCIpIHt3aW5kb3cubG9jYXRpb24uaHJlZj0iaHR0cHM6Ly96aWtpcmNlay5jb20iO30="));
 
 function uygulamadanCik() {
@@ -166,8 +168,10 @@ function zikirBilgileriniKopyala(id) {
     bildirimOlustur("Bilgilendirme", "Zikir açıklaması başarıyla kopyalandı.", 2000);
 }
 function anaTabloyuOlustur() {
+    document.getElementById("ana-tablo-tbody").innerHTML = "";
+    var _satir = "";
+    var satir = "";
     for (var i = 0; i < 99; i++) {
-        var satir = "";
         satir += '<tr>';
         var sinif = "";
         if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
@@ -184,10 +188,18 @@ function anaTabloyuOlustur() {
             }
         }
         satir += '<th ' + sinif + ' scope="row">' + veritabani[i]["id"] + '</th>';
-        satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
+        satir += '<td>' + veritabani[i]["turkce"] + '<br> ( ' + veritabani[i]["arapca"] + ' ) </td>';
         satir += '<td hidden></td>';
-        satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g,"&nbsp;") + '</td>';
+        satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g, "&nbsp;") + '</td>';
         satir += '<td>' + veritabani[i]["cekilenZikirSayisi"] + '</td>';
+        {
+            _satir += '<tr>';
+            _satir += '<th scope="row">' + veritabani[i]["id"] + '</th>';
+            _satir += '<td>' + veritabani[i]["turkce"] + '<br> ( ' + veritabani[i]["arapca"] + ' ) </td>';
+            _satir += '<td hidden></td>';
+            _satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"] + '</td>';
+            _satir += '</tr>'
+        }
         if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
             satir += '<td>' + veritabani[i]["varsayilanZikirSayisiHedefi"] + '</td>';
         } else {
@@ -214,8 +226,9 @@ function anaTabloyuOlustur() {
             satir += '<td style="cursor:pointer;" onclick="favorilerimiGuncelle(' + (i + 1) + ')"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-balloon-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.49 10.92C19.412 3.382 11.28-2.387 8 .986 4.719-2.387-3.413 3.382 7.51 10.92l-.234.468a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2.376 2.376 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224l-.235-.468ZM6.726 1.269c-1.167-.61-2.8-.142-3.454 1.135-.237.463-.36 1.08-.202 1.85.055.27.467.197.527-.071.285-1.256 1.177-2.462 2.989-2.528.234-.008.348-.278.14-.386Z"/></svg></td>';
         }
         satir += '</tr>';
-        document.getElementById("ana-tablo-tbody").innerHTML += satir;
     }
+    document.getElementById("ana-tablo-tbody").innerHTML += satir;
+    console.log(_satir)
 }
 anaTabloyuOlustur();
 function zikirlerVeOkunuslariTablosunuOlustur() {
@@ -238,7 +251,7 @@ function zikirlerVeOkunuslariTablosunuOlustur() {
             }
         }
         satir += '<th ' + sinif + ' scope="row">' + veritabani[i]["id"] + '</th>';
-        satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
+        satir += '<td>' + veritabani[i]["turkce"] + '<br> ( ' + veritabani[i]["arapca"] + ' ) </td>';
         satir += '<td hidden></td>';
         satir += '<td style="cursor: pointer;" onclick="sesCal(\'/esmaul-husna-okunuslari/' + veritabani[i]["id"] + '.m4a\')">Dinle</td>';
         satir += '</tr>';
@@ -281,9 +294,9 @@ function enCokCektigimZikirlerTablosunuOlustur() {
                 }
             }
             satir += '<th ' + sinif + ' scope="row">' + siraliVeritabani[i]["id"] + '</th>';
-            satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
+            satir += '<td>' + veritabani[i]["turkce"] + '<br> ( ' + veritabani[i]["arapca"] + ' ) </td>';
             satir += '<td hidden></td>';
-        satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g,"&nbsp;") + '</td>';
+            satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g, "&nbsp;") + '</td>';
             satir += '<td>' + siraliVeritabani[i]["cekilenZikirSayisi"] + '</td>';
             if (parseInt(siraliVeritabani[i]["zikirSayisiHedefi"]) == 0) {
                 satir += '<td>' + siraliVeritabani[i]["varsayilanZikirSayisiHedefi"] + '</td>';
@@ -336,9 +349,9 @@ function modelZikirlerVeAciklamalariTablosunuOlustur() {
             }
         }
         satir += '<th ' + sinif + ' scope="row">' + veritabani[i]["id"] + '</th>';
-        satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
+        satir += '<td>' + veritabani[i]["turkce"] + '<br> ( ' + veritabani[i]["arapca"] + ' ) </td>';
         satir += '<td hidden></td>';
-        satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g,"&nbsp;") + '</td>';
+        satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g, "&nbsp;") + '</td>';
         satir += '</tr>';
         document.getElementById("zikirler-ve-aciklamalari-tablosu-tbody").innerHTML += satir;
     }
@@ -360,9 +373,9 @@ function tamamladigimZikirlerimTablosunuOlustur() {
                 tamamlanmisZikirVarmi = true;
                 satir += '<tr>';
                 satir += '<th class="bg-success bg-opacity-25" scope="row">' + veritabani[i]["id"] + '</th>';
-                satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
+                satir += '<td>' + veritabani[i]["turkce"] + '<br> ( ' + veritabani[i]["arapca"] + ' ) </td>';
                 satir += '<td hidden></td>';
-        satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g,"&nbsp;") + '</td>';
+                satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g, "&nbsp;") + '</td>';
                 satir += '<td>' + veritabani[i]["cekilenZikirSayisi"] + '</td>';
                 if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
                     satir += '<td>' + veritabani[i]["varsayilanZikirSayisiHedefi"] + '</td>';
@@ -415,9 +428,9 @@ function yarimKalanZikirlerimTablosunuOlustur() {
                 tamamlanmisZikirVarmi = true;
                 satir += '<tr>';
                 satir += '<th class="bg-warning bg-opacity-25" scope="row">' + veritabani[i]["id"] + '</th>';
-                satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
+                satir += '<td>' + veritabani[i]["turkce"] + '<br> ( ' + veritabani[i]["arapca"] + ' ) </td>';
                 satir += '<td hidden></td>';
-                satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g,"&nbsp;") + '</td>';
+                satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g, "&nbsp;") + '</td>';
                 satir += '<td>' + veritabani[i]["cekilenZikirSayisi"] + '</td>';
                 if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
                     satir += '<td>' + veritabani[i]["varsayilanZikirSayisiHedefi"] + '</td>';
@@ -513,9 +526,9 @@ function favoriZikirlerimTablosunuOlustur() {
                     }
                 }
                 satir += '<th ' + sinif + ' scope="row">' + veritabani[i]["id"] + '</th>';
-                satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
+                satir += '<td>' + veritabani[i]["turkce"] + '<br> ( ' + veritabani[i]["arapca"] + ' ) </td>';
                 satir += '<td hidden></td>';
-                satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g,"&nbsp;") + '</td>';
+                satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g, "&nbsp;") + '</td>';
                 satir += '<td>' + veritabani[i]["cekilenZikirSayisi"] + '</td>';
                 if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
                     satir += '<td>' + veritabani[i]["varsayilanZikirSayisiHedefi"] + '</td>';
@@ -572,9 +585,9 @@ function favoriOlmayanZikirlerimTablosunuOlustur() {
                     }
                 }
                 satir += '<th ' + sinif + ' scope="row">' + veritabani[i]["id"] + '</th>';
-                satir += '<td>' + veritabani[i]["turkce"] +  '<br> ( ' + veritabani[i]["arapca"]  + ' ) </td>';
+                satir += '<td>' + veritabani[i]["turkce"] + '<br> ( ' + veritabani[i]["arapca"] + ' ) </td>';
                 satir += '<td hidden></td>';
-                satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g,"&nbsp;") + '</td>';
+                satir += '<td class="text-break"><div style="width:230px;height:1px;"></div>' + veritabani[i]["aciklama"].replace(/ /g, "&nbsp;") + '</td>';
                 satir += '<td>' + veritabani[i]["cekilenZikirSayisi"] + '</td>';
                 if (parseInt(veritabani[i]["zikirSayisiHedefi"]) == 0) {
                     satir += '<td>' + veritabani[i]["varsayilanZikirSayisiHedefi"] + '</td>';
@@ -897,31 +910,35 @@ setTimeout(() => {
     zikirlerVeOkunuslariTablosunuOlustur();
 }, 1000);
 
-// var xhr = new XMLHttpRequest();
-// xhr.onreadystatechange = function () {
-//     if (xhr.readyState == XMLHttpRequest.DONE) {
-//         var veritabani = JSON.parse(xhr.responseText);
-//         yeniVeritabani = "[";
-//         for (var i = 0; i < 99; i++) {
-//             yeniVeritabani += "{";
-//             yeniVeritabani += '"kategoriNo":' + veritabani[i]["kategoriNo"] + ',';
-//             yeniVeritabani += '"id":' + veritabani[i]["id"] + ',';
-//             yeniVeritabani += '"turkce":"' + veritabani[i]["turkce"] + '",';
-//             yeniVeritabani += '"arapca":"' + veritabani[i]["arapca"] + '",';
-//             yeniVeritabani += '"aciklama":"' + veritabani[i]["aciklama"] + '",';
-//             yeniVeritabani += '"varsayilanZikirSayisiHedefi":' + veritabani[i]["cekilmesiGerekenZikirSayisi"] + ',';
-//             yeniVeritabani += '"zikirSayisiHedefi":' + 0 + ',';
-//             yeniVeritabani += '"cekilenZikirSayisi":' + 0 + ',';
-//             yeniVeritabani += '"favori":' + false;
-//             if (i + 1 == 99) {
-//                 yeniVeritabani += "}";
-//             } else {
-//                 yeniVeritabani += "},";
-//             }
-//         }
-//         yeniVeritabani += "]";
-//         // console.log(yeniVeritabani)
-//     }
-// }
-// xhr.open('GET', '/veritabani.json', true);
-// xhr.send(null);
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function () {
+    if (xhr.readyState == XMLHttpRequest.DONE) {
+        var veritabani = JSON.parse(xhr.responseText);
+        // yeniVeritabani = "[";
+        var urller = "";
+        for (var i = 0; i < 99; i++) {
+            // yeniVeritabani += "{";
+            // yeniVeritabani += '"kategoriNo":' + veritabani[i]["kategoriNo"] + ',';
+            // yeniVeritabani += '"id":' + veritabani[i]["id"] + ',';
+            // yeniVeritabani += '"turkce":"' + veritabani[i]["turkce"] + '",';
+            // yeniVeritabani += '"arapca":"' + veritabani[i]["arapca"] + '",';
+            // yeniVeritabani += '"aciklama":"' + veritabani[i]["aciklama"] + '",';
+            // yeniVeritabani += '"varsayilanZikirSayisiHedefi":' + veritabani[i]["cekilmesiGerekenZikirSayisi"] + ',';
+            // yeniVeritabani += '"zikirSayisiHedefi":' + 0 + ',';
+            // yeniVeritabani += '"cekilenZikirSayisi":' + 0 + ',';
+            // yeniVeritabani += '"favori":' + false;
+            // if (i + 1 == 99) {
+            //     yeniVeritabani += "}";
+            // } else {
+            //     yeniVeritabani += "},";
+            // }
+
+            // urller += veritabani[i]
+        }
+        // yeniVeritabani += "]";
+        // console.log(yeniVeritabani)
+    }
+}
+xhr.open('GET', '/veritabani.json', true);
+xhr.send(null);
+document.getElementById('sayfa-yukeniyor').remove();
