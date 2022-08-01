@@ -43,6 +43,7 @@
                 xhrVeritabani.open('GET', '/veritabani.json?versiyonKodu=' + versiyonKodu, true);
                 xhrVeritabani.send(null);
             }
+
         }
         versiyonKontroluYap();
         if (localStorage.getItem("tiklamaSesi") == null) {
@@ -50,6 +51,12 @@
         }
         if (localStorage.getItem("cerezBilgilendirmesiGosterilsinmi") == null) {
             localStorage.setItem("cerezBilgilendirmesiGosterilsinmi", 1);
+        }
+        if (localStorage.getItem("bilgiTestiDogruSayisi") == null) {
+            localStorage.setItem("bilgiTestiDogruSayisi", 0);
+        }
+        if (localStorage.getItem("bilgiTestiYanlisSayisi") == null) {
+            localStorage.setItem("bilgiTestiYanlisSayisi", 0);
         }
         // var veritabani = JSON.parse(localStorage.getItem("veritabani"));
     </script>
@@ -1989,6 +1996,42 @@
             </div>
         </div>
     </div>
+    <!-- ( Model ) Bilgi testi verilerimi sıfırla -->
+    <div class="modal fade bg-light bg-opacity-75" id="modelBilgiTestiVerilerimiSifirla" tabindex="-1"
+        aria-labelledby="modelBilgiTestiVerilerimiSifirlaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg bg-light rounded-3">
+            <div class="modal-content bg-danger bg-opacity-75 text-dark fs-5 shadow">
+                <div class="modal-header">
+                    <p class="modal-title fs-5 fw-bold">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+                            <path
+                                d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+                        </svg>
+                        Bilgi Testi Verilerini Sıfırlama İşlemi Onayı
+                    </p>
+                    <button type="button" class="btn-close bg-light" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <span class="fw-bold fs-4">Dikkat !</span>
+                    <br>
+                    <p>
+                        Bilgi testi verilerinizi sıfırlamak istediğinize emin misiniz ?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-light bg-opacity-75 fs-5 ps-5 pe-5"
+                        data-bs-dismiss="modal">İptal</button>
+                    <button onclick="bilgiTestiVerilerimiSifirla();" type="button"
+                        class="btn bg-light bg-opacity-75 fs-5 ps-5 pe-5" data-bs-dismiss="modal">Bilgi Testi Verilerimi
+                        Sıfırla</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- ( Model ) Uygulamadan çıkmak istediğinize emin misiniz ? -->
     <button id="modelAcUygulamadanCikmakIstediginizeEminMisiniz" hidden data-bs-toggle="modal"
         data-bs-target="#modelUygulamadanCikmakIstediginizeEminMisiniz"></button>
@@ -2203,13 +2246,15 @@
                                 class="btn bg-success bg-opacity-25 ps-5 pe-5 fs-5 col-12 mt-3 shadow-sm">Yeni Soru
                                 Oluştur</button>
                             <button onclick="sorununCevabiniGoster();"
-                                class="btn bg-success bg-opacity-25 ps-5 pe-5 fs-5 col-12 mt-3 shadow-sm">Cevabi Göstert</button>
+                                class="btn bg-success bg-opacity-25 ps-5 pe-5 fs-5 col-12 mt-3 shadow-sm">Cevabi
+                                Göstert</button>
                             <ul class="list-group  mt-3">
                                 <li class="list-group-item d-flex justify-content-between align-items-start shadow-sm">
                                     <div class="ms-2 me-auto">
                                         <div class="fw-bold">Doğru Sayısı</div>
                                     </div>
-                                    <span id="bilgi-testi-dogru-sayisi" class="badge bg-success bg-opacity-25 rounded text-dark">0</span>
+                                    <span id="bilgi-testi-dogru-sayisi"
+                                        class="badge bg-success bg-opacity-25 rounded text-dark">0</span>
                                 </li>
                             </ul>
                             <ul class="list-group  mt-3">
@@ -2217,7 +2262,8 @@
                                     <div class="ms-2 me-auto">
                                         <div class="fw-bold">Yanlış Sayısı</div>
                                     </div>
-                                    <span id="bilgi-testi-yanlis-sayisi" class="badge bg-success bg-opacity-25 rounded text-dark">0</span>
+                                    <span id="bilgi-testi-yanlis-sayisi"
+                                        class="badge bg-success bg-opacity-25 rounded text-dark">0</span>
                                 </li>
                             </ul>
                             <ul class="list-group  mt-3">
@@ -2225,9 +2271,21 @@
                                     <div class="ms-2 me-auto">
                                         <div class="fw-bold">Başarı Oranı</div>
                                     </div>
-                                    <span id="bilgi-testi-basari-orani" class="badge bg-success bg-opacity-25 rounded text-dark">%0</span>
+                                    <span id="bilgi-testi-basari-orani"
+                                        class="badge bg-success bg-opacity-25 rounded text-dark">%0</span>
                                 </li>
                             </ul>
+                            <p data-bs-toggle="modal" data-bs-target="#modelBilgiTestiVerilerimiSifirla"
+                                style="cursor: pointer;" class="text-danger text-decoration-underline mt-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                    class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+                                    <path
+                                        d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+                                </svg>
+                                Bilgi testi verilerinizi sıfırlamak isterseniz buraya tıklayınız.
+                            </p>
                         </div>
                         <div class="col-md-3"></div>
 
@@ -2326,7 +2384,7 @@
                     </svg>
                     En Çok Çektiğim Zikirler
                 </li>
-                <li onclick="bilgiTestiOlustur(true);" class="list-group-item" style="cursor: pointer;"
+                <li id="bilgi-testini-acan-kutucuk" onclick="bilgiTestiOlustur();" class="list-group-item" style="cursor: pointer;"
                     data-bs-toggle="modal" data-bs-target="#modelBilgiTesti">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                         class="bi bi-pencil-fill" viewBox="0 0 16 16">
@@ -2367,7 +2425,7 @@
         }
     </script>
     <script
-        src="/zikircek.js?versiyonKodu=e8a9dd90c6c371503d2e44d09c9bfd27a489eed0949e73173929b80e863a35b814f6c850bcc8794da5e683e61f186ac2047f"></script>
+        src="/zikircek.js?versiyonKodu=b483b5541b96e9272313e57cab23fc628729ded754bb28c9bc4ca6c90e692ac72f69126bf35c2f1c2852539d4ab8bd0e06f3"></script>
 </body>
 
 </html>

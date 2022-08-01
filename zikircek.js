@@ -909,11 +909,6 @@ function cerezBilgilendirmesiniKapat() {
     localStorage.setItem("cerezBilgilendirmesiGosterilsinmi", 0);
 }
 
-setTimeout(() => {
-    modelZikirlerVeAciklamalariTablosunuOlustur();
-    zikirlerVeOkunuslariTablosunuOlustur();
-}, 1000);
-
 var ilkTiklananSatirID = -1;
 var ikinciTiklananSatirID = -1;
 function zikreGit(id) {
@@ -942,16 +937,8 @@ var aSikkiCevap = "";
 var bSikkiCevap = "";
 var cSikkiCevap = "";
 var dSikkiCevap = "";
-var bilgiTestiDogruSayisi = 0;
-var bilgiTestiYanlisSayisi = 0;
-function bilgiTestiOlustur(istatistikSifirlansimi = false) {
-    if (istatistikSifirlansimi == true) {
-        bilgiTestiDogruSayisi = 0;
-        bilgiTestiYanlisSayisi = 0;
-        document.getElementById("bilgi-testi-dogru-sayisi").innerText = 0;
-        document.getElementById("bilgi-testi-yanlis-sayisi").innerText = 0;
-        document.getElementById("bilgi-testi-basari-orani").innerText = "%0";
-    }
+function bilgiTestiOlustur() {
+
     document.getElementById("bilgi-testi-a-sikki-kutucugu").classList.remove("bg-success");
     document.getElementById("bilgi-testi-a-sikki-kutucugu").classList.remove("bg-opacity-50");
     document.getElementById("bilgi-testi-b-sikki-kutucugu").classList.remove("bg-success");
@@ -1088,7 +1075,9 @@ function soruyuKontrolEt(isaretlenenSik, skorSayilsinmi = true) {
         document.getElementById("bilgi-testi-d-sikki-kutucugu").classList.contains("bg-opacity-50") == false) {
         if (isaretlenenSik == dogruSik) {
             if (skorSayilsinmi == true) {
+                var bilgiTestiDogruSayisi = localStorage.getItem("bilgiTestiDogruSayisi");
                 bilgiTestiDogruSayisi++;
+                localStorage.setItem("bilgiTestiDogruSayisi", bilgiTestiDogruSayisi);
             }
             if (dogruSik == "a") {
                 document.getElementById("bilgi-testi-a-sikki-kutucugu").classList.add("bg-success");
@@ -1105,7 +1094,9 @@ function soruyuKontrolEt(isaretlenenSik, skorSayilsinmi = true) {
             }
         } else {
             if (skorSayilsinmi == true) {
+                var bilgiTestiYanlisSayisi = localStorage.getItem("bilgiTestiYanlisSayisi");
                 bilgiTestiYanlisSayisi++;
+                localStorage.setItem("bilgiTestiYanlisSayisi", bilgiTestiYanlisSayisi);
             }
             if (isaretlenenSik == "a") {
                 document.getElementById("bilgi-testi-a-sikki-kutucugu").classList.add("bg-danger");
@@ -1138,18 +1129,46 @@ function soruyuKontrolEt(isaretlenenSik, skorSayilsinmi = true) {
         document.getElementById("bilgi-testi-b-sikki").innerText += " ( " + bSikkiCevap + " )";
         document.getElementById("bilgi-testi-c-sikki").innerText += " ( " + cSikkiCevap + " )";
         document.getElementById("bilgi-testi-d-sikki").innerText += " ( " + dSikkiCevap + " )";
+        var bilgiTestiDogruSayisi = localStorage.getItem("bilgiTestiDogruSayisi");
+        var bilgiTestiYanlisSayisi = localStorage.getItem("bilgiTestiYanlisSayisi");
         document.getElementById("bilgi-testi-dogru-sayisi").innerText = bilgiTestiDogruSayisi;
         document.getElementById("bilgi-testi-yanlis-sayisi").innerText = bilgiTestiYanlisSayisi;
         var basariYuzdesi = 0;
         if (bilgiTestiDogruSayisi != 0) {
-            basariYuzdesi = parseInt(parseInt(bilgiTestiDogruSayisi) * 100 / (parseInt(bilgiTestiYanlisSayisi)+parseInt(bilgiTestiDogruSayisi)));
-        }   
-        if(basariYuzdesi > 100) {
+            basariYuzdesi = parseInt(parseInt(bilgiTestiDogruSayisi) * 100 / (parseInt(bilgiTestiYanlisSayisi) + parseInt(bilgiTestiDogruSayisi)));
+        }
+        if (basariYuzdesi > 100) {
             basariYuzdesi = 100;
         }
         document.getElementById("bilgi-testi-basari-orani").innerText = "%" + basariYuzdesi;
     }
 }
+
+function bilgiTestiVerilerimiSifirla() {
+    localStorage.setItem("bilgiTestiDogruSayisi", 0);
+    localStorage.setItem("bilgiTestiYanlisSayisi", 0);
+    document.getElementById("bilgi-testi-dogru-sayisi").innerText = 0;
+    document.getElementById("bilgi-testi-yanlis-sayisi").innerText = 0;
+    document.getElementById("bilgi-testi-basari-orani").innerText = "%0";
+    document.getElementById("bilgi-testini-acan-kutucuk").click();
+}
+
+setTimeout(() => {
+    modelZikirlerVeAciklamalariTablosunuOlustur();
+    zikirlerVeOkunuslariTablosunuOlustur();
+    var bilgiTestiDogruSayisi = localStorage.getItem("bilgiTestiDogruSayisi");
+    var bilgiTestiYanlisSayisi = localStorage.getItem("bilgiTestiYanlisSayisi");
+    var basariYuzdesi = 0;
+    if (bilgiTestiDogruSayisi != 0) {
+        basariYuzdesi = parseInt(parseInt(bilgiTestiDogruSayisi) * 100 / (parseInt(bilgiTestiYanlisSayisi) + parseInt(bilgiTestiDogruSayisi)));
+    }
+    if (basariYuzdesi > 100) {
+        basariYuzdesi = 100;
+    }
+    document.getElementById("bilgi-testi-dogru-sayisi").innerText = bilgiTestiDogruSayisi;
+    document.getElementById("bilgi-testi-yanlis-sayisi").innerText = bilgiTestiYanlisSayisi;
+    document.getElementById("bilgi-testi-basari-orani").innerText = "%" + basariYuzdesi;
+}, 1000);
 
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function () {
