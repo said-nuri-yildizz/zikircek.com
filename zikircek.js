@@ -1142,7 +1142,7 @@ function soruyuKontrolEt(isaretlenenSik, skorSayilsinmi = true) {
         document.getElementById("bilgi-testi-yanlis-sayisi").innerText = bilgiTestiYanlisSayisi;
         var basariYuzdesi = 0;
         if (bilgiTestiDogruSayisi != 0) {
-            basariYuzdesi = parseInt(parseInt(bilgiTestiYanlisSayisi) * 100 / (parseInt(bilgiTestiYanlisSayisi)+parseInt(bilgiTestiDogruSayisi)));
+            basariYuzdesi = parseInt(parseInt(bilgiTestiDogruSayisi) * 100 / (parseInt(bilgiTestiYanlisSayisi)+parseInt(bilgiTestiDogruSayisi)));
         }   
         if(basariYuzdesi > 100) {
             basariYuzdesi = 100;
