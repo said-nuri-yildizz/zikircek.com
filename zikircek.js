@@ -935,6 +935,166 @@ function zikreGit(id) {
     }
 }
 
+var dogruSik = "";
+function bilgiTestiOlustur() {
+    document.getElementById("bilgi-testi-a-sikki-kutucugu").classList.remove("bg-success");
+    document.getElementById("bilgi-testi-a-sikki-kutucugu").classList.remove("bg-opacity-50");
+    document.getElementById("bilgi-testi-b-sikki-kutucugu").classList.remove("bg-success");
+    document.getElementById("bilgi-testi-b-sikki-kutucugu").classList.remove("bg-opacity-50");
+    document.getElementById("bilgi-testi-c-sikki-kutucugu").classList.remove("bg-success");
+    document.getElementById("bilgi-testi-c-sikki-kutucugu").classList.remove("bg-opacity-50");
+    document.getElementById("bilgi-testi-d-sikki-kutucugu").classList.remove("bg-success");
+    document.getElementById("bilgi-testi-d-sikki-kutucugu").classList.remove("bg-opacity-50");
+
+    document.getElementById("bilgi-testi-a-sikki-kutucugu").classList.remove("bg-danger");
+    document.getElementById("bilgi-testi-a-sikki-kutucugu").classList.remove("bg-opacity-50");
+    document.getElementById("bilgi-testi-b-sikki-kutucugu").classList.remove("bg-danger");
+    document.getElementById("bilgi-testi-b-sikki-kutucugu").classList.remove("bg-opacity-50");
+    document.getElementById("bilgi-testi-c-sikki-kutucugu").classList.remove("bg-danger");
+    document.getElementById("bilgi-testi-c-sikki-kutucugu").classList.remove("bg-opacity-50");
+    document.getElementById("bilgi-testi-d-sikki-kutucugu").classList.remove("bg-danger");
+    document.getElementById("bilgi-testi-d-sikki-kutucugu").classList.remove("bg-opacity-50");
+    var soruTuru = parseInt(Math.random() * 2 + 1);
+    if (soruTuru == 1) {
+        var rastgeleZikir = parseInt(Math.random() * 99);
+        var isim = veritabani[rastgeleZikir]["turkce"];
+        var dogruAciklama = veritabani[rastgeleZikir]["aciklama"];
+        var dogruAciklamaninOlduguSik = parseInt(Math.random() * 4 + 1);
+        var rastgeleSayi1 = parseInt(Math.random() * 99);
+        var rastgeleSayi2 = parseInt(Math.random() * 99);
+        var rastgeleSayi3 = parseInt(Math.random() * 99);
+        var rastgeleSayi4 = parseInt(Math.random() * 99);
+        while (true) {
+            if (rastgeleSayi1 != rastgeleSayi2 && rastgeleSayi1 != rastgeleSayi3 &&
+                rastgeleSayi1 != rastgeleSayi4 && rastgeleSayi2 != rastgeleSayi3 &&
+                rastgeleSayi2 != rastgeleSayi4 && rastgeleSayi3 != rastgeleSayi4) {
+                break;
+            } else {
+                rastgeleSayi1 = parseInt(Math.random() * 99);
+                rastgeleSayi2 = parseInt(Math.random() * 99);
+                rastgeleSayi3 = parseInt(Math.random() * 99);
+                rastgeleSayi4 = parseInt(Math.random() * 99);
+            }
+        }
+        var aSikki = veritabani[rastgeleSayi1]["aciklama"];
+        var bSikki = veritabani[rastgeleSayi2]["aciklama"];
+        var cSikki = veritabani[rastgeleSayi3]["aciklama"];
+        var dSikki = veritabani[rastgeleSayi4]["aciklama"];
+        if (dogruAciklamaninOlduguSik == 1) {
+            dogruSik = "a";
+            aSikki = dogruAciklama;
+        } else if (dogruAciklamaninOlduguSik == 2) {
+            dogruSik = "b";
+            bSikki = dogruAciklama;
+        } else if (dogruAciklamaninOlduguSik == 3) {
+            dogruSik = "c";
+            cSikki = dogruAciklama;
+        } else {
+            dogruSik = "d";
+            dSikki = dogruAciklama;
+        }
+        document.getElementById("bilgi-testi-soru").innerHTML = "<i>" + isim + "</i> isminin anlamı aşağıdakilerden hangisidir ?";
+        document.getElementById("bilgi-testi-a-sikki").innerText = aSikki;
+        document.getElementById("bilgi-testi-b-sikki").innerText = bSikki;
+        document.getElementById("bilgi-testi-c-sikki").innerText = cSikki;
+        document.getElementById("bilgi-testi-d-sikki").innerText = dSikki;
+    } else if (soruTuru == 2) {
+        var rastgeleZikir = parseInt(Math.random() * 99);
+        var aciklama = veritabani[rastgeleZikir]["aciklama"];
+        var dogruIsim = veritabani[rastgeleZikir]["turkce"];
+        var dogruAciklamaninOlduguSik = parseInt(Math.random() * 4 + 1);
+        var rastgeleSayi1 = parseInt(Math.random() * 99);
+        var rastgeleSayi2 = parseInt(Math.random() * 99);
+        var rastgeleSayi3 = parseInt(Math.random() * 99);
+        var rastgeleSayi4 = parseInt(Math.random() * 99);
+        while (true) {
+            if (rastgeleSayi1 != rastgeleSayi2 && rastgeleSayi1 != rastgeleSayi3 &&
+                rastgeleSayi1 != rastgeleSayi4 && rastgeleSayi2 != rastgeleSayi3 &&
+                rastgeleSayi2 != rastgeleSayi4 && rastgeleSayi3 != rastgeleSayi4) {
+                break;
+            } else {
+                rastgeleSayi1 = parseInt(Math.random() * 99);
+                rastgeleSayi2 = parseInt(Math.random() * 99);
+                rastgeleSayi3 = parseInt(Math.random() * 99);
+                rastgeleSayi4 = parseInt(Math.random() * 99);
+            }
+        }
+        var aSikki = veritabani[rastgeleSayi1]["turkce"];
+        var bSikki = veritabani[rastgeleSayi2]["turkce"];
+        var cSikki = veritabani[rastgeleSayi3]["turkce"];
+        var dSikki = veritabani[rastgeleSayi4]["turkce"];
+        if (dogruAciklamaninOlduguSik == 1) {
+            dogruSik = "a";
+            aSikki = dogruIsim;
+        } else if (dogruAciklamaninOlduguSik == 2) {
+            dogruSik = "b";
+            bSikki = dogruIsim;
+        } else if (dogruAciklamaninOlduguSik == 3) {
+            dogruSik = "c";
+            cSikki = dogruIsim;
+        } else {
+            dogruSik = "d";
+            dSikki = dogruIsim;
+        }
+        document.getElementById("bilgi-testi-soru").innerHTML = "Aşağıda verilen açıklama aşağıdaki isimlerden hangisine aittir ?<br><i>" + aciklama + "</i>";
+        document.getElementById("bilgi-testi-a-sikki").innerText = aSikki;
+        document.getElementById("bilgi-testi-b-sikki").innerText = bSikki;
+        document.getElementById("bilgi-testi-c-sikki").innerText = cSikki;
+        document.getElementById("bilgi-testi-d-sikki").innerText = dSikki;
+    }
+}
+
+function soruyuKontrolEt(isaretlenenSik) {
+    if (document.getElementById("bilgi-testi-a-sikki-kutucugu").classList.contains("bg-opacity-50") == false &&
+        document.getElementById("bilgi-testi-b-sikki-kutucugu").classList.contains("bg-opacity-50") == false &&
+        document.getElementById("bilgi-testi-c-sikki-kutucugu").classList.contains("bg-opacity-50") == false &&
+        document.getElementById("bilgi-testi-d-sikki-kutucugu").classList.contains("bg-opacity-50") == false) {
+        if (isaretlenenSik == dogruSik) {
+            if (dogruSik == "a") {
+                document.getElementById("bilgi-testi-a-sikki-kutucugu").classList.add("bg-success");
+                document.getElementById("bilgi-testi-a-sikki-kutucugu").classList.add("bg-opacity-50");
+            } else if (dogruSik == "b") {
+                document.getElementById("bilgi-testi-b-sikki-kutucugu").classList.add("bg-success");
+                document.getElementById("bilgi-testi-b-sikki-kutucugu").classList.add("bg-opacity-50");
+            } else if (dogruSik == "c") {
+                document.getElementById("bilgi-testi-c-sikki-kutucugu").classList.add("bg-success");
+                document.getElementById("bilgi-testi-c-sikki-kutucugu").classList.add("bg-opacity-50");
+            } else if (dogruSik == "d") {
+                document.getElementById("bilgi-testi-d-sikki-kutucugu").classList.add("bg-success");
+                document.getElementById("bilgi-testi-d-sikki-kutucugu").classList.add("bg-opacity-50");
+            }
+        } else {
+            if (isaretlenenSik == "a") {
+                document.getElementById("bilgi-testi-a-sikki-kutucugu").classList.add("bg-danger");
+                document.getElementById("bilgi-testi-a-sikki-kutucugu").classList.add("bg-opacity-50");
+            } else if (isaretlenenSik == "b") {
+                document.getElementById("bilgi-testi-b-sikki-kutucugu").classList.add("bg-danger");
+                document.getElementById("bilgi-testi-b-sikki-kutucugu").classList.add("bg-opacity-50");
+            } else if (isaretlenenSik == "c") {
+                document.getElementById("bilgi-testi-c-sikki-kutucugu").classList.add("bg-danger");
+                document.getElementById("bilgi-testi-c-sikki-kutucugu").classList.add("bg-opacity-50");
+            } else if (isaretlenenSik == "d") {
+                document.getElementById("bilgi-testi-d-sikki-kutucugu").classList.add("bg-danger");
+                document.getElementById("bilgi-testi-d-sikki-kutucugu").classList.add("bg-opacity-50");
+            }
+            if (dogruSik == "a") {
+                document.getElementById("bilgi-testi-a-sikki-kutucugu").classList.add("bg-success");
+                document.getElementById("bilgi-testi-a-sikki-kutucugu").classList.add("bg-opacity-50");
+            } else if (dogruSik == "b") {
+                document.getElementById("bilgi-testi-b-sikki-kutucugu").classList.add("bg-success");
+                document.getElementById("bilgi-testi-b-sikki-kutucugu").classList.add("bg-opacity-50");
+            } else if (dogruSik == "c") {
+                document.getElementById("bilgi-testi-c-sikki-kutucugu").classList.add("bg-success");
+                document.getElementById("bilgi-testi-c-sikki-kutucugu").classList.add("bg-opacity-50");
+            } else if (dogruSik == "d") {
+                document.getElementById("bilgi-testi-d-sikki-kutucugu").classList.add("bg-success");
+                document.getElementById("bilgi-testi-d-sikki-kutucugu").classList.add("bg-opacity-50");
+            }
+        }
+    }
+}
+bilgiTestiOlustur();
+
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function () {
     if (xhr.readyState == XMLHttpRequest.DONE) {
