@@ -716,6 +716,8 @@ function zikriTamamla() {
     zikirSayisiniGuncelle(id);
 }
 function favorilerimiGuncelle(id) {
+    ilkTiklananSatirID = -1;
+    ikinciTiklananSatirID = -1;
     if (id == undefined) {
         var id = parseInt(document.getElementById("zikir-secme-kutusu").selectedIndex) + 1;
         if (veritabani[id - 1]["favori"] == true) {
@@ -936,6 +938,10 @@ function zikreGit(id) {
 }
 
 var dogruSik = "";
+var aSikkiCevap = "";
+var bSikkiCevap = "";
+var cSikkiCevap = "";
+var dSikkiCevap = "";
 function bilgiTestiOlustur() {
     document.getElementById("bilgi-testi-a-sikki-kutucugu").classList.remove("bg-success");
     document.getElementById("bilgi-testi-a-sikki-kutucugu").classList.remove("bg-opacity-50");
@@ -960,6 +966,7 @@ function bilgiTestiOlustur() {
         var isim = veritabani[rastgeleZikir]["turkce"];
         var dogruAciklama = veritabani[rastgeleZikir]["aciklama"];
         var dogruAciklamaninOlduguSik = parseInt(Math.random() * 4 + 1);
+        var dogruCevap = veritabani[rastgeleZikir]["turkce"];
         var rastgeleSayi1 = parseInt(Math.random() * 99);
         var rastgeleSayi2 = parseInt(Math.random() * 99);
         var rastgeleSayi3 = parseInt(Math.random() * 99);
@@ -980,20 +987,28 @@ function bilgiTestiOlustur() {
         var bSikki = veritabani[rastgeleSayi2]["aciklama"];
         var cSikki = veritabani[rastgeleSayi3]["aciklama"];
         var dSikki = veritabani[rastgeleSayi4]["aciklama"];
+        aSikkiCevap = veritabani[rastgeleSayi1]["turkce"];
+        bSikkiCevap = veritabani[rastgeleSayi2]["turkce"];
+        cSikkiCevap = veritabani[rastgeleSayi3]["turkce"];
+        dSikkiCevap = veritabani[rastgeleSayi4]["turkce"];
         if (dogruAciklamaninOlduguSik == 1) {
             dogruSik = "a";
             aSikki = dogruAciklama;
+            aSikkiCevap = dogruCevap;
         } else if (dogruAciklamaninOlduguSik == 2) {
             dogruSik = "b";
             bSikki = dogruAciklama;
+            bSikkiCevap = dogruCevap;
         } else if (dogruAciklamaninOlduguSik == 3) {
             dogruSik = "c";
             cSikki = dogruAciklama;
+            cSikkiCevap = dogruCevap;
         } else {
             dogruSik = "d";
             dSikki = dogruAciklama;
+            dSikkiCevap = dogruCevap;
         }
-        document.getElementById("bilgi-testi-soru").innerHTML = "<i>" + isim + "</i> isminin anlamı aşağıdakilerden hangisidir ?";
+        document.getElementById("bilgi-testi-soru").innerHTML = "<span class=\"fw-bold\"><i>" + isim + "</i> isminin anlamı aşağıdakilerden hangisidir ?</span>";
         document.getElementById("bilgi-testi-a-sikki").innerText = aSikki;
         document.getElementById("bilgi-testi-b-sikki").innerText = bSikki;
         document.getElementById("bilgi-testi-c-sikki").innerText = cSikki;
@@ -1003,6 +1018,7 @@ function bilgiTestiOlustur() {
         var aciklama = veritabani[rastgeleZikir]["aciklama"];
         var dogruIsim = veritabani[rastgeleZikir]["turkce"];
         var dogruAciklamaninOlduguSik = parseInt(Math.random() * 4 + 1);
+        var dogruCevap = veritabani[rastgeleZikir]["aciklama"];
         var rastgeleSayi1 = parseInt(Math.random() * 99);
         var rastgeleSayi2 = parseInt(Math.random() * 99);
         var rastgeleSayi3 = parseInt(Math.random() * 99);
@@ -1023,25 +1039,37 @@ function bilgiTestiOlustur() {
         var bSikki = veritabani[rastgeleSayi2]["turkce"];
         var cSikki = veritabani[rastgeleSayi3]["turkce"];
         var dSikki = veritabani[rastgeleSayi4]["turkce"];
+        aSikkiCevap = veritabani[rastgeleSayi1]["aciklama"];
+        bSikkiCevap = veritabani[rastgeleSayi2]["aciklama"];
+        cSikkiCevap = veritabani[rastgeleSayi3]["aciklama"];
+        dSikkiCevap = veritabani[rastgeleSayi4]["aciklama"];
         if (dogruAciklamaninOlduguSik == 1) {
             dogruSik = "a";
             aSikki = dogruIsim;
+            aSikkiCevap = dogruCevap;
         } else if (dogruAciklamaninOlduguSik == 2) {
             dogruSik = "b";
             bSikki = dogruIsim;
+            bSikkiCevap = dogruCevap;
         } else if (dogruAciklamaninOlduguSik == 3) {
             dogruSik = "c";
             cSikki = dogruIsim;
+            cSikkiCevap = dogruCevap;
         } else {
             dogruSik = "d";
             dSikki = dogruIsim;
+            dSikkiCevap = dogruCevap;
         }
-        document.getElementById("bilgi-testi-soru").innerHTML = "Aşağıda verilen açıklama aşağıdaki isimlerden hangisine aittir ?<br><i>" + aciklama + "</i>";
+        document.getElementById("bilgi-testi-soru").innerHTML = "<i>" + aciklama + "</i><br><span class=\"fw-bold\">Yukarıda açıklaması verilen isim aşağıdakilerden hangisidir ?</span>";
         document.getElementById("bilgi-testi-a-sikki").innerText = aSikki;
         document.getElementById("bilgi-testi-b-sikki").innerText = bSikki;
         document.getElementById("bilgi-testi-c-sikki").innerText = cSikki;
         document.getElementById("bilgi-testi-d-sikki").innerText = dSikki;
     }
+}
+
+function sorununCevabiniGoster() {
+    soruyuKontrolEt(dogruSik);
 }
 
 function soruyuKontrolEt(isaretlenenSik) {
@@ -1091,9 +1119,12 @@ function soruyuKontrolEt(isaretlenenSik) {
                 document.getElementById("bilgi-testi-d-sikki-kutucugu").classList.add("bg-opacity-50");
             }
         }
+        document.getElementById("bilgi-testi-a-sikki").innerText += " ( " + aSikkiCevap + " )";
+        document.getElementById("bilgi-testi-b-sikki").innerText += " ( " + bSikkiCevap+ " )";
+        document.getElementById("bilgi-testi-c-sikki").innerText += " ( " + cSikkiCevap+ " )";
+        document.getElementById("bilgi-testi-d-sikki").innerText += " ( " + dSikkiCevap+ " )";
     }
 }
-bilgiTestiOlustur();
 
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function () {
