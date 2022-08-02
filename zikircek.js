@@ -970,7 +970,9 @@ function bilgiTestiOlustur() {
         while (true) {
             if (rastgeleSayi1 != rastgeleSayi2 && rastgeleSayi1 != rastgeleSayi3 &&
                 rastgeleSayi1 != rastgeleSayi4 && rastgeleSayi2 != rastgeleSayi3 &&
-                rastgeleSayi2 != rastgeleSayi4 && rastgeleSayi3 != rastgeleSayi4) {
+                rastgeleSayi2 != rastgeleSayi4 && rastgeleSayi3 != rastgeleSayi4 &&
+                rastgeleSayi1 != rastgeleZikir && rastgeleSayi2 != rastgeleZikir &&
+                rastgeleSayi3 != rastgeleZikir && rastgeleSayi4 != rastgeleZikir) {
                 break;
             } else {
                 rastgeleSayi1 = parseInt(Math.random() * 99);
@@ -1022,7 +1024,9 @@ function bilgiTestiOlustur() {
         while (true) {
             if (rastgeleSayi1 != rastgeleSayi2 && rastgeleSayi1 != rastgeleSayi3 &&
                 rastgeleSayi1 != rastgeleSayi4 && rastgeleSayi2 != rastgeleSayi3 &&
-                rastgeleSayi2 != rastgeleSayi4 && rastgeleSayi3 != rastgeleSayi4) {
+                rastgeleSayi2 != rastgeleSayi4 && rastgeleSayi3 != rastgeleSayi4 &&
+                rastgeleSayi1 != rastgeleZikir && rastgeleSayi2 != rastgeleZikir &&
+                rastgeleSayi3 != rastgeleZikir && rastgeleSayi4 != rastgeleZikir) {
                 break;
             } else {
                 rastgeleSayi1 = parseInt(Math.random() * 99);
