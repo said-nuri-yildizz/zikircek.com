@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="tr">
+
+<head>
+    <script>/*بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيم‎ (Bismillâhirrahmânirrahîm)*/</script>
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10">
+    <title>Zikir Çek</title>
+    <meta name="theme-color" content="#f8f9fa" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta name="keywords"
+        content="Zikir Çek, Esmaül Hüsna Nedir ?,Esmaül Hüsna'nın Faziletleri,Zikir Çekmenin Önemi,Zikir İle İlgili Ayetler">
+    <meta name="description"
+        content="Yüce ALLAH'ın 99 ismi ve anlamları (Esmaül Hüsna ve Faziletleri) hakkında bilgi sahibi olmak ve ALLAH'ın isimlerini sırasıyla görüntüleyip zikir çekmek için sitemizden istifade edebilirsiniz.">
+    <meta name="author" content="ALLAH'ın Mücahit Kulları">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BKF30KK3DN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-BKF30KK3DN');
+    </script>
+    <script>
+        var versiyonKodu = "66436723437e06692f6ad2f26eca9202f3fdaaa777ee09915cbf3d1053e3e7f4ed96dcaff33f8d2afb205e6cbff0030aaac8";
+        function versiyonKontroluYap() {
+            if (localStorage.getItem("versiyonKodu") == null || localStorage.getItem("versiyonKodu") != versiyonKodu) {
+                localStorage.clear();
+                localStorage.setItem("versiyonKodu", versiyonKodu);
+                var xhrVeritabani = new XMLHttpRequest();
+                xhrVeritabani.onreadystatechange = function () {
+                    if (xhrVeritabani.readyState == XMLHttpRequest.DONE) {
+                        localStorage.setItem("veritabani", xhrVeritabani.responseText);
+                        window.location.reload();
+                    }
+                }
+                xhrVeritabani.open('GET', '/veritabani.json?versiyonKodu=' + versiyonKodu, true);
+                xhrVeritabani.send(null);
+            }
+        }
+        versiyonKontroluYap();
+        if (localStorage.getItem("tiklamaSesi") == null) {
+            localStorage.setItem("tiklamaSesi", 1);
+        }
+        if (localStorage.getItem("cerezBilgilendirmesiGosterilsinmi") == null) {
+            localStorage.setItem("cerezBilgilendirmesiGosterilsinmi", 1);
+        }
+        var veritabani = JSON.parse(localStorage.getItem("veritabani"));
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.2/dist/chart.min.js"></script>
+</head>
+
+<body class="bg-success bg-opacity-25 text-dark fs-5" onload="document.getElementById('sayfa-yukeniyor').remove();">
+    <script>
+        // document.getElementsByTagName("meta")[1].attributes[1].nodeValue = 'width=device-width, initial-scale=0.1, maximum-scale=10';
+    </script>
+    <div id="sayfa-yukeniyor">
+        <style>
+            #sayfa-yukeniyor {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                height: 200%;
+                background-color: #fff;
+                z-index: 99999;
+                text-align: center;
+            }
+        </style>
+        <div style="margin-top: 20%;">
+            <img src="/ikon.png"> Sayfa Yükleniyor...
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 mt-3 bg-light rounded-3 p-3 shadow">
+                <nav class="navbar navbar-expand-lg bg-light">
+                    <a class="navbar-brand text-dark" href="/">
+                        <table>
+                            <tr>
+                                <td>
+                                    <img src="ikon.png" alt="" width="100" height="100"
+                                        class="d-inline-block align-text-top">
+                                </td>
+                                <td class="fs-5">zikircek.com</td>
+                            </tr>
+                        </table>
+                    </a>
+                </nav>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 bg-light p-3 rounded-3 shadow mb-3">
+                <h1>Politikalarımız</h1>
+                <ul>
+                    <li>1. Çerez Politikamız</li>
+                    <li>2. Veri Paylaşım Politikamız</li>
+                    <li>3. Telif Hakları Politikamız</li>
+                </ul>
+                <h2>Çerez Politikamız</h2>
+                <p>
+                    Uygulamamız bizzat kendisi çerez teknolojisini kullanmaz fakat uygulamamızı korumak için kullandığımız Cloud Flare ve uygulamamıza gelen kullanıcı sayısını analiz etmek için kullandığımız Google Analytics çerez teknolojisini kullanır.
+                </p>
+                <h2>Veri Paylaşım Politikamız</h2>
+                <p>
+                    Uygulamamız bizzat kendisi verilerinizi depolamaz ve kimseyle paylaşmaz lakin uygulamamızı korumak için kullandığımız Cloud Flare uygulamamıza gelen istekleri görür ve bu istekler bir saldırgana ait ise bu kişiyi bloklar.
+                    Uygulamamızın kullanım oranlarını ve istatistiklerini analiz edebilmek için kullandığımız Google Analytics bu analizleri ortaya koyabilmek için bazı verilerinizi depolar.
+                </p>
+                <h2>Telif Hakları Politikamız</h2>
+                <p>
+                    Uygulamamızda kullandığımız bize ait görsellerin, seslerin, metinlerin ve kodların tüm telif hakları alınmıştır.
+                    Kaynak gösterilse ve link verilse dahi kısmen veya tamamen kullanılması kesinlikle yasaktır. Aksi takdirde avukatlarımız gerekli cezai işlemleri başlatacaktır.
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
