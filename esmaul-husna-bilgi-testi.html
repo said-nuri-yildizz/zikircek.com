@@ -25,7 +25,7 @@
         var veritabani = JSON.parse(localStorage.getItem("veritabani"));
         // Bilgi testi veritabanı kontrolü
         function bilgiTestiVeritabaniKontrolu() {
-            if (localStorage.getItem("bilgiTestiVeritabani") == null) {
+            if (localStorage.getItem("bilgiTestiVeritabani") == null || localStorage.getItem("bilgiTestiVeritabani") == "") {
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == XMLHttpRequest.DONE) {
