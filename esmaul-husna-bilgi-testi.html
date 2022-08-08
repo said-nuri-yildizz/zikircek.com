@@ -73,7 +73,7 @@
     <div class="container-fluid mb-5">
         <div class="shadow-sm p-3 row">
             <div class="col-1">
-                <a class="text-decoration-none text-dark" style="cursor: pointer;" href="/">
+                <a id="sol-ok" class="text-decoration-none text-dark" style="cursor: pointer;" href="/">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                         class="bi bi-arrow-left" viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
@@ -238,8 +238,16 @@
                     <a href="/politikalarimiz.html">Politikalarımız</a>
                     <hr>
                     <p>
-                        <img src="/ikon.png" class="img-fluid" alt="zikircek.com ikon">
-                        <strong>Talha YILDIZ</strong> ve <strong>Said Nuri YILDIZ</strong> tarafından kodlanmıştır.
+                    <table>
+                        <tr>
+                            <td>
+                                <img id="footer-ikon" src="/ikon.png" class="img-fluid" alt="zikircek.com ikon">
+                            </td>
+                            <td>
+                                <strong>Talha YILDIZ</strong> ve <strong>Said Nuri YILDIZ</strong> tarafından kodlanmıştır.
+                            </td>
+                        </tr>
+                    </table>
                     </p>
                     <hr>
                     <p>
@@ -290,7 +298,12 @@
             </div>
         </div>
     </div>
-
+    <script>
+        if (window.location.search == "?playstore") {
+            document.getElementById("sol-ok").hidden = true;
+            document.getElementById("footer-ikon").src = "playstore-ikon.png";
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
@@ -401,6 +414,7 @@
             var rastgeleSayi2 = parseInt(Math.random() * 99);
             var rastgeleSayi3 = parseInt(Math.random() * 99);
             var rastgeleSayi4 = parseInt(Math.random() * 99);
+            var sorulacakZikir = parseInt(Math.random() * 99);
             while (true) {
                 if (rastgeleSayi1 != rastgeleSayi2 && rastgeleSayi1 != rastgeleSayi3 &&
                     rastgeleSayi1 != rastgeleSayi4 && rastgeleSayi2 != rastgeleSayi3 &&
@@ -416,7 +430,6 @@
                 }
             }
             var soruTuru = parseInt(Math.random() * 2 + 1);
-            var sorulacakZikir = parseInt(Math.random() * 99);
             var sorulanVeri = "";
             var istenenVeri = "";
             if (soruTuru == 1) {
